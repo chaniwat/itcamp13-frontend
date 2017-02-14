@@ -1,0 +1,6 @@
+@include generate-block('home') {
+  margin-top: 80px;
+  background-color: $home-section-color;
+
+  @include generate-content-block();
+};

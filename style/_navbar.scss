@@ -1,0 +1,10 @@
+.navbar {
+  height: 80px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  .navbar-brand {
+    margin-right: 0;
+  }
+}

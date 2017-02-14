@@ -1,0 +1,31 @@
+@mixin generate-block($name) {
+  section.#{$name}-block {
+    position: relative;
+    width: 100%;
+    min-height: calc(100% - 80px);
+
+    @content
+  }
+}
+
+$default-content-breakpoint: (
+  xs: 80%,
+  lg: 1000px
+);
+@mixin generate-content-block($breakpoints: $default-content-breakpoint) {
+  .content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    
+    @each $breakpoint, $value in $breakpoints {
+      @include media-breakpoint-up($breakpoint) {
+        width: $value;
+      }
+    }
+
+    @content
+  }
+}

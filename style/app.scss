@@ -1,0 +1,17 @@
+// Import bootstrap
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// Mixins
+@import "./mixins";
+
+// Deps
+@import "./color";
+@import "./navbar";
+
+// Blocks
+@import "./blocks/home";
+@import "./blocks/detail";
+
+html, body {
+  height: 100%;
+}
