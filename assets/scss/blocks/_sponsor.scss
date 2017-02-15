@@ -1,8 +1,8 @@
-@include generate-block('detail') {
-  background-color: $detail-section-color;
+@include generate-block('sponsor') {
+  background-color: $sponsor-section-color;
 
   @include generate-content-block() {
-    .overview-detail {
+    .sponsors-list {
       margin: 0;
       padding: 0;
 

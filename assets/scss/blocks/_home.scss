@@ -2,5 +2,9 @@
   margin-top: 80px;
   background-color: $home-section-color;
 
-  @include generate-content-block();
+  @include generate-content-block() {
+    .logo {
+      margin-bottom: 2rem;
+    }
+  };
 };
