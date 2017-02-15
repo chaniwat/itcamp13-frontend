@@ -6,16 +6,18 @@
 
 // Deps
 @import "./color";
+@import "./font";
 @import "./navbar";
+@import "./sidebar";
 
 // Blocks
 @import "./blocks/home";
 @import "./blocks/detail";
 @import "./blocks/sponsor";
 
-@font-face {
-    font-family: 'ThaiSansNeue';
-    src: url('../fonts/ThaiSansNeue-Black.ttf');
+// Change based font size
+html {
+  font-size: 24px;
 }
 
 html, body {

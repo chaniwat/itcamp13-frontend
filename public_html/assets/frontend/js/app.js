@@ -84,12 +84,13 @@ module.exports = __webpack_require__.p + "index.html";
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_html__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__index_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__index_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__assets_scss_app_scss__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__assets_scss_app_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__assets_scss_app_scss__);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_scss_app_scss__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_scss_app_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__assets_scss_app_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_html__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__index_html__);
 // Import styles
+
+// Import HTML
 
 
 /***/ })

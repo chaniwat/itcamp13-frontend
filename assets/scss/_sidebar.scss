@@ -1,0 +1,29 @@
+.sidebar {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 9999;
+
+  .sidebar-item {
+    width: 50px;
+    padding-top: 8px;
+    text-align: center;
+    color: white;
+
+    span.count {
+      display: block;
+      font-size: .8rem;
+      background-color: rgba(255, 255, 255, 0.35);
+    }
+  }
+}
+
+// Shares
+.share-facebook {
+  background-color: #3B5998;
+}
+
+.share-twitter {
+  background-color: #32CDFD;
+}
