@@ -8,10 +8,17 @@
 
       li {
         display: inline-block;
-        margin-right: 1.5rem;
+        margin-right: 2rem;
 
         &:last-child {
           margin-right: 0;
+        }
+
+        img {
+          width: 180px;
+          height: 180px;
+          border-radius: 100px;
+          background-color: #ffffff;
         }
       }
     }

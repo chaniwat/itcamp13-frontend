@@ -1,6 +1,11 @@
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
+// For localdev
+// var rootPath = "";
+// For fe13 (host)
+var rootPath = "fe13/";
+
 // Multiple ExtractTextPlugin for fonts and styles
 var extractStyle = new ExtractTextPlugin({
   filename: 'css/app.css',
@@ -34,12 +39,12 @@ module.exports = {
       },
       {
         test: /\.(woff2|ttf|eot|svg)$/,
-        use: 'file-loader?name=[name].[ext]&outputPath=fonts/&publicPath=/assets/frontend/fonts/',
+        use: 'file-loader?name=[name].[ext]&outputPath=fonts/&publicPath=/'+rootPath+'assets/frontend/fonts/',
         include: [path.join(__dirname, 'assets/fonts')]
       },
       {
         test: /\.(png|jpg|gif)$/,
-        use: 'file-loader?name=[name].[ext]&outputPath=images/&publicPath=/assets/frontend/images/',
+        use: 'file-loader?name=[name].[ext]&outputPath=images/&publicPath=/'+rootPath+'assets/frontend/images/',
         include: [path.join(__dirname, 'assets/images')]
       },
       {

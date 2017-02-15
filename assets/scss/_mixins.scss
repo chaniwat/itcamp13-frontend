@@ -2,7 +2,7 @@
   section.#{$name}-block {
     position: relative;
     width: 100%;
-    min-height: calc(100% - 80px);
+    min-height: calc(100% - #{$navbar-height});
 
     @content
   }
@@ -19,7 +19,7 @@ $default-content-breakpoint: (
     top: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    
+
     @each $breakpoint, $value in $breakpoints {
       @include media-breakpoint-up($breakpoint) {
         width: $value;
