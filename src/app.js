@@ -20,4 +20,4 @@ import { MainApp } from './main';
 
 $(document).ready(() => {
   new MainApp(debugHelper);
-})
+});

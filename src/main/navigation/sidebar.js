@@ -1,13 +1,15 @@
-export class NavigationBar
+export class SideBar
 {
 
   /**
    * params:
-   *  - navbar: JQuery DOM => Navbar
+   *  - sidebar: JQuery DOM => Sidebar (Sharing bar)
+   *  - navbar: JQuery DOM => Navbar #need to reference the height
    */
-  constructor(navbar)
+  constructor(sidebar, navbar)
   {
     // associate
+    this.sidebar = sidebar;
     this.navbar = navbar;
 
     // variables
@@ -28,12 +30,12 @@ export class NavigationBar
 
       if (!this.isShow && isScreenBelowFirstBlock)
       {
-        this.showNavbar();
+        this.showSidebar();
         this.isShow = true;
       }
       else if (this.isShow && !isScreenBelowFirstBlock)
       {
-        this.hideNavbar();
+        this.hideSidebar();
         this.isShow = false;
       }
     });
@@ -42,19 +44,19 @@ export class NavigationBar
   /**
    * Show navbar
    */
-  showNavbar()
+  showSidebar()
   {
-    if(this.debugHelper) this.debugHelper.logf('navbar_toggle', 'showing navbar');
-    this.navbar.animate({top: 0}, 750);
+    if(this.debugHelper) this.debugHelper.logf('sidebar_toggle', 'showing sidebar');
+    this.sidebar.animate({right: 0}, 750);
   }
 
   /**
    * Hide navbar
    */
-  hideNavbar()
+  hideSidebar()
   {
-    if(this.debugHelper) this.debugHelper.logf('navbar_toggle', 'hiding navbar');
-    this.navbar.animate({top: -this.navbar.outerHeight()}, 750);
+    if(this.debugHelper) this.debugHelper.logf('sidebar_toggle', 'hiding sidebar');
+    this.sidebar.animate({right: -this.sidebar.outerWidth()}, 750);
   }
 
   /**
