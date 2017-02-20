@@ -1,10 +1,11 @@
+var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 // For localdev
-// var rootPath = "";
+var rootPath = "";
 // For fe13 (host)
-var rootPath = "fe13/";
+//var rootPath = "fe13/";
 
 // Multiple ExtractTextPlugin for fonts and styles
 var extractStyle = new ExtractTextPlugin({
@@ -54,6 +55,12 @@ module.exports = {
     ]
   },
   plugins: [
-    extractStyle
+    extractStyle,
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery",
+      "Tether": "tether"
+    })
   ]
 };

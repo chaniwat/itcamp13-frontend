@@ -1,6 +1,6 @@
 @include generate-block('home') {
-  margin-top: $navbar-height;
   background-color: $home-section-color;
+  min-height: 100%; // Override
 
   @include generate-content-block() {
     .logo {
