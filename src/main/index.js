@@ -26,6 +26,11 @@ export class MainApp
         }
       });
     });
+
+    // ReBuild DOM When resize window
+    $(window).resize(() => {
+      $.fn.fullpage.reBuild();
+    });
   }
 
 }
