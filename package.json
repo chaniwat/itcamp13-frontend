@@ -20,7 +20,9 @@
   "homepage": "https://github.com/chaniwat/itcamp13-frontend#readme",
   "dependencies": {
     "bootstrap": "^4.0.0-alpha.6",
-    "gsap": "^1.19.1"
+    "fullpage.js": "^2.9.2",
+    "gsap": "^1.19.1",
+    "iscroll": "^5.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.23.1",

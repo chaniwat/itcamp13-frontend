@@ -15,6 +15,17 @@ export class MainApp
     this.debugHelper = debugHelper;
     this.navigationBar.registerDebug(this.debugHelper);
     this.sideBar.registerDebug(this.debugHelper);
+
+    // Initialize FullPage.js
+    $(document).ready(() => {
+      $('#fullpage').fullpage({
+        scrollOverflow: true,
+        scrollOverflowReset: false,
+        scrollOverflowOptions: {
+          //keyBindings: true; // Bug if used with fullpage.js
+        }
+      });
+    });
   }
 
 }
