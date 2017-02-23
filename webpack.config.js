@@ -5,7 +5,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin");
 // For localdev
 var rootPath = "";
 // For fe13 (host)
-//var rootPath = "fe13/";
+// var rootPath = "fe13/";
 
 // Multiple ExtractTextPlugin for fonts and styles
 var extractStyle = new ExtractTextPlugin({

@@ -63,57 +63,11 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function($) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_scss_app_scss__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_scss_app_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__assets_scss_app_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_html__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__index_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_bootstrap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_gsap__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_gsap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_gsap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_gsap_jquery_gsap__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_gsap_jquery_gsap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_gsap_jquery_gsap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_gsap_ModifiersPlugin__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_gsap_ModifiersPlugin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_gsap_ModifiersPlugin__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__debug__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__debug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__debug__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__main__ = __webpack_require__(13);
-// Import styles
-
-// Import HTML
-
-
-// Import JS Dependencies
-// Bootstrap
-
-// GSAP
-
-
-
-
-// Import Debugger
-
-// debugHelper.hideDebug();
-
-// Import Main
-
-
-$(document).ready(() => {
-  new __WEBPACK_IMPORTED_MODULE_7__main__["a" /* MainApp */](__WEBPACK_IMPORTED_MODULE_6__debug__["debugHelper"]);
-});
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10340,7 +10294,7 @@ return jQuery;
 
 
 /***/ }),
-/* 2 */
+/* 1 */
 /***/ (function(module, exports) {
 
 var g;
@@ -10367,7 +10321,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
@@ -10376,7 +10330,7 @@ module.exports = __webpack_amd_options__;
 /* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {class DebugHelper {
@@ -10444,7 +10398,35 @@ $(window).keypress(e => {
 });
 
 exports.debugHelper = debugHelper;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navigation__ = __webpack_require__(11);
+
+
+class MainApp {
+
+  constructor(debugHelper) {
+    let navbar = $('nav.navbar');
+    let sidebar = $('nav.sidebar');
+
+    this.navigationBar = new __WEBPACK_IMPORTED_MODULE_0__navigation__["a" /* NavigationBar */](navbar);
+    this.sideBar = new __WEBPACK_IMPORTED_MODULE_0__navigation__["b" /* SideBar */](sidebar, navbar);
+
+    // Debugging
+    this.debugHelper = debugHelper;
+    this.navigationBar.registerDebug(this.debugHelper);
+    this.sideBar.registerDebug(this.debugHelper);
+  }
+
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = MainApp;
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 /* 5 */
@@ -13986,7 +13968,7 @@ var Popover = function ($) {
 
 }();
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(12)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(15)))
 
 /***/ }),
 /* 6 */
@@ -14170,7 +14152,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 		return (_gsScope.GreenSockGlobals || _gsScope)[name];
 	};
 	if (true) { //AMD
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(11)], __WEBPACK_AMD_DEFINE_FACTORY__ = (getGlobal),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(14)], __WEBPACK_AMD_DEFINE_FACTORY__ = (getGlobal),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -14179,7 +14161,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 		module.exports = getGlobal();
 	}
 }("ModifiersPlugin"));
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 9 */
@@ -20228,7 +20210,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 						if (global) {
 							_globals[n] = _exports[n] = cl; //provides a way to avoid global namespace pollution. By default, the main classes like TweenLite, Power1, Strong, etc. are added to window unless a GreenSockGlobals is defined. So if you want to have things added to a custom object instead, just do something like window.GreenSockGlobals = {} before loading any GreenSock files. You can even set up an alias like window.GreenSockGlobals = windows.gs = {} so that you can access everything like gs.TweenLite. Also remember that ALL classes are added to the window.com.greensock object (in their respective packages, like com.greensock.easing.Power1, com.greensock.TweenLite, etc.)
 							hasModule = (typeof(module) !== "undefined" && module.exports);
-							if (!hasModule && "function" === "function" && __webpack_require__(3)){ //AMD
+							if (!hasModule && "function" === "function" && __webpack_require__(2)){ //AMD
 								!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() { return cl; }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 							} else if (hasModule){ //node
@@ -22043,7 +22025,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 		_tickerActive = false; //ensures that the first official animation forces a ticker.tick() to update the time when it is instantiated
 
 })((typeof(module) !== "undefined" && module.exports && typeof(global) !== "undefined") ? global : this || window, "TweenMax");
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
 /* 10 */
@@ -22234,10 +22216,160 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 	};
 
 }(jQuery));
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 11 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navigationbar__ = __webpack_require__(12);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__navigationbar__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sidebar__ = __webpack_require__(13);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__sidebar__["a"]; });
+
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {class NavigationBar {
+
+  /**
+   * params:
+   *  - navbar: JQuery DOM => Navbar
+   */
+  constructor(navbar) {
+    // associate
+    this.navbar = navbar;
+
+    // variables
+    this.isShow = false;
+
+    // register event
+    this.registerEvent();
+  }
+
+  /**
+   * Register the event handler
+   */
+  registerEvent() {
+    // Scrolling (Show/Hide navbar)
+    $(window).scroll(() => {
+      let isScreenBelowFirstBlock = $(window).scrollTop() >= window.innerHeight - this.navbar.outerHeight() * 2;
+
+      if (!this.isShow && isScreenBelowFirstBlock) {
+        this.showNavbar();
+        this.isShow = true;
+      } else if (this.isShow && !isScreenBelowFirstBlock) {
+        this.hideNavbar();
+        this.isShow = false;
+      }
+    });
+  }
+
+  /**
+   * Show navbar
+   */
+  showNavbar() {
+    if (this.debugHelper) this.debugHelper.logf('navbar_toggle', 'showing navbar');
+    this.navbar.animate({ top: 0 }, 750);
+  }
+
+  /**
+   * Hide navbar
+   */
+  hideNavbar() {
+    if (this.debugHelper) this.debugHelper.logf('navbar_toggle', 'hiding navbar');
+    this.navbar.animate({ top: -this.navbar.outerHeight() }, 750);
+  }
+
+  /**
+   * Register the debug
+   */
+  registerDebug(debugHelper) {
+    this.debugHelper = debugHelper;
+  }
+
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = NavigationBar;
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {class SideBar {
+
+  /**
+   * params:
+   *  - sidebar: JQuery DOM => Sidebar (Sharing bar)
+   *  - navbar: JQuery DOM => Navbar #need to reference the height
+   */
+  constructor(sidebar, navbar) {
+    // associate
+    this.sidebar = sidebar;
+    this.navbar = navbar;
+
+    // variables
+    this.isShow = false;
+
+    // register event
+    this.registerEvent();
+  }
+
+  /**
+   * Register the event handler
+   */
+  registerEvent() {
+    // Scrolling (Show/Hide navbar)
+    $(window).scroll(() => {
+      let isScreenBelowFirstBlock = $(window).scrollTop() >= window.innerHeight - this.navbar.outerHeight() * 2;
+
+      if (!this.isShow && isScreenBelowFirstBlock) {
+        this.showSidebar();
+        this.isShow = true;
+      } else if (this.isShow && !isScreenBelowFirstBlock) {
+        this.hideSidebar();
+        this.isShow = false;
+      }
+    });
+  }
+
+  /**
+   * Show navbar
+   */
+  showSidebar() {
+    if (this.debugHelper) this.debugHelper.logf('sidebar_toggle', 'showing sidebar');
+    this.sidebar.animate({ right: 0 }, 750);
+  }
+
+  /**
+   * Hide navbar
+   */
+  hideSidebar() {
+    if (this.debugHelper) this.debugHelper.logf('sidebar_toggle', 'hiding sidebar');
+    this.sidebar.animate({ right: -this.sidebar.outerWidth() }, 750);
+  }
+
+  /**
+   * Register the debug
+   */
+  registerDebug(debugHelper) {
+    this.debugHelper = debugHelper;
+  }
+
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = SideBar;
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -22348,7 +22480,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 						if (global) {
 							_globals[n] = _exports[n] = cl; //provides a way to avoid global namespace pollution. By default, the main classes like TweenLite, Power1, Strong, etc. are added to window unless a GreenSockGlobals is defined. So if you want to have things added to a custom object instead, just do something like window.GreenSockGlobals = {} before loading any GreenSock files. You can even set up an alias like window.GreenSockGlobals = windows.gs = {} so that you can access everything like gs.TweenLite. Also remember that ALL classes are added to the window.com.greensock object (in their respective packages, like com.greensock.easing.Power1, com.greensock.TweenLite, etc.)
 							hasModule = (typeof(module) !== "undefined" && module.exports);
-							if (!hasModule && "function" === "function" && __webpack_require__(3)){ //AMD
+							if (!hasModule && "function" === "function" && __webpack_require__(2)){ //AMD
 								!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() { return cl; }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 							} else if (hasModule){ //node
@@ -24163,10 +24295,10 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 		_tickerActive = false; //ensures that the first official animation forces a ticker.tick() to update the time when it is instantiated
 
 })((typeof(module) !== "undefined" && module.exports && typeof(global) !== "undefined") ? global : this || window, "TweenLite");
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 12 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! tether 1.4.0 */
@@ -25987,182 +26119,50 @@ return Tether;
 
 
 /***/ }),
-/* 13 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navigation__ = __webpack_require__(14);
-
-
-class MainApp {
-
-  constructor(debugHelper) {
-    let navbar = $('nav.navbar');
-    let sidebar = $('nav.sidebar');
-
-    this.navigationBar = new __WEBPACK_IMPORTED_MODULE_0__navigation__["a" /* NavigationBar */](navbar);
-    this.sideBar = new __WEBPACK_IMPORTED_MODULE_0__navigation__["b" /* SideBar */](sidebar, navbar);
-
-    // Debugging
-    this.debugHelper = debugHelper;
-    this.navigationBar.registerDebug(this.debugHelper);
-    this.sideBar.registerDebug(this.debugHelper);
-  }
-
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = MainApp;
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
-
-/***/ }),
-/* 14 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navigationbar__ = __webpack_require__(15);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__navigationbar__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sidebar__ = __webpack_require__(16);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__sidebar__["a"]; });
-
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function($) {class NavigationBar {
-
-  /**
-   * params:
-   *  - navbar: JQuery DOM => Navbar
-   */
-  constructor(navbar) {
-    // associate
-    this.navbar = navbar;
-
-    // variables
-    this.isShow = false;
-
-    // register event
-    this.registerEvent();
-  }
-
-  /**
-   * Register the event handler
-   */
-  registerEvent() {
-    // Scrolling (Show/Hide navbar)
-    $(window).scroll(() => {
-      let isScreenBelowFirstBlock = $(window).scrollTop() >= window.innerHeight - this.navbar.outerHeight() * 2;
-
-      if (!this.isShow && isScreenBelowFirstBlock) {
-        this.showNavbar();
-        this.isShow = true;
-      } else if (this.isShow && !isScreenBelowFirstBlock) {
-        this.hideNavbar();
-        this.isShow = false;
-      }
-    });
-  }
-
-  /**
-   * Show navbar
-   */
-  showNavbar() {
-    if (this.debugHelper) this.debugHelper.logf('navbar_toggle', 'showing navbar');
-    this.navbar.animate({ top: 0 }, 750);
-  }
-
-  /**
-   * Hide navbar
-   */
-  hideNavbar() {
-    if (this.debugHelper) this.debugHelper.logf('navbar_toggle', 'hiding navbar');
-    this.navbar.animate({ top: -this.navbar.outerHeight() }, 750);
-  }
-
-  /**
-   * Register the debug
-   */
-  registerDebug(debugHelper) {
-    this.debugHelper = debugHelper;
-  }
-
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = NavigationBar;
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
-
-/***/ }),
 /* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {class SideBar {
+/* WEBPACK VAR INJECTION */(function($) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_scss_app_scss__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_scss_app_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__assets_scss_app_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_html__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__index_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_bootstrap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_gsap__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_gsap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_gsap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_gsap_jquery_gsap__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_gsap_jquery_gsap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_gsap_jquery_gsap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_gsap_ModifiersPlugin__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_gsap_ModifiersPlugin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_gsap_ModifiersPlugin__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__debug__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__debug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__debug__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__main__ = __webpack_require__(4);
+// Import styles
 
-  /**
-   * params:
-   *  - sidebar: JQuery DOM => Sidebar (Sharing bar)
-   *  - navbar: JQuery DOM => Navbar #need to reference the height
-   */
-  constructor(sidebar, navbar) {
-    // associate
-    this.sidebar = sidebar;
-    this.navbar = navbar;
+// Import HTML
 
-    // variables
-    this.isShow = false;
 
-    // register event
-    this.registerEvent();
-  }
+// Import JS Dependencies
+// Bootstrap
 
-  /**
-   * Register the event handler
-   */
-  registerEvent() {
-    // Scrolling (Show/Hide navbar)
-    $(window).scroll(() => {
-      let isScreenBelowFirstBlock = $(window).scrollTop() >= window.innerHeight - this.navbar.outerHeight() * 2;
+// GSAP
 
-      if (!this.isShow && isScreenBelowFirstBlock) {
-        this.showSidebar();
-        this.isShow = true;
-      } else if (this.isShow && !isScreenBelowFirstBlock) {
-        this.hideSidebar();
-        this.isShow = false;
-      }
-    });
-  }
 
-  /**
-   * Show navbar
-   */
-  showSidebar() {
-    if (this.debugHelper) this.debugHelper.logf('sidebar_toggle', 'showing sidebar');
-    this.sidebar.animate({ right: 0 }, 750);
-  }
 
-  /**
-   * Hide navbar
-   */
-  hideSidebar() {
-    if (this.debugHelper) this.debugHelper.logf('sidebar_toggle', 'hiding sidebar');
-    this.sidebar.animate({ right: -this.sidebar.outerWidth() }, 750);
-  }
 
-  /**
-   * Register the debug
-   */
-  registerDebug(debugHelper) {
-    this.debugHelper = debugHelper;
-  }
+// Import Debugger
 
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = SideBar;
+// debugHelper.hideDebug();
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(1)))
+// Import Main
+
+
+$(document).ready(() => {
+  new __WEBPACK_IMPORTED_MODULE_7__main__["a" /* MainApp */](__WEBPACK_IMPORTED_MODULE_6__debug__["debugHelper"]);
+});
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);

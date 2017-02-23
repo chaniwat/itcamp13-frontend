@@ -2,24 +2,16 @@
   background-color: $sponsor-section-color;
 
   @include generate-content-block() {
+    div[class^="col-"] {
+      margin-bottom: 0.8rem;
+    }
+
     .sponsors-list {
-      margin: 0;
-      padding: 0;
-
-      li {
-        display: inline-block;
-        margin-right: 2rem;
-
-        &:last-child {
-          margin-right: 0;
-        }
-
-        img {
-          width: 180px;
-          height: 180px;
-          border-radius: 100px;
-          background-color: #ffffff;
-        }
+      img {
+        width: 180px;
+        height: 180px;
+        border-radius: 100px;
+        background-color: #ffffff;
       }
     }
   };
