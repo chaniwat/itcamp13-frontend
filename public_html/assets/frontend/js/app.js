@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 22);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10409,8 +10409,8 @@ exports.debugHelper = debugHelper;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navigation__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__block__ = __webpack_require__(22);
+/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navigation__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__block__ = __webpack_require__(15);
 
 
 // blocks
@@ -14027,7 +14027,7 @@ var Popover = function ($) {
 
 }();
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(19)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(21)))
 
 /***/ }),
 /* 6 */
@@ -17126,7 +17126,7 @@ module.exports = __webpack_require__.p + "index.html";
     };
 });
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(18)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ }),
 /* 9 */
@@ -19436,7 +19436,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 		return (_gsScope.GreenSockGlobals || _gsScope)[name];
 	};
 	if (true) { //AMD
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(17)], __WEBPACK_AMD_DEFINE_FACTORY__ = (getGlobal),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(19)], __WEBPACK_AMD_DEFINE_FACTORY__ = (getGlobal),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -27507,15 +27507,98 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navigationbar__ = __webpack_require__(15);
+/* WEBPACK VAR INJECTION */(function($) {class CampBlock {
+
+  /**
+   * params:
+   *  - block: JQuery DOM => Camp block DOM
+   */
+  constructor(block) {
+    this.block = block;
+
+    this.navigation = block.find('.camp-nav');
+    this.navigation.app = this.navigation.find('.app');
+    this.navigation.game = this.navigation.find('.game');
+    this.navigation.network = this.navigation.find('.network');
+    this.navigation.iot = this.navigation.find('.iot');
+    this.navigation.datasci = this.navigation.find('.datasci');
+    this.navigation.all = this.navigation.find('li');
+
+    this.navigation.all.click(this.navigationOnClick);
+  }
+
+  registerOnSlideLeave(anchorLink, index, slideIndex, direction, nextSlideIndex) {
+    // Hide/Show the navigation
+    if (nextSlideIndex == 0) {
+      this.navigation.addClass('hide');
+    } else {
+      this.navigation.removeClass('hide');
+    }
+
+    // Remove active & current camp slide class to block
+    this.block.removeClass((i, className) => {
+      return (className.match(/[a-zA-Z]+-camp/g) || []).join(' ');
+    });
+    this.navigation.all.removeClass('active');
+
+    // Add active & current camp slide class to block
+    switch (nextSlideIndex) {
+      case 1:
+        this.navigation.app.addClass('active');
+        this.block.addClass('app-camp');
+        break;
+      case 2:
+        this.navigation.game.addClass('active');
+        this.block.addClass('game-camp');
+        break;
+      case 3:
+        this.navigation.network.addClass('active');
+        this.block.addClass('network-camp');
+        break;
+      case 4:
+        this.navigation.iot.addClass('active');
+        this.block.addClass('iot-camp');
+        break;
+      case 5:
+        this.navigation.datasci.addClass('active');
+        this.block.addClass('datasci-camp');
+        break;
+    }
+  }
+
+  navigationOnClick(event) {
+    let target = $(event.target).parent().data('target');
+    $.fn.fullpage.moveTo('camp-block', target);
+  }
+
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = CampBlock;
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+/* 15 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__camp__ = __webpack_require__(14);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__camp__["a"]; });
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navigationbar__ = __webpack_require__(17);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__navigationbar__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sidebar__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sidebar__ = __webpack_require__(18);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__sidebar__["a"]; });
 
 
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27565,7 +27648,7 @@ class NavigationBar {
 
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27618,7 +27701,7 @@ class SideBar {
 
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -29547,7 +29630,7 @@ class SideBar {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*! iScroll v5.2.0 ~ (c) 2008-2016 Matteo Spinelli ~ http://cubiq.org/license */
@@ -31645,7 +31728,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! tether 1.4.0 */
@@ -33466,7 +33549,7 @@ return Tether;
 
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33522,89 +33605,6 @@ $(document).ready(() => {
   main.setDebug(__WEBPACK_IMPORTED_MODULE_9__debug__["debugHelper"]);
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-/* 21 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function($) {class CampBlock {
-
-  /**
-   * params:
-   *  - block: JQuery DOM => Camp block DOM
-   */
-  constructor(block) {
-    this.block = block;
-
-    this.navigation = block.find('.camp-nav');
-    this.navigation.app = this.navigation.find('.app');
-    this.navigation.game = this.navigation.find('.game');
-    this.navigation.network = this.navigation.find('.network');
-    this.navigation.iot = this.navigation.find('.iot');
-    this.navigation.datasci = this.navigation.find('.datasci');
-    this.navigation.all = this.navigation.find('li');
-
-    this.navigation.all.click(this.navigationOnClick);
-  }
-
-  registerOnSlideLeave(anchorLink, index, slideIndex, direction, nextSlideIndex) {
-    // Hide/Show the navigation
-    if (nextSlideIndex == 0) {
-      this.navigation.addClass('hide');
-    } else {
-      this.navigation.removeClass('hide');
-    }
-
-    // Remove active & current camp slide class to block
-    this.block.removeClass((i, className) => {
-      return (className.match(/[a-zA-Z]+-camp/g) || []).join(' ');
-    });
-    this.navigation.all.removeClass('active');
-
-    // Add active & current camp slide class to block
-    switch (nextSlideIndex) {
-      case 1:
-        this.navigation.app.addClass('active');
-        this.block.addClass('app-camp');
-        break;
-      case 2:
-        this.navigation.game.addClass('active');
-        this.block.addClass('game-camp');
-        break;
-      case 3:
-        this.navigation.network.addClass('active');
-        this.block.addClass('network-camp');
-        break;
-      case 4:
-        this.navigation.iot.addClass('active');
-        this.block.addClass('iot-camp');
-        break;
-      case 5:
-        this.navigation.datasci.addClass('active');
-        this.block.addClass('datasci-camp');
-        break;
-    }
-  }
-
-  navigationOnClick(event) {
-    let target = $(event.target).parent().data('target');
-    $.fn.fullpage.moveTo('camp-block', target);
-  }
-
-}
-/* harmony export (immutable) */ __webpack_exports__["a"] = CampBlock;
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
-
-/***/ }),
-/* 22 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__camp__ = __webpack_require__(21);
-/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__camp__["a"]; });
-
 
 /***/ })
 /******/ ]);
