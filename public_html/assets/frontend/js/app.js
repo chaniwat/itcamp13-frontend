@@ -10410,25 +10410,42 @@ exports.debugHelper = debugHelper;
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navigation__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__block__ = __webpack_require__(22);
+
+
+// blocks
 
 
 class MainApp {
 
-  constructor(debugHelper) {
+  constructor() {
+    this.initNavigation();
+    this.initBlocks();
+    this.initFullPageJS();
+  }
+
+  initNavigation() {
     let navbar = $('nav.navbar');
     let sidebar = $('nav.sidebar');
 
     this.navigationBar = new __WEBPACK_IMPORTED_MODULE_0__navigation__["a" /* NavigationBar */](navbar);
     this.sideBar = new __WEBPACK_IMPORTED_MODULE_0__navigation__["b" /* SideBar */](sidebar);
+  }
 
-    // Debugging
-    this.debugHelper = debugHelper;
-    this.debugHelper.registerDebug(this.navigationBar);
-    this.debugHelper.registerDebug(this.sideBar);
+  initBlocks() {
+    this.blocks = {
+      camp: new __WEBPACK_IMPORTED_MODULE_1__block__["a" /* CampBlock */]($(".camp-block"))
+    };
+  }
 
+  initFullPageJS() {
     let registerOnLeave = (index, nextIndex, direction) => {
       this.navigationBar.registerOnLeave(index, nextIndex, direction);
       this.sideBar.registerOnLeave(index, nextIndex, direction);
+    };
+
+    let registerOnSlideLeave = (anchorLink, index, slideIndex, direction, nextSlideIndex) => {
+      this.blocks.camp.registerOnSlideLeave(anchorLink, index, slideIndex, direction, nextSlideIndex);
     };
 
     // Initialize FullPage.js
@@ -10442,7 +10459,8 @@ class MainApp {
           //keyBindings: true; // Bug if used with fullpage.js
         },
 
-        onLeave: registerOnLeave
+        onLeave: registerOnLeave,
+        onSlideLeave: registerOnSlideLeave
       });
     });
 
@@ -10450,6 +10468,18 @@ class MainApp {
     $(window).resize(() => {
       $.fn.fullpage.reBuild();
     });
+  }
+
+  setDebug(debugHelper) {
+    // Debugging
+    this.debugHelper = debugHelper;
+
+    // Navigation
+    this.debugHelper.registerDebug(this.navigationBar);
+    this.debugHelper.registerDebug(this.sideBar);
+
+    // Blocks
+    this.debugHelper.registerDebug(this.blocks.camp);
   }
 
 }
@@ -33487,9 +33517,83 @@ return Tether;
 
 
 $(document).ready(() => {
-  new __WEBPACK_IMPORTED_MODULE_10__main__["a" /* MainApp */](__WEBPACK_IMPORTED_MODULE_9__debug__["debugHelper"]);
+  let main = new __WEBPACK_IMPORTED_MODULE_10__main__["a" /* MainApp */]();
+
+  main.setDebug(__WEBPACK_IMPORTED_MODULE_9__debug__["debugHelper"]);
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+/* 21 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {class CampBlock {
+
+  /**
+   * params:
+   *  - block: JQuery DOM => Camp block DOM
+   */
+  constructor(block) {
+    this.block = block;
+
+    this.navigation = block.find('.camp-nav');
+    this.navigation.app = this.navigation.find('.app');
+    this.navigation.game = this.navigation.find('.game');
+    this.navigation.network = this.navigation.find('.network');
+    this.navigation.iot = this.navigation.find('.iot');
+    this.navigation.datasci = this.navigation.find('.datasci');
+    this.navigation.all = this.navigation.find('li');
+
+    this.navigation.all.click(this.navigationOnClick);
+  }
+
+  registerOnSlideLeave(anchorLink, index, slideIndex, direction, nextSlideIndex) {
+    if (nextSlideIndex == 0) {
+      this.navigation.addClass('hide');
+    } else {
+      this.navigation.removeClass('hide');
+    }
+
+    this.navigation.all.removeClass('active');
+
+    switch (nextSlideIndex) {
+      case 1:
+        this.navigation.app.addClass('active');
+        break;
+      case 2:
+        this.navigation.game.addClass('active');
+        break;
+      case 3:
+        this.navigation.network.addClass('active');
+        break;
+      case 4:
+        this.navigation.iot.addClass('active');
+        break;
+      case 5:
+        this.navigation.datasci.addClass('active');
+        break;
+    }
+  }
+
+  navigationOnClick(event) {
+    let target = $(event.target).parent().data('target');
+    $.fn.fullpage.moveTo('camp-block', target);
+  }
+
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = CampBlock;
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+/* 22 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__camp__ = __webpack_require__(21);
+/* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__camp__["a"]; });
+
 
 /***/ })
 /******/ ]);

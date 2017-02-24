@@ -12,17 +12,24 @@
     z-index: 10; // Override the overlay of fullpage.js
 
     ul {
+      display: flex;
+      height: 86px;
+      justify-content: center;
       padding: 0;
       margin: 0;
       text-align: center;
 
       li {
-        display: inline-block;
-        list-style: none;
+        display: block;
+        align-self: center;
         padding: 0;
         margin: 0 1rem 0 0;
 
-        transition: transform .35s;
+        // Default border for transition's animate
+        border: 0 solid white;
+        border-radius: 100px;
+
+        transition: transform .7s, border .7s;
 
         &:last-child {
           margin: 0;
@@ -36,14 +43,25 @@
 
         &.active {
           border: 6px solid white;
-          border-radius: 100px;
+          transition: transform .7s, border .7s;
+
+          &:hover {
+            transition: transform .7s, border .7s;
+          }
         }
 
         &:hover {
           cursor: pointer;
           transform: scale(1.2, 1.2);
-          transition: transform .35s;
+          transition: transform .7s, border .7s;
         }
+      }
+    }
+
+    &.hide {
+      ul li {
+        transform: scale(0, 0);
+        transition: transform .7s, border .7s;
       }
     }
   }

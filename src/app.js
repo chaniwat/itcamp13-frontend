@@ -23,5 +23,7 @@ import { debugHelper } from './debug';
 import { MainApp } from './main';
 
 $(document).ready(() => {
-  new MainApp(debugHelper);
+  let main = new MainApp();
+  
+  main.setDebug(debugHelper);
 });
