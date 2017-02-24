@@ -1,0 +1,7 @@
+@include generate-block('faq') {
+  background-color: $faq-section-color;
+
+  @include generate-content-block() {
+
+  };
+};
