@@ -8,15 +8,13 @@
       width: 100%;
       .content {
         width: 100% !important;
-        padding-left: 50px;
-        padding-right: 50px;
 
         @include media-breakpoint-up(xs) {
           flex-basis: auto;
         }
 
         @include media-breakpoint-up(lg) {
-          flex-basis: auto;
+          flex-basis: 1200px;
         }
 
         .wrapper {
