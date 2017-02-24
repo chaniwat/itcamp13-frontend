@@ -1,7 +1,7 @@
 import { NavigationBar, SideBar } from './navigation';
 
 // blocks
-import { CampBlock } from './block';
+import { CampBlock, GalleryBlock } from './block';
 
 export class MainApp {
 
@@ -21,11 +21,20 @@ export class MainApp {
 
   initBlocks() {
     this.blocks = {
-      camp: new CampBlock($(".camp-block"))
+      camp: new CampBlock($(".camp-block")),
+      gallery: new GalleryBlock($(".gallery-block"))
     };
   }
 
   initFullPageJS() {
+    let registerAfterRender = () => {
+      this.blocks.gallery.registerAfterRender();
+
+      // Because some of handler change the DOM structure
+      // so its need to rebuild the fullpage
+      $.fn.fullpage.reBuild();
+    };
+
     let registerOnLeave = (index, nextIndex, direction) => {
       this.navigationBar.registerOnLeave(index, nextIndex, direction);
       this.sideBar.registerOnLeave(index, nextIndex, direction);
@@ -46,6 +55,7 @@ export class MainApp {
           //keyBindings: true; // Bug if used with fullpage.js
         },
 
+        afterRender: registerAfterRender,
         onLeave: registerOnLeave,
         onSlideLeave: registerOnSlideLeave
       });

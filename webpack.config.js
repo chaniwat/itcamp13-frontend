@@ -61,7 +61,8 @@ module.exports = {
       jQuery: "jquery",
       "window.jQuery": "jquery",
       "Tether": "tether",
-      "IScroll": "iscroll"
+      "IScroll": "iscroll",
+      "Masonry": "masonry-layout"
     })
   ]
 };
