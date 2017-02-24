@@ -1,0 +1,7 @@
+@include generate-block('timeline') {
+  background-color: $timeline-section-color;
+
+  @include generate-content-block() {
+
+  };
+};
