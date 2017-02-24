@@ -1,0 +1,34 @@
+@include generate-block('gallery') {
+  background-color: $gallery-section-color;
+
+  @include generate-content-block() {
+    padding: calc(#{$navbar-height} + .8rem) 0 .8rem; // Override for gallery
+
+    h1 {
+      margin-bottom: 1rem;
+    }
+
+    .gallery-row {
+      @include make-row();
+
+      .gallery-col {
+        @include make-col-ready();
+        margin-bottom: 1rem;
+
+        @include media-breakpoint-up(lg) {
+            @include make-col(3, 15);
+        }
+
+        @include media-breakpoint-up(xs) {
+            @include make-col(4);
+        }
+
+        img {
+          width: 160px;
+          height: 160px;
+          background-color: #ffffff;
+        }
+      }
+    }
+  };
+};
