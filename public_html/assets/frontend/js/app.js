@@ -10345,6 +10345,10 @@ module.exports = __webpack_amd_options__;
     this.debugBox = $("#debug-box");
   }
 
+  registerDebug(object) {
+    object.debugHelper = this;
+  }
+
   /**
    * Toggle hide/show the debug box
    */
@@ -10415,12 +10419,17 @@ class MainApp {
     let sidebar = $('nav.sidebar');
 
     this.navigationBar = new __WEBPACK_IMPORTED_MODULE_0__navigation__["a" /* NavigationBar */](navbar);
-    this.sideBar = new __WEBPACK_IMPORTED_MODULE_0__navigation__["b" /* SideBar */](sidebar, navbar);
+    this.sideBar = new __WEBPACK_IMPORTED_MODULE_0__navigation__["b" /* SideBar */](sidebar);
 
     // Debugging
     this.debugHelper = debugHelper;
-    this.navigationBar.registerDebug(this.debugHelper);
-    this.sideBar.registerDebug(this.debugHelper);
+    this.debugHelper.registerDebug(this.navigationBar);
+    this.debugHelper.registerDebug(this.sideBar);
+
+    let registerOnLeave = (index, nextIndex, direction) => {
+      this.navigationBar.registerOnLeave(index, nextIndex, direction);
+      this.sideBar.registerOnLeave(index, nextIndex, direction);
+    };
 
     // Initialize FullPage.js
     $(document).ready(() => {
@@ -10429,7 +10438,9 @@ class MainApp {
         scrollOverflowReset: false,
         scrollOverflowOptions: {
           //keyBindings: true; // Bug if used with fullpage.js
-        }
+        },
+
+        onLeave: registerOnLeave
       });
     });
 
@@ -27476,7 +27487,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {class NavigationBar {
+class NavigationBar {
 
   /**
    * params:
@@ -27487,28 +27498,6 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
     this.navbar = navbar;
 
     // variables
-    this.isShow = false;
-
-    // register event
-    this.registerEvent();
-  }
-
-  /**
-   * Register the event handler
-   */
-  registerEvent() {
-    // Scrolling (Show/Hide navbar)
-    $(window).scroll(() => {
-      let isScreenBelowFirstBlock = $(window).scrollTop() >= window.innerHeight - this.navbar.outerHeight() * 2;
-
-      if (!this.isShow && isScreenBelowFirstBlock) {
-        this.showNavbar();
-        this.isShow = true;
-      } else if (this.isShow && !isScreenBelowFirstBlock) {
-        this.hideNavbar();
-        this.isShow = false;
-      }
-    });
   }
 
   /**
@@ -27528,57 +27517,40 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
   }
 
   /**
-   * Register the debug
+   * Register the onLeave event handler (fullpage.js)
    */
-  registerDebug(debugHelper) {
-    this.debugHelper = debugHelper;
+  registerOnLeave(index, nextIndex, direction) {
+    // Show/Hide Navbar
+    if (index == 1 && nextIndex != 1) {
+      this.showNavbar();
+    } else if (index != 1 && nextIndex == 1) {
+      this.hideNavbar();
+    }
   }
 
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = NavigationBar;
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 /* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {class SideBar {
+class SideBar {
 
   /**
    * params:
    *  - sidebar: JQuery DOM => Sidebar (Sharing bar)
    *  - navbar: JQuery DOM => Navbar #need to reference the height
    */
-  constructor(sidebar, navbar) {
+  constructor(sidebar) {
     // associate
     this.sidebar = sidebar;
-    this.navbar = navbar;
 
     // variables
-    this.isShow = false;
 
     // register event
-    this.registerEvent();
-  }
-
-  /**
-   * Register the event handler
-   */
-  registerEvent() {
-    // Scrolling (Show/Hide navbar)
-    $(window).scroll(() => {
-      let isScreenBelowFirstBlock = $(window).scrollTop() >= window.innerHeight - this.navbar.outerHeight() * 2;
-
-      if (!this.isShow && isScreenBelowFirstBlock) {
-        this.showSidebar();
-        this.isShow = true;
-      } else if (this.isShow && !isScreenBelowFirstBlock) {
-        this.hideSidebar();
-        this.isShow = false;
-      }
-    });
   }
 
   /**
@@ -27598,16 +27570,20 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
   }
 
   /**
-   * Register the debug
+   * Register the onLeave event handler (fullpage.js)
    */
-  registerDebug(debugHelper) {
-    this.debugHelper = debugHelper;
+  registerOnLeave(index, nextIndex, direction) {
+    // Show/Hide Navbar
+    if (index == 1 && nextIndex != 1) {
+      this.showSidebar();
+    } else if (index != 1 && nextIndex == 1) {
+      this.hideSidebar();
+    }
   }
 
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = SideBar;
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 /* 17 */

@@ -20,8 +20,7 @@ $default-content-breakpoint: (
 @mixin generate-content-block($breakpoints: $default-content-breakpoint) {
   .content {
     align-self: center;
-    // TODO Calculate padding-top for navbar ($navbar-height)
-    padding: 2rem 0;
+    padding: calc(#{$navbar-height} + 1.5rem) 0 1.5rem;
     text-align: center;
 
     @each $breakpoint, $value in $breakpoints {
