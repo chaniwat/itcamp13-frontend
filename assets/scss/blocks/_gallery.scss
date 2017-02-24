@@ -2,6 +2,8 @@
   background-color: $gallery-section-color;
 
   @include generate-content-block() {
+    padding: calc(#{$navbar-height} + .8rem) 0 .8rem; // Override for gallery
+    
     // Override for masonry-layout
     width: 100% !important;
 
