@@ -15,12 +15,20 @@
         @include make-col-ready();
         margin-bottom: 1rem;
 
-        @include media-breakpoint-up(lg) {
-            @include make-col(3, 15);
+        @include media-breakpoint-up(xs) {
+            @include make-col(6);
         }
 
-        @include media-breakpoint-up(xs) {
+        @include media-breakpoint-up(sm) {
             @include make-col(4);
+        }
+
+        @include media-breakpoint-up(lg) {
+            @include make-col(3);
+        }
+
+        @include media-breakpoint-up(xl) {
+            @include make-col(3, 15);
         }
 
         img {
