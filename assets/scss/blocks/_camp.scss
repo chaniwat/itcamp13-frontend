@@ -1,0 +1,7 @@
+@include generate-block('camp') {
+  background-color: $camp-section-color;
+
+  @include generate-content-block() {
+    
+  };
+};

@@ -24,6 +24,8 @@ export class MainApp
     // Initialize FullPage.js
     $(document).ready(() => {
       $('#fullpage').fullpage({
+        controlArrows: false,
+
         scrollOverflow: true,
         scrollOverflowReset: false,
         scrollOverflowOptions: {
