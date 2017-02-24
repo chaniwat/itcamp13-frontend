@@ -1,0 +1,7 @@
+@include generate-block('recommend') {
+  background-color: $recommend-section-color;
+
+  @include generate-content-block() {
+
+  };
+};
