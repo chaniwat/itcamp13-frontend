@@ -1,6 +1,46 @@
+/**
+ * Specific mixins
+ */
+@mixin generate-camp-slide($name, $color) {
+  &.#{$name}-camp {
+    background-color: $color;
+    transition: background-color .7s;
+
+    @content;
+  }
+}
+@mixin generate-camp-nav($name, $color) {
+  .#{$name} {
+    img {
+      background-color: $color;
+    }
+  }
+}
+
+/**
+ * Specific variables
+ */
+$camp-list: (
+  'app': $app-camp-color,
+  'game': $game-camp-color,
+  'network': $network-camp-color,
+  'iot': $iot-camp-color,
+  'datasci': $datasci-camp-color);
+
 @include generate-block('camp') {
   background-color: $camp-section-color;
+  transition: background-color .7s;
 
+  @each $name, $color in $camp-list {
+    @include generate-camp-slide($name, $color) {
+      // Each slide contentt (slide != 0)
+      @include generate-content-block() {
+
+      };
+    }
+  }
+
+  // Main slide content (slide == 0)
   @include generate-content-block() {
 
   };
@@ -10,6 +50,10 @@
     bottom: 20px;
     width: 100%;
     z-index: 10; // Override the overlay of fullpage.js
+
+    @each $name, $color in $camp-list {
+      @include generate-camp-nav($name, $color);
+    }
 
     ul {
       display: flex;
@@ -66,27 +110,3 @@
     }
   }
 };
-
-/**
- * Each nav-camp
- */
-@mixin generate-camp-nav($name, $color) {
-  .#{$name} {
-    img {
-      background-color: $color;
-    }
-  }
-}
-
-$camp-nav-list: (
-  'app': #4fa3f0,
-  'game': #ec9835,
-  'network': #40ac3e,
-  'iot': #919191,
-  'datasci': #9f76e2
-);
-.camp-nav {
-  @each $name, $color in $camp-nav-list {
-    @include generate-camp-nav($name, $color);
-  }
-}
