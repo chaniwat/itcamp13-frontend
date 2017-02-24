@@ -1,32 +1,23 @@
 @include generate-block('gallery') {
   background-color: $gallery-section-color;
 
-  // Override for masonry-layout
-  .fp-scrollable {
-    width: 100%;
-    .fp-scroller {
-      width: 100%;
-      .content {
-        width: 100% !important;
-
-        @include media-breakpoint-up(xs) {
-          flex-basis: auto;
-        }
-
-        @include media-breakpoint-up(lg) {
-          flex-basis: 1200px;
-        }
-
-        .wrapper {
-          position: relative;
-          width: 100%;
-        }
-      }
-    }
-  }
-
   @include generate-content-block() {
-    padding: calc(#{$navbar-height} + .8rem) 0 .8rem; // Override for gallery
+    // Override for masonry-layout
+    width: 100% !important;
+
+    @include media-breakpoint-up(xs) {
+      flex-basis: auto !important;
+    }
+
+    @include media-breakpoint-up(lg) {
+      flex-basis: 1200px !important;
+    }
+
+    .wrapper {
+      position: relative;
+      width: 100%;
+    }
+    // End Override
 
     h1 {
       margin-bottom: 1rem;

@@ -8,6 +8,10 @@
       justify-content: center;
     }
 
+    .fp-scrollable, .fp-scroller {
+      width: 100%;
+    }
+
     @content
   }
 }
