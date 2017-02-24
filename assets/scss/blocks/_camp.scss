@@ -2,6 +2,73 @@
   background-color: $camp-section-color;
 
   @include generate-content-block() {
-    
+
   };
+
+  nav.camp-nav {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    z-index: 10; // Override the overlay of fullpage.js
+
+    ul {
+      padding: 0;
+      margin: 0;
+      text-align: center;
+
+      li {
+        display: inline-block;
+        list-style: none;
+        padding: 0;
+        margin: 0 1rem 0 0;
+
+        transition: transform .35s;
+
+        &:last-child {
+          margin: 0;
+        }
+
+        img {
+          width: 64px;
+          height: 64px;
+          border-radius: 100px;
+        }
+
+        &.active {
+          border: 6px solid white;
+          border-radius: 100px;
+        }
+
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.2, 1.2);
+          transition: transform .35s;
+        }
+      }
+    }
+  }
 };
+
+/**
+ * Each nav-camp
+ */
+@mixin generate-camp-nav($name, $color) {
+  .#{$name} {
+    img {
+      background-color: $color;
+    }
+  }
+}
+
+$camp-nav-list: (
+  'app': #4fa3f0,
+  'game': #ec9835,
+  'network': #40ac3e,
+  'iot': #919191,
+  'datasci': #9f76e2
+);
+.camp-nav {
+  @each $name, $color in $camp-nav-list {
+    @include generate-camp-nav($name, $color);
+  }
+}
