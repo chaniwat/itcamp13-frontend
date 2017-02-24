@@ -11,32 +11,7 @@ export class NavigationBar
     this.navbar = navbar;
 
     // variables
-    this.isShow = false;
 
-    // register event
-    this.registerEvent();
-  }
-
-  /**
-   * Register the event handler
-   */
-  registerEvent()
-  {
-    // Scrolling (Show/Hide navbar)
-    $(window).scroll(() => {
-      let isScreenBelowFirstBlock = $(window).scrollTop() >= window.innerHeight - (this.navbar.outerHeight() * 2);
-
-      if (!this.isShow && isScreenBelowFirstBlock)
-      {
-        this.showNavbar();
-        this.isShow = true;
-      }
-      else if (this.isShow && !isScreenBelowFirstBlock)
-      {
-        this.hideNavbar();
-        this.isShow = false;
-      }
-    });
   }
 
   /**
@@ -58,11 +33,19 @@ export class NavigationBar
   }
 
   /**
-   * Register the debug
+   * Register the onLeave event handler (fullpage.js)
    */
-  registerDebug(debugHelper)
+  registerOnLeave(index, nextIndex, direction)
   {
-    this.debugHelper = debugHelper;
+    // Show/Hide Navbar
+    if (index == 1 && nextIndex != 1)
+    {
+      this.showNavbar();
+    }
+    else if (index != 1 && nextIndex == 1)
+    {
+      this.hideNavbar();
+    }
   }
 
 }

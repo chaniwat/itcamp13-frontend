@@ -6,39 +6,14 @@ export class SideBar
    *  - sidebar: JQuery DOM => Sidebar (Sharing bar)
    *  - navbar: JQuery DOM => Navbar #need to reference the height
    */
-  constructor(sidebar, navbar)
+  constructor(sidebar)
   {
     // associate
     this.sidebar = sidebar;
-    this.navbar = navbar;
 
     // variables
-    this.isShow = false;
 
     // register event
-    this.registerEvent();
-  }
-
-  /**
-   * Register the event handler
-   */
-  registerEvent()
-  {
-    // Scrolling (Show/Hide navbar)
-    $(window).scroll(() => {
-      let isScreenBelowFirstBlock = $(window).scrollTop() >= window.innerHeight - (this.navbar.outerHeight() * 2);
-
-      if (!this.isShow && isScreenBelowFirstBlock)
-      {
-        this.showSidebar();
-        this.isShow = true;
-      }
-      else if (this.isShow && !isScreenBelowFirstBlock)
-      {
-        this.hideSidebar();
-        this.isShow = false;
-      }
-    });
   }
 
   /**
@@ -60,11 +35,19 @@ export class SideBar
   }
 
   /**
-   * Register the debug
+   * Register the onLeave event handler (fullpage.js)
    */
-  registerDebug(debugHelper)
+  registerOnLeave(index, nextIndex, direction)
   {
-    this.debugHelper = debugHelper;
+    // Show/Hide Navbar
+    if (index == 1 && nextIndex != 1)
+    {
+      this.showSidebar();
+    }
+    else if (index != 1 && nextIndex == 1)
+    {
+      this.hideSidebar();
+    }
   }
 
 }

@@ -1,8 +1,9 @@
 @include generate-block('home') {
   background-color: $home-section-color;
-  min-height: 100%; // Override
 
   @include generate-content-block() {
+    padding: 1.5rem 0; // Override first block
+
     .logo {
       margin-bottom: 2rem;
     }

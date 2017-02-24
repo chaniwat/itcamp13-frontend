@@ -10,6 +10,10 @@ import 'bootstrap';
 import { TweenMax } from 'gsap';
 import 'gsap/jquery.gsap';
 import 'gsap/ModifiersPlugin';
+// FullPage
+import 'fullpage.js/vendors/jquery.easings.min';
+import 'fullpage.js/vendors/scrolloverflow';
+import 'fullpage.js';
 
 // Import Debugger
 import { debugHelper } from './debug';

@@ -6,50 +6,47 @@ class DebugHelper
    * params:
    *  - debugBox: JQuery (DOM) => Debug box
    */
-  constructor ()
-  {
+  constructor() {
     $('<section id="debug-box"><ul><li><b>Debug Box:</b></li></ul></section>').prependTo('body');
     this.debugBox = $("#debug-box");
+  }
+
+  registerDebug(object) {
+    object.debugHelper = this;
   }
 
   /**
    * Toggle hide/show the debug box
    */
-  toggleDebug()
-  {
+  toggleDebug() {
     this.debugBox.toggle();
   }
 
   /**
    * Show the debug box
    */
-  showDebug()
-  {
+  showDebug() {
     this.debugBox.show();
   }
 
   /**
    * Hide the debug box
    */
-  hideDebug()
-  {
+  hideDebug() {
     this.debugBox.hide();
   }
 
   /**
    * Show fading log
    */
-  logf(tag, message, time = 2000)
-  {
+  logf(tag, message, time = 2000) {
     let tagElem = this.debugBox.find('li.' + tag);
 
-    if (tagElem.length)
-    {
+    if (tagElem.length) {
       tagElem.stop(true);
       tagElem.html('- ' + message);
     }
-    else
-    {
+    else {
       $('<li class=' + tag + '>- ' + message + '</li>').appendTo(this.debugBox.find('ul'));
     }
 
@@ -66,8 +63,7 @@ var debugHelper = new DebugHelper();
 
 // Register event
 $(window).keypress((e) => {
-  if(e.which == 92)
-  {
+  if(e.which == 92) {
     debugHelper.toggleDebug();
   }
 });
