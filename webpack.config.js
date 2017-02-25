@@ -1,1 +1,1 @@
-module.exports = require('./webpack.common').webpackConfig("");
+module.exports = require('./webpack.common').webpackConfig();

@@ -8,12 +8,12 @@ var extractStyle = new ExtractTextPlugin({
   allChunks: true
 });
 
-module.exports.webpackConfig = function(rootPath) {
+module.exports.webpackConfig = function(rootPath = "", outputFolder = 'public_html') {
   return {
     entry: './src/app.js',
     output: {
       filename: 'js/app.js',
-      path: path.resolve(__dirname, 'public_html/assets/frontend')
+      path: path.resolve(__dirname, outputFolder + '/assets/frontend')
     },
     module: {
       rules: [
