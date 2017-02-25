@@ -35999,7 +35999,6 @@ return Tether;
 
 // Import Debugger
 
-// debugHelper.hideDebug();
 
 // Import Main
 
@@ -36007,7 +36006,8 @@ return Tether;
 $(document).ready(() => {
   let main = new __WEBPACK_IMPORTED_MODULE_10__main__["a" /* MainApp */]();
 
-  main.setDebug(__WEBPACK_IMPORTED_MODULE_9__debug__["debugHelper"]);
+  // main.setDebug(debugHelper);
+  __WEBPACK_IMPORTED_MODULE_9__debug__["debugHelper"].hideDebug();
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 

@@ -17,7 +17,6 @@ import 'fullpage.js';
 
 // Import Debugger
 import { debugHelper } from './debug';
-// debugHelper.hideDebug();
 
 // Import Main
 import { MainApp } from './main';
@@ -25,5 +24,6 @@ import { MainApp } from './main';
 $(document).ready(() => {
   let main = new MainApp();
 
-  main.setDebug(debugHelper);
+  // main.setDebug(debugHelper);
+  debugHelper.hideDebug();
 });
