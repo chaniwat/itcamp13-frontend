@@ -109,4 +109,10 @@ $camp-list: (
       }
     }
   }
+
+  .camp-characters {
+    > div:hover {
+      cursor: pointer;
+    }
+  }
 };

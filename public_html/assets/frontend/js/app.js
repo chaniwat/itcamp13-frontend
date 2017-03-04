@@ -10809,7 +10809,7 @@ class MainApp {
       });
     });
 
-    // ReBuild DOM When resize window
+    // ReBuild DOM when resize window
     $(window).resize(() => {
       $.fn.fullpage.reBuild();
     });
@@ -27861,15 +27861,20 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
   constructor(block) {
     this.block = block;
 
+    // Navigation bar for camp-block
     this.navigation = block.find('.camp-nav');
+    this.navigation.all = this.navigation.find('li');
     this.navigation.app = this.navigation.find('.app');
     this.navigation.game = this.navigation.find('.game');
     this.navigation.network = this.navigation.find('.network');
     this.navigation.iot = this.navigation.find('.iot');
     this.navigation.datasci = this.navigation.find('.datasci');
-    this.navigation.all = this.navigation.find('li');
 
-    this.navigation.all.click(this.navigationOnClick);
+    // All .slide-linker => register inner-link
+    this.linker = block.find('.slide-link');
+    this.linker.each((i, e) => {
+      $(e).click(this.navigationOnClick.bind(this, $(e).data('target')));
+    });
   }
 
   registerOnSlideLeave(anchorLink, index, slideIndex, direction, nextSlideIndex) {
@@ -27911,8 +27916,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
     }
   }
 
-  navigationOnClick(event) {
-    let target = $(event.target).parent().data('target');
+  navigationOnClick(target) {
     $.fn.fullpage.moveTo('camp-block', target);
   }
 
