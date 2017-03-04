@@ -1,12 +1,51 @@
 .navbar {
   height: $navbar-height;
+  top: -$navbar-height; // Default hide the navbar
   flex-direction: row;
   align-items: center;
   justify-content: center;
 
-  top: -$navbar-height; // Default hide the navbar
-
   .navbar-brand {
     margin-right: 0;
+  }
+
+  .navbar-desktop {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    $triangle-width-size: 25px;
+    $triangle-height-size: 18px;
+    $triangle-color: #292B2C;
+
+    .triangle {
+      position: absolute;
+      left: 50%;
+      top: $navbar-height;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: $triangle-width-size solid transparent;
+      border-right: $triangle-width-size solid transparent;
+
+      border-top: $triangle-height-size solid $triangle-color;
+    }
+
+    $margin-size: 45px;
+
+    .nav-left {
+      margin-right: $margin-size;
+    }
+
+    .nav-right {
+      margin-left: $margin-size;
+    }
   }
 }
