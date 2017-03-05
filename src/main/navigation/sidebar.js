@@ -12,8 +12,6 @@ export class SideBar
     this.sidebar = sidebar;
 
     // variables
-
-    // register event
   }
 
   /**

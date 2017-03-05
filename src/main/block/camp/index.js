@@ -18,7 +18,7 @@ export class CampBlock {
 
     // All .slide-linker => register inner-link
     this.linker = block.find('.slide-link');
-    this.linker.each((i, e) => { $(e).click(this.navigationOnClick.bind(this, $(e).data('target'))); });
+    this.linker.each((i, e) => { $(e).click(this.navigateToSlide.bind(this, $(e).data('target'))); });
   }
 
   registerOnSlideLeave(anchorLink, index, slideIndex, direction, nextSlideIndex) {
@@ -60,7 +60,7 @@ export class CampBlock {
     }
   }
 
-  navigationOnClick(target) {
+  navigateToSlide(target) {
     $.fn.fullpage.moveTo('camp-block', target);
   }
 

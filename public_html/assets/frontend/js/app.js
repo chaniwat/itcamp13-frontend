@@ -27873,7 +27873,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
     // All .slide-linker => register inner-link
     this.linker = block.find('.slide-link');
     this.linker.each((i, e) => {
-      $(e).click(this.navigationOnClick.bind(this, $(e).data('target')));
+      $(e).click(this.navigateToSlide.bind(this, $(e).data('target')));
     });
   }
 
@@ -27916,7 +27916,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
     }
   }
 
-  navigationOnClick(target) {
+  navigateToSlide(target) {
     $.fn.fullpage.moveTo('camp-block', target);
   }
 
@@ -27987,7 +27987,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class NavigationBar {
+/* WEBPACK VAR INJECTION */(function($) {class NavigationBar {
 
   /**
    * params:
@@ -27998,6 +27998,13 @@ class NavigationBar {
     this.navbar = navbar;
 
     // variables
+    this.navigation = {};
+    this.navigation.all = this.navbar.find('.nav-linker');
+
+    // All .nav-link => register block navigation
+    this.navigation.all.each((i, e) => {
+      $(e).click(this.navigatieToBlock.bind(this, $(e).data('target')));
+    });
   }
 
   /**
@@ -28028,9 +28035,17 @@ class NavigationBar {
     }
   }
 
+  /**
+   * Navigate to block
+   */
+  navigatieToBlock(target) {
+    $.fn.fullpage.moveTo(target);
+  }
+
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = NavigationBar;
 
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
 /* 21 */
@@ -28049,8 +28064,6 @@ class SideBar {
     this.sidebar = sidebar;
 
     // variables
-
-    // register event
   }
 
   /**

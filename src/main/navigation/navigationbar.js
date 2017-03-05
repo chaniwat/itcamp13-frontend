@@ -11,7 +11,11 @@ export class NavigationBar
     this.navbar = navbar;
 
     // variables
+    this.navigation = {};
+    this.navigation.all = this.navbar.find('.nav-linker');
 
+    // All .nav-link => register block navigation
+    this.navigation.all.each((i, e) => { $(e).click(this.navigatieToBlock.bind(this, $(e).data('target'))); });
   }
 
   /**
@@ -46,6 +50,13 @@ export class NavigationBar
     {
       this.hideNavbar();
     }
+  }
+
+  /**
+   * Navigate to block
+   */
+  navigatieToBlock(target) {
+    $.fn.fullpage.moveTo(target);
   }
 
 }
