@@ -1,1 +1,1 @@
-module.exports = require('./webpack.common').webpackConfig("fe13/", 'dist');
+module.exports = require('./webpack.common').webpackConfig("13/", 'dist');
