@@ -1,6 +1,5 @@
 @include generate-block('home') {
-  background: url('../images/logo_bg.png') center repeat;
-  //background-color: $home-section-color;
+  background: url('../images/bg-uni-block.png') center repeat;
 
   @include generate-content-block() {
     padding: 1.5rem 0; // Override first block

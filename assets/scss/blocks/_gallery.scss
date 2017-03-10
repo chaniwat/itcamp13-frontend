@@ -1,9 +1,12 @@
+// TODO fix responsive gallery that (col > 1x1) to col1x1
+
 @include generate-block('gallery') {
-  background-color: $gallery-section-color;
+  background-color: #220f32;
+  color: white;
 
   @include generate-content-block() {
-    padding: calc(#{$navbar-height} + .8rem) 0 .8rem; // Override for gallery
-    
+    padding: calc(#{$navbar-height} + 1.8rem) 0 4rem; // Override for gallery
+
     // Override for masonry-layout
     width: 100% !important;
 
@@ -18,6 +21,7 @@
     .wrapper {
       position: relative;
       width: 100%;
+      margin-top: 1.5rem;
     }
     // End Override
 
@@ -29,10 +33,13 @@
       /* center */
       margin: 0 auto;
 
+      $item-size: 240px;
+      $gutter-size: 10px;
+
       .grid-item {
-        width: 200px;
-        height: 200px;
-        margin-bottom: 10px;
+        width: $item-size;
+        height: $item-size;
+        margin-bottom: $gutter-size;
 
         img {
           width: 100%;
@@ -42,18 +49,18 @@
       }
 
       .col1x1 {
-        width: 200px;
-        height: 200px;
+        width: $item-size;
+        height: $item-size;
       }
 
       .col2x1 {
-        width: 410px;
-        height: 200px;
+        width: ($item-size * 2) + $gutter-size;
+        height: $item-size;
       }
 
       .col2x2 {
-        width: 410px;
-        height: 410px;
+        width: ($item-size * 2) + $gutter-size;
+        height: ($item-size * 2) + $gutter-size;
       }
     }
   };

@@ -1,5 +1,6 @@
 @include generate-block('detail') {
-  background-color: $detail-section-color;
+  background: url('../images/bg-detail-block.png') center repeat;
+  color: white;
 
   @include generate-content-block() {
     div[class^="col-"] {

@@ -49,6 +49,8 @@ export class MainApp {
       $('#fullpage').fullpage({
         controlArrows: false,
 
+        easingcss3: 'cubic-bezier(0.770, 0.000, 0.175, 1.000)',
+        scrollingSpeed: 1200,
         scrollOverflow: true,
         scrollOverflowReset: false,
         scrollOverflowOptions: {

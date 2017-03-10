@@ -1,5 +1,6 @@
 @include generate-block('recommend') {
-  background-color: $recommend-section-color;
+  background: url('../images/bg-recommend-block.png') center repeat;
+  background-size: 250px;
 
   @include generate-content-block() {
 

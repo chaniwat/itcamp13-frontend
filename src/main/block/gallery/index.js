@@ -12,7 +12,7 @@ export class GalleryBlock {
 
       itemSelector: '.grid-item',
       fitWidth: true,
-      columnWidth: 200,
+      columnWidth: 240,
       gutter: 10,
     });
   }

@@ -4,16 +4,14 @@
 @mixin generate-camp-slide($name, $color) {
   &.#{$name}-camp {
     background-color: $color;
-    transition: background-color .7s;
+    transition: background-color $transition-time;
 
     @content;
   }
 }
 @mixin generate-camp-nav($name, $color) {
-  .#{$name} {
-    img {
-      background-color: $color;
-    }
+  li.slide-link.#{$name} {
+    background-color: $color;
   }
 }
 
@@ -28,8 +26,11 @@ $camp-list: (
   'datasci': $datasci-camp-color);
 
 @include generate-block('camp') {
-  background-color: $camp-section-color;
-  transition: background-color .7s;
+  background: url('../images/bg-o-camp-block.png') center repeat;
+  background-color: #5005a4;
+  background-size: 280px;
+  color: white;
+  transition: background-color $transition-time;
 
   @each $name, $color in $camp-list {
     @include generate-camp-slide($name, $color) {
@@ -63,41 +64,38 @@ $camp-list: (
       margin: 0;
       text-align: center;
 
-      li {
+      li.slide-link {
         display: block;
+        width: 64px;
+        height: 64px;
         align-self: center;
         padding: 0;
         margin: 0 1rem 0 0;
+        border-radius: 100px;
 
         // Default border for transition's animate
         border: 0 solid white;
         border-radius: 100px;
 
-        transition: transform .7s, border .7s;
+        transition: transform $transition-time, border $transition-time;
 
         &:last-child {
           margin: 0;
         }
 
-        img {
-          width: 64px;
-          height: 64px;
-          border-radius: 100px;
-        }
-
         &.active {
           border: 6px solid white;
-          transition: transform .7s, border .7s;
+          transition: transform $transition-time, border $transition-time;
 
           &:hover {
-            transition: transform .7s, border .7s;
+            transition: transform $transition-time, border $transition-time;
           }
         }
 
         &:hover {
           cursor: pointer;
           transform: scale(1.2, 1.2);
-          transition: transform .7s, border .7s;
+          transition: transform $transition-time, border $transition-time;
         }
       }
     }
@@ -105,7 +103,7 @@ $camp-list: (
     &.hide {
       ul li {
         transform: scale(0, 0);
-        transition: transform .7s, border .7s;
+        transition: transform $transition-time, border $transition-time;
       }
     }
   }
