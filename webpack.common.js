@@ -46,7 +46,7 @@ module.exports.webpackConfig = function(rootPath = "", outputFolder = 'public_ht
         },
         {
           test: /\.html$/,
-          loader: 'file-loader?name=index.html&outputPath=../../!extract-loader!html-loader'
+          loader: 'file-loader?name=[name].html&outputPath=../../!extract-loader!html-loader'
         }
       ]
     },

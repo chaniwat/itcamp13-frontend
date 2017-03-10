@@ -2,6 +2,7 @@
 import '../assets/scss/app.scss';
 // Import HTML
 import './index.html';
+import './landing.html';
 
 // Import JS Dependencies
 // Bootstrap
@@ -15,14 +16,31 @@ import 'fullpage.js/vendors/scrolloverflow';
 import 'fullpage.js';
 
 // Import Debugger
-import { debugHelper } from './debug';
+// import { debugHelper } from './debug';
 
-// Import Main
-import { MainApp } from './main';
+// Import GlobalOption
+import { AppOptions } from './option'
 
 $(document).ready(() => {
-  let main = new MainApp();
+  var options;
+  try {
+    GlobalOption;
+    options = new AppOptions(GlobalOption);
+  } catch(ignored) {
+    var options = new AppOptions();
+  }
+
+  if (options.mode == 'MAIN_APP')
+  {
+    let MainApp = require('./main').MainApp;
+    let main = new MainApp();
+  }
+  else if (options.mode == 'LANDING_PAGE')
+  {
+    let LandingApp = require('./landing').LandingApp;
+    let landing = new LandingApp();
+  }
 
   // main.setDebug(debugHelper);
-  debugHelper.hideDebug();
+  // debugHelper.hideDebug();
 });

@@ -1,0 +1,21 @@
+@include generate-block('landing') {
+  background: url('../images/bg-uni-block.png') center repeat;
+
+  // Override for landing page (landing block)
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  // End override
+
+  @include generate-content-block() {
+    padding: 1.5rem 0; // Override first block
+
+    .logo {
+      margin-bottom: 1rem;
+    }
+
+    h5 {
+      font-weight: 600;
+    }
+  };
+};
