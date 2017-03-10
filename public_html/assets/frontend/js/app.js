@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 30);
+/******/ 	return __webpack_require__(__webpack_require__.s = 32);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10656,7 +10656,8 @@ return EvEmitter;
 
 
 /***/ }),
-/* 4 */
+/* 4 */,
+/* 5 */
 /***/ (function(module, exports) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
@@ -10665,87 +10666,42 @@ module.exports = __webpack_amd_options__;
 /* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {class DebugHelper {
-
-  /**
-   * Debugger
-   * params:
-   *  - debugBox: JQuery (DOM) => Debug box
-   */
-  constructor() {
-    $('<section id="debug-box"><ul><li><b>Debug Box:</b></li></ul></section>').prependTo('body');
-    this.debugBox = $("#debug-box");
-  }
-
-  registerDebug(object) {
-    object.debugHelper = this;
-  }
-
-  /**
-   * Toggle hide/show the debug box
-   */
-  toggleDebug() {
-    this.debugBox.toggle();
-  }
-
-  /**
-   * Show the debug box
-   */
-  showDebug() {
-    this.debugBox.show();
-  }
-
-  /**
-   * Hide the debug box
-   */
-  hideDebug() {
-    this.debugBox.hide();
-  }
-
-  /**
-   * Show fading log
-   */
-  logf(tag, message, time = 2000) {
-    let tagElem = this.debugBox.find('li.' + tag);
-
-    if (tagElem.length) {
-      tagElem.stop(true);
-      tagElem.html('- ' + message);
-    } else {
-      $('<li class=' + tag + '>- ' + message + '</li>').appendTo(this.debugBox.find('ul'));
-    }
-
-    tagElem = this.debugBox.find('li.' + tag);
-    tagElem.css('opacity', 1);
-    tagElem.fadeOut(2500, function () {
-      this.remove();
-    });
-  }
-
-}
-
-var debugHelper = new DebugHelper();
-
-// Register event
-$(window).keypress(e => {
-  if (e.which == 92) {
-    debugHelper.toggleDebug();
-  }
-});
-
-exports.debugHelper = debugHelper;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
 /* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function($) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navigation__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__block__ = __webpack_require__(17);
+/* WEBPACK VAR INJECTION */(function($) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+class LandingApp {
+
+  constructor() {
+
+    if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+      var ww = $(window).width() < window.screen.width ? $(window).width() : window.screen.width; //get proper width
+      var mw = 500; // min width of site
+      var ratio = ww / mw; //calculate ratio
+      if (ww < mw) {
+        //smaller than minimum size
+        $('#Viewport').attr('content', 'initial-scale=' + ratio + ', maximum-scale=' + ratio + ', minimum-scale=' + ratio + ', user-scalable=no, width=' + ww);
+      } else {
+        //regular size
+        $('#Viewport').attr('content', 'initial-scale=1.0, maximum-scale=2, minimum-scale=1.0, user-scalable=no, width=' + ww);
+      }
+    }
+  }
+
+}
+/* harmony export (immutable) */ __webpack_exports__["LandingApp"] = LandingApp;
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function($) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navigation__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__block__ = __webpack_require__(20);
 
 
 // blocks
@@ -10830,12 +10786,31 @@ class MainApp {
   }
 
 }
-/* harmony export (immutable) */ __webpack_exports__["a"] = MainApp;
+/* harmony export (immutable) */ __webpack_exports__["MainApp"] = MainApp;
 
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 7 */
+/* 8 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var DefaultOption = {
+  mode: 'MAIN_APP'
+};
+
+class AppOptions {
+
+  constructor(options = {}) {
+    this.mode = options.mode ? options.mode : DefaultOption.mode;
+  }
+
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = AppOptions;
+
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery, Tether) {/*!
@@ -14374,22 +14349,28 @@ var Popover = function ($) {
 
 }();
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(29)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(31)))
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "index.html";
 
 /***/ }),
-/* 10 */
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "landing.html";
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(IScroll) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -17473,10 +17454,10 @@ module.exports = __webpack_require__.p + "index.html";
     };
 });
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(25)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)))
 
 /***/ }),
-/* 11 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*! iScroll v5.2.0 ~ (c) 2008-2016 Matteo Spinelli ~ http://cubiq.org/license */
@@ -19601,7 +19582,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 })(window, document, Math);
 
 /***/ }),
-/* 12 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -19770,7 +19751,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 		return (_gsScope.GreenSockGlobals || _gsScope)[name];
 	};
 	if (true) { //AMD
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(24)], __WEBPACK_AMD_DEFINE_FACTORY__ = (getGlobal),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(26)], __WEBPACK_AMD_DEFINE_FACTORY__ = (getGlobal),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -19782,7 +19763,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 13 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -25828,7 +25809,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 						if (global) {
 							_globals[n] = _exports[n] = cl; //provides a way to avoid global namespace pollution. By default, the main classes like TweenLite, Power1, Strong, etc. are added to window unless a GreenSockGlobals is defined. So if you want to have things added to a custom object instead, just do something like window.GreenSockGlobals = {} before loading any GreenSock files. You can even set up an alias like window.GreenSockGlobals = windows.gs = {} so that you can access everything like gs.TweenLite. Also remember that ALL classes are added to the window.com.greensock object (in their respective packages, like com.greensock.easing.Power1, com.greensock.TweenLite, etc.)
 							hasModule = (typeof(module) !== "undefined" && module.exports);
-							if (!hasModule && "function" === "function" && __webpack_require__(4)){ //AMD
+							if (!hasModule && "function" === "function" && __webpack_require__(5)){ //AMD
 								!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() { return cl; }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 							} else if (hasModule){ //node
@@ -27646,7 +27627,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 14 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -27837,7 +27818,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 15 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27915,7 +27896,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 16 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27945,34 +27926,34 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = GalleryBlock;
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(26)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(28)))
 
 /***/ }),
-/* 17 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__camp__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__camp__ = __webpack_require__(18);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__camp__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__gallery__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__gallery__ = __webpack_require__(19);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__gallery__["a"]; });
 
 
 
 /***/ }),
-/* 18 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navigationbar__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navigationbar__ = __webpack_require__(22);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__navigationbar__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sidebar__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sidebar__ = __webpack_require__(23);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__sidebar__["a"]; });
 
 
 
 /***/ }),
-/* 19 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28037,7 +28018,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28088,7 +28069,7 @@ class SideBar {
 
 
 /***/ }),
-/* 21 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -28151,8 +28132,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 
 /***/ }),
-/* 22 */,
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -28169,7 +28149,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
   if ( true ) {
     // AMD
     !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-      __webpack_require__(21)
+      __webpack_require__(24)
     ], __WEBPACK_AMD_DEFINE_RESULT__ = function( matchesSelector ) {
       return factory( window, matchesSelector );
     }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
@@ -28396,7 +28376,7 @@ return utils;
 
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -28507,7 +28487,7 @@ return utils;
 						if (global) {
 							_globals[n] = _exports[n] = cl; //provides a way to avoid global namespace pollution. By default, the main classes like TweenLite, Power1, Strong, etc. are added to window unless a GreenSockGlobals is defined. So if you want to have things added to a custom object instead, just do something like window.GreenSockGlobals = {} before loading any GreenSock files. You can even set up an alias like window.GreenSockGlobals = windows.gs = {} so that you can access everything like gs.TweenLite. Also remember that ALL classes are added to the window.com.greensock object (in their respective packages, like com.greensock.easing.Power1, com.greensock.TweenLite, etc.)
 							hasModule = (typeof(module) !== "undefined" && module.exports);
-							if (!hasModule && "function" === "function" && __webpack_require__(4)){ //AMD
+							if (!hasModule && "function" === "function" && __webpack_require__(5)){ //AMD
 								!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() { return cl; }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 							} else if (hasModule){ //node
@@ -30325,7 +30305,7 @@ return utils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*! iScroll v5.2.0 ~ (c) 2008-2016 Matteo Spinelli ~ http://cubiq.org/license */
@@ -32423,7 +32403,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -32440,7 +32420,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   if ( true ) {
     // AMD
     !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-        __webpack_require__(28),
+        __webpack_require__(30),
         __webpack_require__(1)
       ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
@@ -32636,7 +32616,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -33196,7 +33176,7 @@ return Item;
 
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -33214,8 +33194,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
     !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
         __webpack_require__(3),
         __webpack_require__(1),
-        __webpack_require__(23),
-        __webpack_require__(27)
+        __webpack_require__(25),
+        __webpack_require__(29)
       ], __WEBPACK_AMD_DEFINE_RESULT__ = function( EvEmitter, getSize, utils, Item ) {
         return factory( window, EvEmitter, getSize, utils, Item);
       }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
@@ -34140,7 +34120,7 @@ return Outlayer;
 
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! tether 1.4.0 */
@@ -35961,33 +35941,34 @@ return Tether;
 
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_scss_app_scss__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_scss_app_scss__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_scss_app_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__assets_scss_app_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_html__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_html__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__index_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_bootstrap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_gsap__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_gsap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_gsap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_gsap_jquery_gsap__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_gsap_jquery_gsap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_gsap_jquery_gsap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_gsap_ModifiersPlugin__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_gsap_ModifiersPlugin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_gsap_ModifiersPlugin__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_fullpage_js_vendors_scrolloverflow__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_fullpage_js_vendors_scrolloverflow___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_fullpage_js_vendors_scrolloverflow__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_fullpage_js__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_fullpage_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_fullpage_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__debug__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__debug___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__debug__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__main__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__landing_html__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__landing_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__landing_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bootstrap__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_bootstrap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_gsap__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_gsap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_gsap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_gsap_jquery_gsap__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_gsap_jquery_gsap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_gsap_jquery_gsap__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_gsap_ModifiersPlugin__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_gsap_ModifiersPlugin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_gsap_ModifiersPlugin__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_fullpage_js_vendors_scrolloverflow__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_fullpage_js_vendors_scrolloverflow___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_fullpage_js_vendors_scrolloverflow__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_fullpage_js__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_fullpage_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_fullpage_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__option__ = __webpack_require__(8);
 // Import styles
 
 // Import HTML
+
 
 
 // Import JS Dependencies
@@ -36002,16 +35983,30 @@ return Tether;
 
 
 // Import Debugger
+// import { debugHelper } from './debug';
 
-
-// Import Main
+// Import GlobalOption
 
 
 $(document).ready(() => {
-  let main = new __WEBPACK_IMPORTED_MODULE_9__main__["a" /* MainApp */]();
+  var options;
+  try {
+    GlobalOption;
+    options = new __WEBPACK_IMPORTED_MODULE_9__option__["a" /* AppOptions */](GlobalOption);
+  } catch (ignored) {
+    var options = new __WEBPACK_IMPORTED_MODULE_9__option__["a" /* AppOptions */]();
+  }
+
+  if (options.mode == 'MAIN_APP') {
+    let MainApp = __webpack_require__(7).MainApp;
+    let main = new MainApp();
+  } else if (options.mode == 'LANDING_PAGE') {
+    let LandingApp = __webpack_require__(6).LandingApp;
+    let landing = new LandingApp();
+  }
 
   // main.setDebug(debugHelper);
-  __WEBPACK_IMPORTED_MODULE_8__debug__["debugHelper"].hideDebug();
+  // debugHelper.hideDebug();
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 

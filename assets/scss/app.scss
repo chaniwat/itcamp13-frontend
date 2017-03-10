@@ -17,6 +17,7 @@
 @import "./debug";
 
 // Blocks
+@import "./blocks/landing";
 @import "./blocks/home";
 @import "./blocks/detail";
 @import "./blocks/sponsor";
@@ -28,10 +29,10 @@
 
 // Change based font size
 html {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 html, body {
   height: 100%;
-  font-family: 'ThaiSansNeue' !important;
+  font-family: 'Cloud' !important;
 }

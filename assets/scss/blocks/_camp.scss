@@ -31,6 +31,7 @@ $camp-list: (
   background-size: 280px;
   color: white;
   transition: background-color $transition-time;
+  transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
 
   @each $name, $color in $camp-list {
     @include generate-camp-slide($name, $color) {
