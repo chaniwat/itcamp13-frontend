@@ -40,7 +40,7 @@ module.exports.webpackConfig = function(rootPath = "", outputFolder = 'public_ht
           include: [path.join(__dirname, 'assets/fonts')]
         },
         {
-          test: /\.(png|jpg|gif)$/,
+          test: /\.(png|jpg|gif|svg)$/,
           use: 'file-loader?name=[name].[ext]&outputPath=images/&publicPath=/'+rootPath+'assets/frontend/images/',
           include: [path.join(__dirname, 'assets/images')]
         },
