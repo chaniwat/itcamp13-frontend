@@ -1,3 +1,6 @@
+// Import favicon
+import '../assets/favicon/favicon-16x16.png';
+import '../assets/favicon/favicon-32x32.png';
 // Import styles
 import '../assets/scss/app.scss';
 // Import HTML

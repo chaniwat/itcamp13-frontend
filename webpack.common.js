@@ -36,13 +36,18 @@ module.exports.webpackConfig = function(rootPath = "", outputFolder = 'public_ht
         },
         {
           test: /\.(woff2|ttf|eot|svg)$/,
-          use: 'file-loader?name=[name].[ext]&outputPath=fonts/&publicPath=/'+rootPath+'assets/frontend/fonts/',
+          use: 'file-loader?name=[name].[ext]&outputPath=fonts/&publicPath=assets/frontend/fonts/',
           include: [path.join(__dirname, 'assets/fonts')]
         },
         {
           test: /\.(png|jpg|gif|svg)$/,
-          use: 'file-loader?name=[name].[ext]&outputPath=images/&publicPath=/'+rootPath+'assets/frontend/images/',
+          use: 'file-loader?name=[name].[ext]&outputPath=images/&publicPath=assets/frontend/images/',
           include: [path.join(__dirname, 'assets/images')]
+        },
+        {
+          test: /\.(png|jpg|gif|svg)$/,
+          use: 'file-loader?name=[name].[ext]&outputPath=favicon/&publicPath=assets/frontend/favicon/',
+          include: [path.join(__dirname, 'assets/favicon')]
         },
         {
           test: /\.html$/,
