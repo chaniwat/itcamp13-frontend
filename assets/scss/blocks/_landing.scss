@@ -29,7 +29,7 @@
       margin-bottom: 1rem;
 
       img {
-        width: 400px;
+        width: 350px;
 
         @include media-breakpoint-down(md)
         {
@@ -43,7 +43,7 @@
     }
 
     .soon {
-      margin-top: 2rem;
+      margin-top: 1rem;
       font-weight: bold;
       text-shadow: 2px 2px rgb(222, 222, 222);
 
