@@ -15,13 +15,36 @@
     <link rel="stylesheet" href="assets/frontend/css/app.css">
   </head>
 
-  <style>
-    html {
-      min-width: 500px;
-    }
-  </style>
-
   <body>
+    <div id="fb-root"></div>
+    <script type="text/javascript">
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div id="twitter-wjs"></div>
+    <script>
+      window.twttr = (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+          t = window.twttr || {};
+        if (d.getElementById(id)) return t;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+
+        t._e = [];
+        t.ready = function(f) {
+          t._e.push(f);
+        };
+
+        return t;
+      }(document, "script", "twitter-wjs"));
+    </script>
 
     <!-- Landing block -->
     <section class="section landing-block" data-anchor="home-block">
@@ -41,19 +64,15 @@
           </span>
         </h3>
         <div class="social">
-          <ul>
-            <a href="https://www.facebook.com/itcampKMITL" target="_blank">
-              <li class="share-facebook">
-                <span class="icon"><i class="fa fa-facebook" aria-hidden="true"></i></span>
-              </li>
+            <div class="fb-share-button" data-href="http://itcamp.in.th/" data-layout="button" data-size="large" data-mobile-iframe="true">
+              <a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fitcamp.in.th%2F&amp;src=sdkpreparse">
+                Share
+              </a>
+            </div>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-text="เตรียมพบกับค่าย #itcamp ครั้งที่ 13 เร็วๆนี้ :D" data-url="http://itcamp.in.th/" data-via="ITCAMP" data-related="ITCAMP,ITKMITL" data-show-count="false">
+              Tweet
             </a>
-            <a href="https://twitter.com/ITCAMP" target="_blank">
-              <li class="share-twitter">
-                <span class="icon"><i class="fa fa-twitter" aria-hidden="true"></i></span>
-                <span class="text">@ITCAMP</span>
-              </li>
-            </a>
-          </ul>
+            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
       </div>
 
