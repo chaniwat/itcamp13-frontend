@@ -24,7 +24,7 @@ export class Navigation
     this.navigation.navbar.all.each((i, e) => { $(e).click(this.navigatieToBlock.bind(this, $(e).data('target'))); });
     this.navigation.sidenav.all.each((i, e) => { $(e).click(this.navigatieToBlock.bind(this, $(e).data('target'))); });
 
-    // Register nav-hamburger (mobile - side:off-canvas)
+    // Register nav-hamburger (mobile - sidenav:off-canvas)
     this.hamburger.click(this.toggleSidenav.bind(this));
   }
 
@@ -36,11 +36,11 @@ export class Navigation
     if(this.debugHelper) this.debugHelper.logf('navbar_toggle', 'showing navbar');
     if(animate)
     {
-      this.navbar.animate({top: 0}, 750);
+      this.navbar.animate({y: 0, z: 0}, 750);
     }
     else
     {
-      this.navbar.css('top', 0);
+      this.navbar.animate({y: 0, z: 0}, 1);
     }
   }
 
@@ -52,11 +52,11 @@ export class Navigation
     if(this.debugHelper) this.debugHelper.logf('navbar_toggle', 'hiding navbar');
     if(animate)
     {
-      this.navbar.animate({top: -this.navbar.outerHeight()}, 750);
+      this.navbar.animate({y: -this.navbar.outerHeight(), z: 0}, 750);
     }
     else
     {
-      this.navbar.css('top', -this.navbar.outerHeight());
+      this.navbar.animate({y: -this.navbar.outerHeight(), z: 0}, 1);
     }
   }
 

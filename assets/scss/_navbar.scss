@@ -1,10 +1,12 @@
 .navbar {
   height: $navbar-height;
-  top: -$navbar-height; // Default hide the navbar
   flex-direction: row;
   align-items: center;
   justify-content: center;
   padding: 0;
+
+  // Default hide the navbar
+  transform: translateY(-$navbar-height);
 
   .navbar-desktop {
     width: 100%;
