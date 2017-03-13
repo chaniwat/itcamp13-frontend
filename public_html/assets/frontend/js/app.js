@@ -10752,9 +10752,15 @@ class MainApp {
       });
     });
 
-    // ReBuild DOM when resize window
+    // window is resize
     $(window).resize(() => {
+      let wWidth = window.innerWidth;
+      let wHeight = window.innerHeight;
+
+      // ReBuild DOM when resize window
       $.fn.fullpage.reBuild();
+      // Call navigation resize
+      this.navigation.registerResize(wWidth, wHeight);
     });
   }
 
@@ -36001,8 +36007,6 @@ $(document).ready(() => {
 
     // Register nav-hamburger (mobile - side:off-canvas)
     this.hamburger.click(this.toggleSidenav.bind(this));
-
-    this.showNavbar();
   }
 
   /**
@@ -36030,8 +36034,6 @@ $(document).ready(() => {
     } else {
       this.hideSidenav();
     }
-
-    this.sidenav.state = !this.sidenav.state;
   }
 
   /**
@@ -36039,10 +36041,16 @@ $(document).ready(() => {
    */
   showSidenav() {
     if (this.debugHelper) this.debugHelper.logf('sidenav_toggle', 'showing sidenav');
+
+    // Siding sidenav and fullpage-wrapper
     this.sidenav.addClass('open');
     $('.fullpage-wrapper .section').each((i, e) => {
       $(e).addClass('open-sidenav');
     });
+    // Disable fullpage scrolling
+    $.fn.fullpage.setAllowScrolling(false);
+
+    this.sidenav.state = true;
   }
 
   /**
@@ -36050,26 +36058,38 @@ $(document).ready(() => {
    */
   hideSidenav() {
     if (this.debugHelper) this.debugHelper.logf('sidenav_toggle', 'hiding sidenav');
+
+    // Hiding sidenav and fullpage-wrapper
     this.sidenav.removeClass('open');
     $('.fullpage-wrapper .section').each((i, e) => {
       $(e).removeClass('open-sidenav');
     });
+    // Disable fullpage scrolling
+    $.fn.fullpage.setAllowScrolling(true);
+
+    this.sidenav.state = false;
   }
 
   /**
    * Register the onLeave event handler (fullpage.js)
    */
-  registerOnLeave(index, nextIndex, direction) {}
-  // Show/Hide Navbar
-  // if (index == 1 && nextIndex != 1)
-  // {
-  //   this.showNavbar();
-  // }
-  // else if (index != 1 && nextIndex == 1)
-  // {
-  //   this.hideNavbar();
-  // }
+  registerOnLeave(index, nextIndex, direction) {
+    // Show/Hide Navbar
+    if (index == 1 && nextIndex != 1) {
+      this.showNavbar();
+    } else if (index != 1 && nextIndex == 1) {
+      this.hideNavbar();
+    }
+  }
 
+  /**
+   * Register the window resize event
+   */
+  registerResize(width, height) {
+    if (width >= 992) {
+      this.hideSidenav();
+    }
+  }
 
   /**
    * Navigate to block

@@ -26,8 +26,6 @@ export class Navigation
 
     // Register nav-hamburger (mobile - side:off-canvas)
     this.hamburger.click(this.toggleSidenav.bind(this));
-
-    this.showNavbar();
   }
 
   /**
@@ -61,8 +59,6 @@ export class Navigation
     {
       this.hideSidenav();
     }
-
-    this.sidenav.state = !this.sidenav.state;
   }
 
   /**
@@ -71,10 +67,16 @@ export class Navigation
   showSidenav()
   {
     if(this.debugHelper) this.debugHelper.logf('sidenav_toggle', 'showing sidenav');
+
+    // Siding sidenav and fullpage-wrapper
     this.sidenav.addClass('open');
     $('.fullpage-wrapper .section').each((i, e) => {
       $(e).addClass('open-sidenav');
     });
+    // Disable fullpage scrolling
+    $.fn.fullpage.setAllowScrolling(false);
+
+    this.sidenav.state = true;
   }
 
   /**
@@ -83,10 +85,16 @@ export class Navigation
   hideSidenav()
   {
     if(this.debugHelper) this.debugHelper.logf('sidenav_toggle', 'hiding sidenav');
+
+    // Hiding sidenav and fullpage-wrapper
     this.sidenav.removeClass('open');
     $('.fullpage-wrapper .section').each((i, e) => {
       $(e).removeClass('open-sidenav');
     });
+    // Disable fullpage scrolling
+    $.fn.fullpage.setAllowScrolling(true);
+
+    this.sidenav.state = false;
   }
 
   /**
@@ -95,15 +103,26 @@ export class Navigation
   registerOnLeave(index, nextIndex, direction)
   {
     // Show/Hide Navbar
-    // if (index == 1 && nextIndex != 1)
-    // {
-    //   this.showNavbar();
-    // }
-    // else if (index != 1 && nextIndex == 1)
-    // {
-    //   this.hideNavbar();
-    // }
+    if (index == 1 && nextIndex != 1)
+    {
+      this.showNavbar();
+    }
+    else if (index != 1 && nextIndex == 1)
+    {
+      this.hideNavbar();
+    }
   }
+
+  /**
+   * Register the window resize event
+   */
+   registerResize(width, height)
+   {
+     if(width >= 992)
+     {
+       this.hideSidenav();
+     }
+   }
 
   /**
    * Navigate to block

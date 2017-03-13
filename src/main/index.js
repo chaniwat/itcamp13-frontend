@@ -64,9 +64,15 @@ export class MainApp {
       });
     });
 
-    // ReBuild DOM when resize window
+    // window is resize
     $(window).resize(() => {
+      let wWidth = window.innerWidth;
+      let wHeight = window.innerHeight;
+
+      // ReBuild DOM when resize window
       $.fn.fullpage.reBuild();
+      // Call navigation resize
+      this.navigation.registerResize(wWidth, wHeight);
     });
   }
 
