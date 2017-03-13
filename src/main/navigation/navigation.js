@@ -88,6 +88,7 @@ export class Navigation
       $(e).addClass('open-sidenav');
     });
     // Disable fullpage scrolling
+    $.fn.fullpage.setKeyboardScrolling(false);
     $.fn.fullpage.setAllowScrolling(false);
 
     this.sidenav.state = true;
@@ -106,7 +107,8 @@ export class Navigation
       $(e).removeClass('open-sidenav');
     });
     // Disable fullpage scrolling
-    $.fn.fullpage.setAllowScrolling(true);
+    $.fn.fullpage.setKeyboardScrolling(true);
+    $.fn.fullpage.setAllowScrolling(false);
 
     this.sidenav.state = false;
   }

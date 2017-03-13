@@ -36060,6 +36060,7 @@ $(document).ready(() => {
       $(e).addClass('open-sidenav');
     });
     // Disable fullpage scrolling
+    $.fn.fullpage.setKeyboardScrolling(false);
     $.fn.fullpage.setAllowScrolling(false);
 
     this.sidenav.state = true;
@@ -36077,7 +36078,8 @@ $(document).ready(() => {
       $(e).removeClass('open-sidenav');
     });
     // Disable fullpage scrolling
-    $.fn.fullpage.setAllowScrolling(true);
+    $.fn.fullpage.setKeyboardScrolling(true);
+    $.fn.fullpage.setAllowScrolling(false);
 
     this.sidenav.state = false;
   }
