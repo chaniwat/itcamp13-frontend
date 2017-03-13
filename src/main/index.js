@@ -30,12 +30,24 @@ export class MainApp {
   }
 
   initFullPageJS() {
-    let registerAfterRender = () => {
-      this.blocks.gallery.registerAfterRender();
+    let resizeHandler = () => {
+      let wWidth = window.innerWidth;
+      let wHeight = window.innerHeight;
 
+      // Call navigation resize
+      this.navigation.registerResize(wWidth, wHeight);
+
+      // ReBuild DOM when resize window
       // Because some of handler change the DOM structure
       // so its need to rebuild the fullpage
       $.fn.fullpage.reBuild();
+    }
+
+    let registerAfterRender = () => {
+      this.blocks.gallery.registerAfterRender();
+
+      // Call resize for once for trigger anything that need dimension recalculate
+      resizeHandler();
     };
 
     let registerOnLeave = (index, nextIndex, direction) => {
@@ -69,15 +81,7 @@ export class MainApp {
     });
 
     // window is resize
-    $(window).resize(() => {
-      let wWidth = window.innerWidth;
-      let wHeight = window.innerHeight;
-
-      // ReBuild DOM when resize window
-      $.fn.fullpage.reBuild();
-      // Call navigation resize
-      this.navigation.registerResize(wWidth, wHeight);
-    });
+    $(window).resize(resizeHandler.bind(this));
   }
 
   setDebug(debugHelper) {

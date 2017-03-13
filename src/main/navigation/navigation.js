@@ -24,6 +24,9 @@ export class Navigation
     this.navigation.navbar.all.each((i, e) => { $(e).click(this.navigatieToBlock.bind(this, $(e).data('target'))); });
     this.navigation.sidenav.all.each((i, e) => { $(e).click(this.navigatieToBlock.bind(this, $(e).data('target'))); });
 
+    // Register sidenav overlay area (for hiding the sidenav)
+    this.sidenav.find('.overlay').click(this.hideSidenav.bind(this));
+
     // Register nav-hamburger (mobile - sidenav:off-canvas)
     this.hamburger.click(this.toggleSidenav.bind(this));
   }
@@ -108,7 +111,7 @@ export class Navigation
     });
     // Disable fullpage scrolling
     $.fn.fullpage.setKeyboardScrolling(true);
-    $.fn.fullpage.setAllowScrolling(false);
+    $.fn.fullpage.setAllowScrolling(true);
 
     this.sidenav.state = false;
   }
