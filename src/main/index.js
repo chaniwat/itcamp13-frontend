@@ -9,6 +9,8 @@ export class MainApp {
     this.initNavigation();
     this.initBlocks();
     this.initFullPageJS();
+
+    window.states = {currentSection: 1};
   }
 
   initNavigation() {
@@ -37,6 +39,8 @@ export class MainApp {
     };
 
     let registerOnLeave = (index, nextIndex, direction) => {
+      window.states.currentSection = nextIndex;
+
       this.navigation.registerOnLeave(index, nextIndex, direction);
       this.sideBar.registerOnLeave(index, nextIndex, direction);
     };

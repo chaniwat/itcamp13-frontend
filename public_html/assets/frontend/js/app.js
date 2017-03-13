@@ -10697,6 +10697,8 @@ class MainApp {
     this.initNavigation();
     this.initBlocks();
     this.initFullPageJS();
+
+    window.states = { currentSection: 1 };
   }
 
   initNavigation() {
@@ -10725,6 +10727,8 @@ class MainApp {
     };
 
     let registerOnLeave = (index, nextIndex, direction) => {
+      window.states.currentSection = nextIndex;
+
       this.navigation.registerOnLeave(index, nextIndex, direction);
       this.sideBar.registerOnLeave(index, nextIndex, direction);
     };
@@ -35990,7 +35994,7 @@ $(document).ready(() => {
     this.sidenav = sidenav;
 
     // variables
-    this.navigation = { navbar: {}, sidenav: {} };
+    this.navigation = { navbar: {}, sidenav: {}, isMobileSize: false };
     this.navigation.navbar.all = this.navbar.find('.nav-linker');
     this.navigation.sidenav.all = this.sidenav.find('.nav-linker');
 
@@ -36012,17 +36016,25 @@ $(document).ready(() => {
   /**
    * Show navbar
    */
-  showNavbar() {
+  showNavbar(animate = true) {
     if (this.debugHelper) this.debugHelper.logf('navbar_toggle', 'showing navbar');
-    this.navbar.animate({ top: 0 }, 750);
+    if (animate) {
+      this.navbar.animate({ top: 0 }, 750);
+    } else {
+      this.navbar.css('top', 0);
+    }
   }
 
   /**
    * Hide navbar
    */
-  hideNavbar() {
+  hideNavbar(animate = true) {
     if (this.debugHelper) this.debugHelper.logf('navbar_toggle', 'hiding navbar');
-    this.navbar.animate({ top: -this.navbar.outerHeight() }, 750);
+    if (animate) {
+      this.navbar.animate({ top: -this.navbar.outerHeight() }, 750);
+    } else {
+      this.navbar.css('top', -this.navbar.outerHeight());
+    }
   }
 
   /**
@@ -36075,10 +36087,12 @@ $(document).ready(() => {
    */
   registerOnLeave(index, nextIndex, direction) {
     // Show/Hide Navbar
-    if (index == 1 && nextIndex != 1) {
-      this.showNavbar();
-    } else if (index != 1 && nextIndex == 1) {
-      this.hideNavbar();
+    if (!this.navigation.isMobileSize) {
+      if (index == 1 && nextIndex != 1) {
+        this.showNavbar();
+      } else if (index != 1 && nextIndex == 1) {
+        this.hideNavbar();
+      }
     }
   }
 
@@ -36088,6 +36102,14 @@ $(document).ready(() => {
   registerResize(width, height) {
     if (width >= 992) {
       this.hideSidenav();
+      if (window.states.currentSection == 1) {
+        this.hideNavbar(false);
+      }
+
+      this.navigation.isMobileSize = false;
+    } else if (width < 992) {
+      this.showNavbar(false);
+      this.navigation.isMobileSize = true;
     }
   }
 

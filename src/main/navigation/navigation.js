@@ -13,7 +13,7 @@ export class Navigation
     this.sidenav = sidenav;
 
     // variables
-    this.navigation = {navbar: {}, sidenav: {}};
+    this.navigation = {navbar: {}, sidenav: {}, isMobileSize: false};
     this.navigation.navbar.all = this.navbar.find('.nav-linker');
     this.navigation.sidenav.all = this.sidenav.find('.nav-linker');
 
@@ -31,19 +31,33 @@ export class Navigation
   /**
    * Show navbar
    */
-  showNavbar()
+  showNavbar(animate = true)
   {
     if(this.debugHelper) this.debugHelper.logf('navbar_toggle', 'showing navbar');
-    this.navbar.animate({top: 0}, 750);
+    if(animate)
+    {
+      this.navbar.animate({top: 0}, 750);
+    }
+    else
+    {
+      this.navbar.css('top', 0);
+    }
   }
 
   /**
    * Hide navbar
    */
-  hideNavbar()
+  hideNavbar(animate = true)
   {
     if(this.debugHelper) this.debugHelper.logf('navbar_toggle', 'hiding navbar');
-    this.navbar.animate({top: -this.navbar.outerHeight()}, 750);
+    if(animate)
+    {
+      this.navbar.animate({top: -this.navbar.outerHeight()}, 750);
+    }
+    else
+    {
+      this.navbar.css('top', -this.navbar.outerHeight());
+    }
   }
 
   /**
@@ -103,13 +117,16 @@ export class Navigation
   registerOnLeave(index, nextIndex, direction)
   {
     // Show/Hide Navbar
-    if (index == 1 && nextIndex != 1)
+    if (!this.navigation.isMobileSize)
     {
-      this.showNavbar();
-    }
-    else if (index != 1 && nextIndex == 1)
-    {
-      this.hideNavbar();
+      if (index == 1 && nextIndex != 1)
+      {
+        this.showNavbar();
+      }
+      else if (index != 1 && nextIndex == 1)
+      {
+        this.hideNavbar();
+      }
     }
   }
 
@@ -121,6 +138,17 @@ export class Navigation
      if(width >= 992)
      {
        this.hideSidenav();
+       if (window.states.currentSection == 1)
+       {
+         this.hideNavbar(false);
+       }
+
+       this.navigation.isMobileSize = false;
+     }
+     else if(width < 992)
+     {
+       this.showNavbar(false);
+       this.navigation.isMobileSize = true;
      }
    }
 
