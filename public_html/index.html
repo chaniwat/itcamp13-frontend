@@ -20,7 +20,7 @@
     <!-- Navbar -->
     <!-- TODO Finish the navbar -->
     <nav class="navbar fixed-top navbar-inverse bg-inverse">
-      <div class="navbar-desktop hidden-sm-down">
+      <div class="navbar-desktop hidden-md-down">
         <div class="nav-left">
           <div class="nav-linker" data-target="home-block">เริ่มต้น</div>
           <div class="nav-linker" data-target="detail-block">รายละเอียด</div>
@@ -28,7 +28,7 @@
           <div class="nav-linker" data-target="camp-block">ค่ายย่อย</div>
         </div>
         <div class="logo">
-          <img src="/assets/frontend/images/logo-only-text.png" height="35" />
+          <img src="/assets/frontend/images/logo-only-text.png" />
         </div>
         <div class="nav-right">
           <div class="nav-linker" data-target="timeline-block">กำหนดการ</div>
@@ -38,7 +38,26 @@
         </div>
         <div class="triangle"></div>
       </div>
-      <div class="navbar-mobile hidden-md-up"></div>
+      <div class="navbar-mobile hidden-lg-up">
+        <div class="logo">
+          <img src="/assets/frontend/images/logo-only-text.png" />
+        </div>
+        <div class="nav-hamburger" id="nav-hamburger">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Side nav (mobile) -->
+    <nav class="sidenav">
+      <div class="nav-linker" data-target="home-block">เริ่มต้น</div>
+      <div class="nav-linker" data-target="detail-block">รายละเอียด</div>
+      <div class="nav-linker" data-target="sponsor-block">ผู้สนับสนุน</div>
+      <div class="nav-linker" data-target="camp-block">ค่ายย่อย</div>
+      <div class="nav-linker" data-target="timeline-block">กำหนดการ</div>
+      <div class="nav-linker" data-target="gallery-block">ภาพกิจกรรม</div>
+      <div class="nav-linker" data-target="recommend-block">คำนิยม</div>
+      <div class="nav-linker" data-target="faq-block">ถาม-ตอบ</div>
     </nav>
 
     <!-- Sidebar (Sharing & Social) -->

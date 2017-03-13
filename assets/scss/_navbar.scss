@@ -4,64 +4,114 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-
-  .navbar-brand {
-    margin-right: 0;
-  }
+  padding: 0;
 
   .navbar-desktop {
     width: 100%;
-    display: flex;
-    align-items: center;
+    height: 100%;
 
     .logo {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       position: absolute;
+      width: 290px;
+      height: 100%;
       left: 50%;
       transform: translateX(-50%);
-    }
+      background-color: #1e1f20;
 
-    $triangle-width-size: 25px;
-    $triangle-height-size: 18px;
-    $triangle-color: #292B2C;
-
-    .triangle {
-      position: absolute;
-      left: 50%;
-      top: $navbar-height;
-      transform: translateX(-50%);
-      width: 0;
-      height: 0;
-      border-left: $triangle-width-size solid transparent;
-      border-right: $triangle-width-size solid transparent;
-
-      border-top: $triangle-height-size solid $triangle-color;
-    }
-
-    $margin-size: 120px;
-
-    div[class^="nav-"] {
-
-      .nav-linker {
-        display: inline-block;
-        color: white;
+      img {
+        height: 40px;
+        transition: transform 0.5s;
 
         &:hover {
           cursor: pointer;
-          text-decoration: underline;
+          transform: scale(1.125);
         }
       }
     }
 
-    .nav-left {
+    @mixin navbar-menu() {
+      display: flex;
       position: absolute;
+      width: calc((100% - 290px) / 2);
+      height: 100%;
+
+      @include media-breakpoint-up(xl) {
+        width: 455px;
+      }
+    }
+
+    $margin-size: 145px;
+
+    .nav-left {
+      @include navbar-menu();
+
       left: calc(50% - #{$margin-size});
       transform: translateX(-100%);
     }
 
     .nav-right {
-      position: absolute;
+      @include navbar-menu();
+
       right: calc(50% - #{$margin-size});
       transform: translateX(100%);
+    }
+
+    .nav-linker {
+      flex: 1 1 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #484a4b;
+      }
+    }
+  }
+
+  .navbar-mobile {
+    width: 100%;
+    height: 100%;
+
+    .logo {
+      float: left;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 280px;
+      height: 100%;
+      background-color: #1e1f20;
+
+      img {
+        height: 40px;
+      }
+    }
+
+    .nav-hamburger {
+      float: right;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 25px;
+      color: white;
+
+      i {
+        padding: 8px 12px;
+        border: 2px solid;
+        border-radius: 6px;
+      }
+
+      &:hover {
+        cursor: pointer;
+
+        i {
+          background-color: #484a4b;
+        }
+      }
     }
   }
 }

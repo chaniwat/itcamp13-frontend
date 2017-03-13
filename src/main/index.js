@@ -1,4 +1,4 @@
-import { NavigationBar, SideBar } from './navigation';
+import { Navigation, SideBar } from './navigation';
 
 // blocks
 import { CampBlock, GalleryBlock } from './block';
@@ -13,9 +13,10 @@ export class MainApp {
 
   initNavigation() {
     let navbar = $('nav.navbar');
+    let sidenav = $('nav.sidenav');
     let sidebar = $('nav.sidebar');
 
-    this.navigationBar = new NavigationBar(navbar);
+    this.navigation = new Navigation(navbar, sidenav);
     this.sideBar = new SideBar(sidebar);
   }
 
@@ -36,7 +37,7 @@ export class MainApp {
     };
 
     let registerOnLeave = (index, nextIndex, direction) => {
-      this.navigationBar.registerOnLeave(index, nextIndex, direction);
+      this.navigation.registerOnLeave(index, nextIndex, direction);
       this.sideBar.registerOnLeave(index, nextIndex, direction);
     };
 
@@ -74,7 +75,7 @@ export class MainApp {
     this.debugHelper = debugHelper;
 
     // Navigation
-    this.debugHelper.registerDebug(this.navigationBar);
+    this.debugHelper.registerDebug(this.navigation);
     this.debugHelper.registerDebug(this.sideBar);
 
     // Blocks
