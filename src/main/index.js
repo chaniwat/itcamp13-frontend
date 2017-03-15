@@ -32,7 +32,8 @@ export class MainApp {
     };
 
     this.blocks.OnLeave = (index, nextIndex, direction) => {
-      if(nextIndex == 2 && (index == 1 || index == 3)) {
+      /*
+      if(nextIndex == 2 && (index == 1 || index == 3) || index == 2 && (nextIndex == 1 || nextIndex == 3)) {
         $.fn.fullpage.setScrollingSpeed(3500);
       } else {
         // Speed upon distance
@@ -40,6 +41,7 @@ export class MainApp {
         // $.fn.fullpage.setScrollingSpeed(window.default.scrollingSpeed * distance);
         $.fn.fullpage.setScrollingSpeed(window.default.scrollingSpeed);
       }
+      */
     };
   }
 
