@@ -6,6 +6,9 @@ import { CampBlock, GalleryBlock } from './block';
 export class MainApp {
 
   constructor() {
+    // Set detault
+    window.default.scrollingSpeed = 1200;
+
     this.initNavigation();
     this.initBlocks();
     this.initFullPageJS();
@@ -26,6 +29,17 @@ export class MainApp {
     this.blocks = {
       camp: new CampBlock($(".camp-block")),
       gallery: new GalleryBlock($(".gallery-block"))
+    };
+
+    this.blocks.OnLeave = (index, nextIndex, direction) => {
+      if(nextIndex == 2 && (index == 1 || index == 3)) {
+        $.fn.fullpage.setScrollingSpeed(3500);
+      } else {
+        // Speed upon distance
+        // let distance = Math.abs(nextIndex - index);
+        // $.fn.fullpage.setScrollingSpeed(window.default.scrollingSpeed * distance);
+        $.fn.fullpage.setScrollingSpeed(window.default.scrollingSpeed);
+      }
     };
   }
 
@@ -53,6 +67,8 @@ export class MainApp {
     let registerOnLeave = (index, nextIndex, direction) => {
       window.states.currentSection = nextIndex;
 
+      this.blocks.OnLeave(index, nextIndex, direction);
+
       this.navigation.registerOnLeave(index, nextIndex, direction);
       this.sideBar.registerOnLeave(index, nextIndex, direction);
     };
@@ -67,7 +83,7 @@ export class MainApp {
         controlArrows: false,
 
         easingcss3: 'cubic-bezier(0.770, 0.000, 0.175, 1.000)',
-        scrollingSpeed: 1200,
+        scrollingSpeed: window.default.scrollingSpeed,
         scrollOverflow: true,
         scrollOverflowReset: false,
         scrollOverflowOptions: {

@@ -18,6 +18,9 @@ import 'gsap/ModifiersPlugin';
 import 'fullpage.js/vendors/scrolloverflow';
 import 'fullpage.js';
 
+// Declare window default (GLOBAL)
+window.default = {};
+
 // Import Debugger
 // import { debugHelper } from './debug';
 
