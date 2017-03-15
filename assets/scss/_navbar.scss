@@ -68,9 +68,15 @@
       align-items: center;
       color: white;
 
+      $active-color: #484a4b;
+
+      &.active {
+        background-color: $active-color;
+      }
+
       &:hover {
         cursor: pointer;
-        background-color: #484a4b;
+        background-color: $active-color;
       }
     }
   }

@@ -15,7 +15,6 @@
   width: 100%;
   height: 100%;
   padding-top: 60px;
-  z-index: 1000;
 
   .overlay {
     display: none;
@@ -41,16 +40,28 @@
       padding: 15px 15px;
       color: white;
 
+      $active-color: #484a4b;
+
+      &.active {
+        background-color: $active-color;
+      }
+
       &:hover {
         cursor: pointer;
-        background-color: #484a4b;
+        background-color: $active-color;
       }
     }
   }
 
   &.open {
-      .navigation {
+    z-index: 1000;
+
+    .navigation {
       transform: translate3d(0, 0, 0);
     }
+  }
+
+  &.closing {
+    z-index: 1000;
   }
 }
