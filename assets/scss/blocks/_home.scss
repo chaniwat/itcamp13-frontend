@@ -18,7 +18,7 @@
     }
   };
 
-  @mixin generate-wave($color, $key, $duration) {
+  @mixin generate-wave($color, $key, $duration, $min-height-bg) {
     .waving-#{$color} {
       position: absolute;
       width: 100%;
@@ -29,6 +29,7 @@
 
       @include media-breakpoint-down(md) {
           // TODO fixed background size for smaller device
+          background-size: auto $min-height-bg;
       }
 
       // animation-name: $key;
@@ -52,10 +53,10 @@
         transform: translate3d(0, 0, 0);
       }
     }
-    @include generate-wave('purple', waving-purple, 30s);
+    @include generate-wave('purple', waving-purple, 30s, 86.3px);
 
-    @include generate-wave('green', waving-purple, 24s);
+    @include generate-wave('green', waving-purple, 24s, 91.5px);
 
-    @include generate-wave('blue', waving-purple, 72s);
+    @include generate-wave('blue', waving-purple, 72s, 73.3px);
   }
 };
