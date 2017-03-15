@@ -90,6 +90,8 @@ export class Navigation
     $('.fullpage-wrapper .section').each((i, e) => {
       $(e).addClass('open-sidenav');
     });
+    // Fading in Overlay
+    this.sidenav.find('.overlay').fadeIn();
     // Disable fullpage scrolling
     $.fn.fullpage.setKeyboardScrolling(false);
     $.fn.fullpage.setAllowScrolling(false);
@@ -109,6 +111,8 @@ export class Navigation
     $('.fullpage-wrapper .section').each((i, e) => {
       $(e).removeClass('open-sidenav');
     });
+    // Fading out Overlay
+    this.sidenav.find('.overlay').fadeOut();
     // Disable fullpage scrolling
     $.fn.fullpage.setKeyboardScrolling(true);
     $.fn.fullpage.setAllowScrolling(true);

@@ -3,7 +3,7 @@
   right: -50px; // Default hide sidebar
   top: calc(#{$navbar-height} + 25%);
   transform: translateY(-50%);
-  z-index: 9999;
+  z-index: 950;
 
   .sidebar-item {
     width: 50px;
