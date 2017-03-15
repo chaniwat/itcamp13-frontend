@@ -4,7 +4,9 @@
 @mixin generate-camp-slide($name, $color) {
   &.#{$name}-camp {
     background-color: $color;
-    transition: background-color $transition-time;
+
+    // Override for color fading
+    transition: transform 0.7s cubic-bezier(0.645, 0.045, 0.355, 1.000), background-color $transition-time cubic-bezier(0.770, 0.000, 0.175, 1.000);
 
     @content;
   }
@@ -30,8 +32,9 @@ $camp-list: (
   background-color: #5005a4;
   background-size: 280px;
   color: white;
-  transition: background-color $transition-time;
-  transition-timing-function: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+
+  // Override for color fading
+  transition: transform 0.7s cubic-bezier(0.645, 0.045, 0.355, 1.000), background-color $transition-time cubic-bezier(0.770, 0.000, 0.175, 1.000) !important;
 
   @each $name, $color in $camp-list {
     @include generate-camp-slide($name, $color) {
