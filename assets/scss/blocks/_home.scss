@@ -3,6 +3,7 @@
 
   @include generate-content-block() {
     padding: 1.5rem 0; // Override first block
+    z-index: 20;
 
     @include media-breakpoint-down(md) {
       padding: calc(#{$navbar-height} + 1.5rem) 0 1.5rem;
@@ -16,4 +17,45 @@
       font-weight: 600;
     }
   };
+
+  @mixin generate-wave($color, $key, $duration) {
+    .waving-#{$color} {
+      position: absolute;
+      width: 100%;
+      height: 177px;
+      bottom: 0;
+      background: url('../images/home-wave-#{$color}.png') center bottom repeat-x;
+      background-size: contain;
+
+      @include media-breakpoint-down(md) {
+          // TODO fixed background size for smaller device
+      }
+
+      // animation-name: $key;
+      // animation-duration: $duration;
+      // animation-iteration-count: infinite;
+      // animation-timing-function: linear;
+    }
+  }
+
+  .waves {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    @keyframes waving-purple {
+      0% {
+        transform: translate3d(0, 0, 0);
+      }
+      100% {
+        transform: translate3d(0, 0, 0);
+      }
+    }
+    @include generate-wave('purple', waving-purple, 30s);
+
+    @include generate-wave('green', waving-purple, 24s);
+
+    @include generate-wave('blue', waving-purple, 72s);
+  }
 };
