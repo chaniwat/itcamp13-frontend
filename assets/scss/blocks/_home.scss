@@ -4,6 +4,10 @@
   @include generate-content-block() {
     padding: 1.5rem 0; // Override first block
 
+    @include media-breakpoint-down(md) {
+      padding: calc(#{$navbar-height} + 1.5rem) 0 1.5rem;
+    }
+
     .logo {
       margin-bottom: 1rem;
     }
