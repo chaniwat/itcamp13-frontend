@@ -15,4 +15,64 @@
       }
     }
   };
+
+  @mixin generate-wave($color, $min-height-bg) {
+    .waving-#{$color} {
+      position: absolute;
+      width: 100%;
+      height: 177px;
+      top: $navbar-height;
+      background: url('../images/sponsor-wave-#{$color}.png') center top repeat-x;
+      background-size: contain;
+
+      @include media-breakpoint-down(md) {
+          background-size: auto $min-height-bg;
+      }
+    }
+  }
+
+  .waves {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    @include generate-wave('purple', 86.3px);
+    @include generate-wave('green', 91.5px);
+    @include generate-wave('blue', 73.3px);
+  }
+
+  .waves-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $navbar-height;
+
+    background: url('../images/bg-detail-block.png') center top repeat-x;
+    background-size: contain;
+  }
+
+  .camp-connect {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 197px;
+
+    background: url('../images/sponsor-camp-connect.png') center bottom repeat-x;
+    background-size: contain;
+
+    .app {
+      filter: hue-rotate(-57deg) saturate(159%) brightness(240%);
+    }
+
+    .game {
+      filter: hue-rotate(152deg) saturate(195%) brightness(452%);
+    }
+
+    .network {
+      
+    }
+  }
 };
