@@ -63,16 +63,24 @@
     background: url('../images/sponsor-camp-connect.png') center bottom repeat-x;
     background-size: contain;
 
-    .app {
+    &.camp-app {
       filter: hue-rotate(-57deg) saturate(159%) brightness(240%);
     }
 
-    .game {
+    &.camp-game {
       filter: hue-rotate(152deg) saturate(195%) brightness(452%);
     }
 
-    .network {
-      
+    &.camp-network {
+      filter: hue-rotate(87deg) saturate(37%) brightness(217%);
+    }
+
+    &.camp-iot {
+      filter: hue-rotate(-192deg) saturate(54%) brightness(389%);
+    }
+
+    &.camp-datasci {
+      filter: hue-rotate(-1deg) saturate(101%) brightness(67.5%) contrast(69%);
     }
   }
 };

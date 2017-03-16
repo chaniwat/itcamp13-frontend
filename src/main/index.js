@@ -86,6 +86,8 @@ export class MainApp {
 
         easingcss3: 'cubic-bezier(0.770, 0.000, 0.175, 1.000)',
         scrollingSpeed: window.default.scrollingSpeed,
+        // autoScrolling: false,
+        // fitToSection: false,
         scrollOverflow: true,
         scrollOverflowReset: false,
         scrollOverflowOptions: {

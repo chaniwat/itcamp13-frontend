@@ -6,7 +6,16 @@
   padding: 0;
 
   // Default hide the navbar
-  transform: translateY(-$navbar-height);
+  transform: translate3d(0, -$navbar-height, 0);
+  transition: transform $transition-time;
+
+  &.disable-animate {
+    transition: none;
+  }
+
+  &.show {
+    transform: translate3d(0, 0, 0);
+  }
 
   .navbar-desktop {
     width: 100%;

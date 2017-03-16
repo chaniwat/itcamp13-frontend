@@ -4,4 +4,57 @@
   @include generate-content-block() {
 
   };
+
+  $camp-list: (
+    'app': $app-camp-color,
+    'game': $game-camp-color,
+    'network': $network-camp-color,
+    'iot': $iot-camp-color,
+    'datasci': $datasci-camp-color);
+
+  .camp-connect-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $navbar-height;
+    background-color: #5005a4;
+
+    @each $name, $color in $camp-list {
+      &.camp-#{$name} {
+        background-color: $color;
+      }
+    }
+  }
+
+  .camp-connect {
+    position: absolute;
+    top: $navbar-height;
+    left: 0;
+    width: 100%;
+    height: 200px;
+
+    background: url('../images/timeline-camp-connect.png') center top repeat-x;
+    background-size: contain;
+
+    &.camp-app {
+      filter: hue-rotate(-57deg) saturate(159%) brightness(240%);
+    }
+
+    &.camp-game {
+      filter: hue-rotate(152deg) saturate(195%) brightness(452%);
+    }
+
+    &.camp-network {
+      filter: hue-rotate(87deg) saturate(37%) brightness(217%);
+    }
+
+    &.camp-iot {
+      filter: hue-rotate(-192deg) saturate(54%) brightness(389%);
+    }
+
+    &.camp-datasci {
+      filter: hue-rotate(-1deg) saturate(101%) brightness(67.5%) contrast(69%);
+    }
+  }
 };

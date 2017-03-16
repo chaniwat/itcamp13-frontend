@@ -10774,6 +10774,8 @@ class MainApp {
 
         easingcss3: 'cubic-bezier(0.770, 0.000, 0.175, 1.000)',
         scrollingSpeed: window.default.scrollingSpeed,
+        // autoScrolling: false,
+        // fitToSection: false,
         scrollOverflow: true,
         scrollOverflowReset: false,
         scrollOverflowOptions: {
@@ -27886,31 +27888,58 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 
     // Remove active & current camp slide class to block
     this.block.removeClass((i, className) => {
-      return (className.match(/[a-zA-Z]+-camp/g) || []).join(' ');
+      return (className.match(/camp-(app|game|network|iot|datasci)+/g) || []).join(' ');
     });
     this.navigation.all.removeClass('active');
 
-    // Add active & current camp slide class to block
+    // Add active & current camp slide class to block and change, And change connected el class
+    let sponsorConnectEl = $("#sponsor-camp-connect-el");
+    sponsorConnectEl.removeClass((i, className) => {
+      return (className.match(/camp-(app|game|network|iot|datasci)+/g) || []).join(' ');
+    });
+    let timelineConnectEl = $("#timeline-camp-connect-el");
+    timelineConnectEl.removeClass((i, className) => {
+      return (className.match(/camp-(app|game|network|iot|datasci)+/g) || []).join(' ');
+    });
+    let timelineConnectBGEl = $("#timeline-camp-connect-bg-el");
+    timelineConnectBGEl.removeClass((i, className) => {
+      return (className.match(/camp-(app|game|network|iot|datasci)+/g) || []).join(' ');
+    });
     switch (nextSlideIndex) {
       case 1:
         this.navigation.app.addClass('active');
-        this.block.addClass('app-camp');
+        this.block.addClass('camp-app');
+        sponsorConnectEl.addClass('camp-app');
+        timelineConnectEl.addClass('camp-app');
+        timelineConnectBGEl.addClass('camp-app');
         break;
       case 2:
         this.navigation.game.addClass('active');
-        this.block.addClass('game-camp');
+        this.block.addClass('camp-game');
+        sponsorConnectEl.addClass('camp-game');
+        timelineConnectEl.addClass('camp-game');
+        timelineConnectBGEl.addClass('camp-game');
         break;
       case 3:
         this.navigation.network.addClass('active');
-        this.block.addClass('network-camp');
+        this.block.addClass('camp-network');
+        sponsorConnectEl.addClass('camp-network');
+        timelineConnectEl.addClass('camp-network');
+        timelineConnectBGEl.addClass('camp-network');
         break;
       case 4:
         this.navigation.iot.addClass('active');
-        this.block.addClass('iot-camp');
+        this.block.addClass('camp-iot');
+        sponsorConnectEl.addClass('camp-iot');
+        timelineConnectEl.addClass('camp-iot');
+        timelineConnectBGEl.addClass('camp-iot');
         break;
       case 5:
         this.navigation.datasci.addClass('active');
-        this.block.addClass('datasci-camp');
+        this.block.addClass('camp-datasci');
+        sponsorConnectEl.addClass('camp-datasci');
+        timelineConnectEl.addClass('camp-datasci');
+        timelineConnectBGEl.addClass('camp-datasci');
         break;
     }
   }
@@ -28027,16 +28056,18 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
     this.hamburger.click(this.toggleSidenav.bind(this));
   }
 
+  // FIXME let the css3 handle the navbar (show/hide - add/remove class)
+
   /**
    * Show navbar
    */
   showNavbar(animate = true) {
     if (this.debugHelper) this.debugHelper.logf('navbar_toggle', 'showing navbar');
-    if (animate) {
-      this.navbar.animate({ y: 0, z: 0 }, 750);
-    } else {
-      this.navbar.animate({ y: 0, z: 0 }, 1);
-    }
+
+    this.navbar.removeClass('disable-animate');
+    if (!animate) this.navbar.addClass('disable-animate');
+
+    this.navbar.addClass('show');
   }
 
   /**
@@ -28044,11 +28075,11 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
    */
   hideNavbar(animate = true) {
     if (this.debugHelper) this.debugHelper.logf('navbar_toggle', 'hiding navbar');
-    if (animate) {
-      this.navbar.animate({ y: -this.navbar.outerHeight(), z: 0 }, 750);
-    } else {
-      this.navbar.animate({ y: -this.navbar.outerHeight(), z: 0 }, 1);
-    }
+
+    this.navbar.removeClass('disable-animate');
+    if (!animate) this.navbar.addClass('disable-animate');
+
+    this.navbar.removeClass('show');
   }
 
   /**

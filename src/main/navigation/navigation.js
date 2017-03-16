@@ -41,20 +41,19 @@ export class Navigation
     this.hamburger.click(this.toggleSidenav.bind(this));
   }
 
+  // FIXME let the css3 handle the navbar (show/hide - add/remove class)
+
   /**
    * Show navbar
    */
   showNavbar(animate = true)
   {
     if(this.debugHelper) this.debugHelper.logf('navbar_toggle', 'showing navbar');
-    if(animate)
-    {
-      this.navbar.animate({y: 0, z: 0}, 750);
-    }
-    else
-    {
-      this.navbar.animate({y: 0, z: 0}, 1);
-    }
+
+    this.navbar.removeClass('disable-animate');
+    if(!animate) this.navbar.addClass('disable-animate');
+
+    this.navbar.addClass('show');
   }
 
   /**
@@ -63,14 +62,11 @@ export class Navigation
   hideNavbar(animate = true)
   {
     if(this.debugHelper) this.debugHelper.logf('navbar_toggle', 'hiding navbar');
-    if(animate)
-    {
-      this.navbar.animate({y: -this.navbar.outerHeight(), z: 0}, 750);
-    }
-    else
-    {
-      this.navbar.animate({y: -this.navbar.outerHeight(), z: 0}, 1);
-    }
+
+        this.navbar.removeClass('disable-animate');
+        if(!animate) this.navbar.addClass('disable-animate');
+        
+        this.navbar.removeClass('show');
   }
 
   /**

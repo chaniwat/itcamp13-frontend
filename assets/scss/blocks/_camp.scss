@@ -2,7 +2,7 @@
  * Specific mixins
  */
 @mixin generate-camp-slide($name, $color) {
-  &.#{$name}-camp {
+  &.camp-#{$name} {
     background-color: $color;
 
     @content;
@@ -27,7 +27,7 @@ $camp-list: (
 @include generate-block('camp') {
   background: url('../images/bg-o-camp-block.png') center repeat;
   background-color: #5005a4;
-  background-size: 280px;
+  background-size: contain;
   color: white;
 
   // Override for color fading
