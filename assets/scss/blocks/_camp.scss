@@ -34,19 +34,89 @@ $camp-list: (
   transition: transform 0.7s cubic-bezier(0.645, 0.045, 0.355, 1.000), background-color $transition-time cubic-bezier(0.770, 0.000, 0.175, 1.000) !important;
 
   @each $name, $color in $camp-list {
-    @include generate-camp-slide($name, $color) {
-      // Each slide content (slide != 0)
-      @include generate-content-block() {
+    @include generate-camp-slide($name, $color);
 
-      };
+    .#{$name}-camp {
+      .camp-detail .camp-detail-wrapper {
+        .camp-name {
+          color: $color;
+        }
+
+        hr {
+          border-color: $color !important;
+        }
+      }
+    }
+
+    .camp-detail .camp-detail-wrapper {
+      .btn-regis-#{$name} {
+        @include button-outline-variant($color);
+      }
     }
   }
 
+  // Each slide content (slide != 0)
+  @include generate-slide-content-block() {
+    // Override for each slide
+    padding: 60px 0 2.8rem;
+
+    @include media-breakpoint-down(lg) {
+      padding: calc(60px + 1.5rem) 0 3.6rem;
+
+      .col-12 {
+        margin-bottom: 1.5rem
+      }
+    }
+
+    .camp-image {
+      img {
+        width: 100%;
+      }
+    }
+
+    .camp-detail .camp-detail-wrapper {
+      padding: 18px;
+      margin-bottom: 1rem;
+      border-radius: 14px;
+      background-color: rgba(0,0,0,.75);
+      text-align: left;
+
+      .camp-name {
+        @extend .force-fredoka;
+        text-transform: uppercase;
+      }
+
+      hr {
+        margin-top: 0;
+        border-top: 3px solid white;
+      }
+
+      p {
+        text-align: left;
+        font-size: 18px;
+        margin-bottom: 0.8rem;
+      }
+
+      .btn {
+        border-width: 2px;
+        border-radius: 25px;
+
+        &, &:link {
+          color: white !important;
+        }
+      }
+    }
+  };
+
   // Main slide content (slide == 0)
   @include generate-content-block() {
+    // Override padding
+    padding-top: calc(60px);
+    padding-bottom: 0;
+
     // Override default bot-margin
     h1 {
-      margin-bottom: 1rem;
+      margin-bottom: 0;
       @include media-breakpoint-down(sm) {
         margin-bottom: 2.5rem;
       }
@@ -354,7 +424,7 @@ $camp-list: (
     }
 
     .camp-helper {
-      margin-top: 0.75rem;
+      margin-top: 0.35rem;
       @include media-breakpoint-down(sm) {
         margin-top: 2.5rem;
       }
