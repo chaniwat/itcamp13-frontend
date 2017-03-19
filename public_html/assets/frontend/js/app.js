@@ -10694,6 +10694,8 @@ class LandingApp {
 class MainApp {
 
   constructor() {
+    console.log('%c Eiei ^-^!!\n Develop by ITCAMP12&13 Web team w/ Lov3 <3 ', 'background: #222; color: #f442c5; font-size: 24px;');
+
     // Set detault
     window.default.scrollingSpeed = 1200;
 
@@ -10714,23 +10716,14 @@ class MainApp {
   }
 
   initBlocks() {
+    this.sections = [$(".home-block"), $(".detail-block"), $(".sponsor-block"), $(".camp-block"), $(".timeline-block"), $(".gallery-block"), $(".recommend-block"), $(".faq-block")];
+
     this.blocks = {
       camp: new __WEBPACK_IMPORTED_MODULE_1__block__["a" /* CampBlock */]($(".camp-block")),
       gallery: new __WEBPACK_IMPORTED_MODULE_1__block__["b" /* GalleryBlock */]($(".gallery-block"))
     };
 
-    this.blocks.OnLeave = (index, nextIndex, direction) => {
-      /*
-      if(nextIndex == 2 && (index == 1 || index == 3) || index == 2 && (nextIndex == 1 || nextIndex == 3)) {
-        $.fn.fullpage.setScrollingSpeed(3500);
-      } else {
-        // Speed upon distance
-        // let distance = Math.abs(nextIndex - index);
-        // $.fn.fullpage.setScrollingSpeed(window.default.scrollingSpeed * distance);
-        $.fn.fullpage.setScrollingSpeed(window.default.scrollingSpeed);
-      }
-      */
-    };
+    this.blocks.OnLeave = (index, nextIndex, direction) => {};
   }
 
   initFullPageJS() {
@@ -10748,10 +10741,16 @@ class MainApp {
     };
 
     let registerAfterRender = () => {
+      console.log("AfterRender Fired!");
       this.blocks.gallery.registerAfterRender();
 
       // Call resize for once for trigger anything that need dimension recalculate
       resizeHandler();
+
+      // FadeOut the loading screen
+      $("#loadingScreen").fadeOut(() => {
+        $("#loadingScreen").remove();
+      });
     };
 
     let registerOnLeave = (index, nextIndex, direction) => {
@@ -36217,7 +36216,7 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
     $('#Viewport').attr('content', 'initial-scale=' + ratio + ', maximum-scale=' + ratio + ', minimum-scale=' + ratio + ', user-scalable=no, width=' + ww);
   } else {
     //regular size
-    $('#Viewport').attr('content', 'initial-scale=1.0, maximum-scale=2, minimum-scale=1.0, user-scalable=no, width=' + ww);
+    $('#Viewport').attr('content', 'initial-scale=1.0, maximum-scale=2, minimum-scale=1.0, user-scalable=yes, width=' + ww);
   }
 }
 

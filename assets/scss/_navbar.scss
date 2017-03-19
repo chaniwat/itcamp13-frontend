@@ -109,25 +109,17 @@
     }
 
     .nav-hamburger {
-      float: right;
+      float: left;
       display: flex;
       align-items: center;
       height: 100%;
-      padding: 0 25px;
+      padding: 0 17px;
       color: white;
-
-      i {
-        padding: 8px 12px;
-        border: 2px solid;
-        border-radius: 6px;
-      }
+      font-size: 1.7rem;
 
       &:hover {
         cursor: pointer;
-
-        i {
-          background-color: #484a4b;
-        }
+        background-color: #484a4b;
       }
     }
   }

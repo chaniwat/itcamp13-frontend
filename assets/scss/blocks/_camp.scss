@@ -38,6 +38,13 @@ $camp-list: (
 
     .#{$name}-camp {
       .camp-detail .camp-detail-wrapper {
+        .badge-pill {
+          background-color: white;
+          color: $color;
+          font-size: 0.9rem;
+          margin-bottom: 0.4rem;
+        }
+
         .camp-name {
           color: $color;
         }

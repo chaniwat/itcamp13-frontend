@@ -26,6 +26,15 @@
         background-color: white;
         text-align: left;
 
+        .d-name {
+          font-size: 1.15rem;
+        }
+
+        span.br-0_5 {
+          padding-top: 0.5rem;
+          border-bottom: 2px dashed #d3d3d3;
+        }
+
         .recommend-triangle {
           display: block;
           position: absolute;

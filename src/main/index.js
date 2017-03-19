@@ -6,6 +6,8 @@ import { CampBlock, GalleryBlock } from './block';
 export class MainApp {
 
   constructor() {
+    console.log('%c Eiei ^-^!!\n Develop by ITCAMP12&13 Web team w/ Lov3 <3 ', 'background: #222; color: #f442c5; font-size: 24px;');
+
     // Set detault
     window.default.scrollingSpeed = 1200;
 
@@ -26,22 +28,24 @@ export class MainApp {
   }
 
   initBlocks() {
+    this.sections = [
+      $(".home-block"),
+      $(".detail-block"),
+      $(".sponsor-block"),
+      $(".camp-block"),
+      $(".timeline-block"),
+      $(".gallery-block"),
+      $(".recommend-block"),
+      $(".faq-block"),
+    ];
+
     this.blocks = {
       camp: new CampBlock($(".camp-block")),
       gallery: new GalleryBlock($(".gallery-block"))
     };
 
     this.blocks.OnLeave = (index, nextIndex, direction) => {
-      /*
-      if(nextIndex == 2 && (index == 1 || index == 3) || index == 2 && (nextIndex == 1 || nextIndex == 3)) {
-        $.fn.fullpage.setScrollingSpeed(3500);
-      } else {
-        // Speed upon distance
-        // let distance = Math.abs(nextIndex - index);
-        // $.fn.fullpage.setScrollingSpeed(window.default.scrollingSpeed * distance);
-        $.fn.fullpage.setScrollingSpeed(window.default.scrollingSpeed);
-      }
-      */
+
     };
   }
 
@@ -60,10 +64,16 @@ export class MainApp {
     }
 
     let registerAfterRender = () => {
+      console.log("AfterRender Fired!");
       this.blocks.gallery.registerAfterRender();
 
       // Call resize for once for trigger anything that need dimension recalculate
       resizeHandler();
+
+      // FadeOut the loading screen
+      $("#loadingScreen").fadeOut(() => {
+        $("#loadingScreen").remove();
+      });
     };
 
     let registerOnLeave = (index, nextIndex, direction) => {

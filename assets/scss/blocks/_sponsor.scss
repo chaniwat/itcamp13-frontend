@@ -3,7 +3,7 @@
 
   @include generate-content-block() {
     z-index: 10;
-    padding: 10rem 0 5rem;
+    padding: 10rem 0 7rem;
 
     @include media-breakpoint-down(md) {
       padding: 10rem 0 3rem;

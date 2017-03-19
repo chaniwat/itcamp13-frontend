@@ -2,7 +2,39 @@
   background: url('../images/bg-uni-block.png') center repeat;
 
   @include generate-content-block() {
+    padding-top: calc(60px + 4.5rem);
 
+    @include media-breakpoint-up(lg) {
+      padding-bottom: 4rem;
+    }
+
+    .timeline-wrapper {
+      .col {
+        text-align: center;
+        margin-bottom: 1.3rem;
+
+        img {
+          margin-bottom: 1rem;
+        }
+
+        .timeline-date {
+          display: block;
+          font-weight: bold;
+        }
+
+        .timeline-sub {
+          display: block;
+        }
+      }
+
+      @include media-breakpoint-down(xs) {
+        flex-direction: column;
+
+        .col {
+          flex-basis: initial;
+        }
+      }
+    }
   };
 
   $camp-list: (
