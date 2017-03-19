@@ -93,7 +93,6 @@ $camp-list: (
 
       p {
         text-align: left;
-        font-size: 18px;
         margin-bottom: 0.8rem;
       }
 
@@ -486,9 +485,13 @@ $camp-list: (
     }
 
     &.hide {
-      ul li {
+      ul li.slide-link {
         transform: scale(0, 0);
         transition: transform $transition-time, border $transition-time;
+
+        &:hover {
+          transform: scale(0, 0);
+        }
       }
     }
   }

@@ -2,6 +2,13 @@
   background: url('../images/bg-uni-block.png') center repeat;
 
   @include generate-content-block() {
+    z-index: 10;
+    padding: 10rem 0 5rem;
+
+    @include media-breakpoint-down(md) {
+      padding: 10rem 0 3rem;
+    }
+
     div[class^="col-"] {
       margin-bottom: 0.8rem;
     }

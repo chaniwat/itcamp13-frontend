@@ -4,5 +4,146 @@
 
   @include generate-content-block() {
 
+    .recommend-group {
+      position: relative;
+      width: 615px;
+      margin: 0 auto 1.2rem;
+
+      .recommend-detail {
+        position: relative;
+        width: 615px;
+        margin-bottom: 0;
+        padding: 20px;
+        border-radius: 15px;
+        background-color: white;
+        text-align: left;
+
+        .recommend-triangle {
+          display: block;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+
+      .recommend-picture {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+
+        img {
+          position: absolute;
+        }
+
+        .recommend-picture-frame {
+          width: 237px;
+          height: 243px;
+          background: url('../images/recommend-picture-frame.png') center center no-repeat;
+          background-size: contain;
+        }
+      }
+
+      &.left {
+        .recommend-detail .recommend-triangle {
+          left: -25px;
+          border-top: 15px solid transparent;
+        	border-right: 25px solid #555555;
+        	border-bottom: 15px solid transparent;
+        }
+
+        .recommend-picture {
+          left: -275px;
+        }
+      }
+
+      &.right {
+        .recommend-detail .recommend-triangle {
+          right: -25px;
+          border-top: 15px solid transparent;
+        	border-left: 25px solid #555555;
+        	border-bottom: 15px solid transparent;
+        }
+
+        .recommend-picture {
+          right: -275px;
+        }
+      }
+
+      @include media-breakpoint-down(lg) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        margin: 0 0 1.2rem;
+
+        .recommend-detail {
+          width: auto;
+        }
+
+        .recommend-picture {
+          position: static;
+          top: 0;
+          left: 0;
+          right: 0;
+          transform: none;
+        }
+
+        &.left {
+          .recommend-detail {
+              margin-left: 1.5rem;
+          }
+        }
+
+        &.right {
+          .recommend-detail {
+              margin-right: 1.5rem;
+          }
+        }
+      }
+
+      @include media-breakpoint-down(sm) {
+        flex-direction: column;
+
+        .recommend-picture {
+          margin-bottom: 1.6rem;
+        }
+
+        .recommend-detail {
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+
+        .recommend-detail .recommend-triangle {
+          top: -25px !important;
+          right: initial !important;
+          left: 50% !important;
+          transform: translateX(-50%) !important;
+          border-left: 15px solid transparent !important;
+          border-bottom: 25px solid #555555 !important;
+          border-right: 15px solid transparent !important;
+          border-top: 0 !important;
+        }
+
+        &.left {
+          .recommend-detail {
+            order: 2;
+          }
+
+          .recommend-picture {
+            order: 1;
+          }
+        }
+
+        &.right {
+          .recommend-detail {
+            order: 2;
+          }
+
+          .recommend-picture {
+            order: 1;
+          }
+        }
+      }
+    }
   };
 };
