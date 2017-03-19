@@ -1,6 +1,14 @@
 @include generate-block('faq') {
   background: url('../images/bg-uni-block.png') center repeat;
 
+  .line-dot {
+    position: absolute;
+    width: 100%;
+    height: 7px;
+    top: 0;
+    background: url('../images/faq-line-dot.png') center center repeat-x;
+  }
+
   @include generate-content-block() {
 
   };
