@@ -14,6 +14,7 @@ export class MainApp {
     this.initNavigation();
     this.initBlocks();
     this.initFullPageJS();
+    this.initSharer();
 
     window.states = {currentSection: 1};
   }
@@ -45,7 +46,27 @@ export class MainApp {
     };
 
     this.blocks.OnLeave = (index, nextIndex, direction) => {
+      if(direction == 'down') {
+        let nextSection = this.sections[nextIndex - 1];
+        let iscroll = nextSection.find('.fp-scrollable').data('iscrollInstance');
 
+        if (iscroll && typeof iscroll !== undefined) {
+          iscroll.scrollTo(0, 0, 0);
+        }
+      } else if(direction == 'up') {
+        let nextSection = this.sections[nextIndex - 1];
+        let iscroll = nextSection.find('.fp-scrollable').data('iscrollInstance');
+        let contentHeight = nextSection.find('.content').outerHeight();
+        let offset = contentHeight - window.innerHeight;
+
+        if (iscroll && typeof iscroll !== undefined) {
+          if (offset > 0) {
+            iscroll.scrollTo(0, -offset, 0);
+          } else {
+            iscroll.scrollTo(0, 0, 0);
+          }
+        }
+      }
     };
   }
 
@@ -63,8 +84,11 @@ export class MainApp {
       $.fn.fullpage.reBuild();
     }
 
+    let registerAfterLoad = (anchorLink, index) => {
+
+    }
+
     let registerAfterRender = () => {
-      console.log("AfterRender Fired!");
       this.blocks.gallery.registerAfterRender();
 
       // Call resize for once for trigger anything that need dimension recalculate
@@ -102,8 +126,9 @@ export class MainApp {
         scrollOverflowReset: false,
         scrollOverflowOptions: {
           //keyBindings: true; // Bug if used with fullpage.js
+          probeType: 3
         },
-
+        afterLoad: registerAfterLoad,
         afterRender: registerAfterRender,
         onLeave: registerOnLeave,
         onSlideLeave: registerOnSlideLeave
@@ -112,6 +137,20 @@ export class MainApp {
 
     // window is resize
     $(window).resize(resizeHandler.bind(this));
+  }
+
+  initSharer() {
+    $('.fb-share').click(function(e) {
+        e.preventDefault();
+        window.open($(this).attr('href'), 'fbShareWindow', 'height=450, width=550, top=' + ($(window).height() / 2 - 275) + ', left=' + ($(window).width() / 2 - 225) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+        return false;
+    });
+
+    $('.twit-share').click(function(e) {
+        e.preventDefault();
+        window.open($(this).attr('href'), 'twitShareWindow', 'height=450, width=550, top=' + ($(window).height() / 2 - 275) + ', left=' + ($(window).width() / 2 - 225) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+        return false;
+    });
   }
 
   setDebug(debugHelper) {

@@ -4,27 +4,38 @@
   color: white;
 
   @include generate-content-block() {
+
+    @include media-breakpoint-up(lg) {
+      // Override padding
+      padding: #{$navbar-height} 0 0 0;
+    }
+
     margin-bottom: 0; // Don't need to margin the bottom, let grid handle it (below)
     div[class^="col-"] {
       margin-bottom: 1.5rem;
     }
 
     p {
-      margin-bottom: 2rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .block-title {
+      margin-bottom: 1.5rem;
     }
 
     .overview-detail {
       img {
-        height: 190px;
-        margin-bottom: 1rem;
+        height: 160px;
+        margin-bottom: 0.5rem;
       }
 
       h3 {
+        font-size: 1.45rem;
         margin-bottom: 0.2rem;
       }
 
       .sub {
-        font-size: 0.9em;
+        font-size: 0.85rem;
       }
     }
   };

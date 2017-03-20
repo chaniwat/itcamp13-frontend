@@ -50,6 +50,10 @@
 
         img {
           position: absolute;
+          top: 15px;
+          left: 19px;
+          width: 200px;
+          border-radius: 200px;
         }
 
         .recommend-picture-frame {
@@ -98,7 +102,7 @@
         }
 
         .recommend-picture {
-          position: static;
+          position: relative;
           top: 0;
           left: 0;
           right: 0;
@@ -107,13 +111,21 @@
 
         &.left {
           .recommend-detail {
-              margin-left: 1.5rem;
+            margin-left: 1.5rem;
+          }
+
+          .recommend-picture {
+            left: 0;
           }
         }
 
         &.right {
           .recommend-detail {
-              margin-right: 1.5rem;
+            margin-right: 1.5rem;
+          }
+
+          .recommend-picture {
+            right: 0;
           }
         }
       }

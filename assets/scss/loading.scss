@@ -1,15 +1,54 @@
 .loading-overlay {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: fixed;
   width: 100%;
   height: 100%;
   z-index: 12345678;
-  background-color: white;
+  background: url('../images/bg-o-camp-block.png') center center repeat;
+  background-size: 1200px auto;
+  background-color: #5005a4;
 
   .loading-content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    img {
+      @include media-breakpoint-up(md) {
+        height: 150px;
+        margin-right: 0.5rem;
+      }
+
+      @include media-breakpoint-down(sm) {
+        height: 120px;
+        margin-right: 0.2rem;
+      }
+
+      @include media-breakpoint-down(xs) {
+        height: 103px;
+        margin-right: 0.2rem;
+      }
+    }
+  }
+
+  .loading-text {
     @extend .force-fredoka;
-    font-size: 2rem;
+    letter-spacing: 2px;
+    color: white;
+
+    @include media-breakpoint-up(md) {
+      font-size: 2rem;
+    }
+
+    @include media-breakpoint-down(sm) {
+      font-size: 1.6rem;
+    }
+
+    @include media-breakpoint-down(xs) {
+      font-size: 1.6rem;
+    }
   }
 }
