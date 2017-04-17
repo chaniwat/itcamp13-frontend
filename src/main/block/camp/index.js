@@ -16,9 +16,16 @@ export class CampBlock {
     this.navigation.iot = this.navigation.find('.iot');
     this.navigation.datasci = this.navigation.find('.datasci');
 
+    // Slide state
+    this.currentSlide = "home";
+
     // All .slide-linker => register inner-link
     this.linker = block.find('.slide-link');
     this.linker.each((i, e) => { $(e).click(this.navigateToSlide.bind(this, $(e).data('target'))); });
+  }
+
+  registerResize() {
+    this.reCalcBlockHeight();
   }
 
   registerOnSlideLeave(anchorLink, index, slideIndex, direction, nextSlideIndex) {
@@ -36,7 +43,7 @@ export class CampBlock {
     this.navigation.all.removeClass('active');
 
     // Add active & current camp slide class to block and change, And change connected el class
-    let sponsorConnectEl = $("#sponsor-camp-connect-el");
+    let sponsorConnectEl = $("#supporter-camp-connect-el");
     sponsorConnectEl.removeClass((i, className) => {
       return (className.match(/camp-(app|game|network|iot|datasci)+/g) || []).join(' ');
     });
@@ -44,46 +51,73 @@ export class CampBlock {
     timelineConnectEl.removeClass((i, className) => {
       return (className.match(/camp-(app|game|network|iot|datasci)+/g) || []).join(' ');
     });
+    /*
     let timelineConnectBGEl = $("#timeline-camp-connect-bg-el");
     timelineConnectBGEl.removeClass((i, className) => {
       return (className.match(/camp-(app|game|network|iot|datasci)+/g) || []).join(' ');
     });
+    */
+
+   let targetSlide = '';
     switch (nextSlideIndex) {
+      case 0:
+        this.currentSlide = 'home';
+        targetSlide = 'home';
+        break;
       case 1:
         this.navigation.app.addClass('active');
-        this.block.addClass('camp-app');
-        sponsorConnectEl.addClass('camp-app');
-        timelineConnectEl.addClass('camp-app');
-        timelineConnectBGEl.addClass('camp-app');
+        this.currentSlide = 'app-camp';
+        targetSlide = 'camp-app';
+        // timelineConnectBGEl.addClass('camp-app');
         break;
       case 2:
         this.navigation.game.addClass('active');
-        this.block.addClass('camp-game');
-        sponsorConnectEl.addClass('camp-game');
-        timelineConnectEl.addClass('camp-game');
-        timelineConnectBGEl.addClass('camp-game');
+        this.currentSlide = 'game-camp';
+        targetSlide = 'camp-game';
+        // timelineConnectBGEl.addClass('camp-game');
         break;
       case 3:
         this.navigation.network.addClass('active');
-        this.block.addClass('camp-network');
-        sponsorConnectEl.addClass('camp-network');
-        timelineConnectEl.addClass('camp-network');
-        timelineConnectBGEl.addClass('camp-network');
+        this.currentSlide = 'network-camp';
+        targetSlide = 'camp-network';
+        // timelineConnectBGEl.addClass('camp-network');
         break;
       case 4:
         this.navigation.iot.addClass('active');
-        this.block.addClass('camp-iot');
-        sponsorConnectEl.addClass('camp-iot');
-        timelineConnectEl.addClass('camp-iot');
-        timelineConnectBGEl.addClass('camp-iot');
+        this.currentSlide = 'iot-camp';
+        targetSlide = 'camp-iot';
+        // timelineConnectBGEl.addClass('camp-iot');
         break;
       case 5:
         this.navigation.datasci.addClass('active');
-        this.block.addClass('camp-datasci');
-        sponsorConnectEl.addClass('camp-datasci');
-        timelineConnectEl.addClass('camp-datasci');
-        timelineConnectBGEl.addClass('camp-datasci');
+        this.currentSlide = 'datasci-camp';
+        targetSlide = 'camp-datasci';
+        // timelineConnectBGEl.addClass('camp-datasci');
         break;
+    }
+
+    this.block.addClass(targetSlide);
+    sponsorConnectEl.addClass(targetSlide);
+    timelineConnectEl.addClass(targetSlide);
+    this.reCalcBlockHeight();
+  }
+
+  reCalcBlockHeight() {
+    let wWidth = window.innerWidth;
+    let wHeight = window.innerHeight;
+
+    if(wWidth < 992) {
+      let eSlide = $("." + this.currentSlide);
+
+      if(this.currentSlide == 'home') {
+        if(eSlide.find(".content").outerHeight() > wHeight) {
+          this.block.css("height", eSlide.find(".content").outerHeight());
+        } else {
+          this.block.css("height", wHeight);
+        }
+      } else {
+        this.block.css("height", eSlide.find(".slide-content").outerHeight());
+      }
     }
   }
 

@@ -9,7 +9,7 @@
     background: url('../images/faq-line-dot.png') center center repeat-x;
   }
 
-  .fp-scrollable, .fp-scroller {
+  .fp-tableCell {
     flex-direction: column;
   }
 
@@ -138,6 +138,8 @@
 
       .row {
         width: 100%;
+        margin-left: 0;
+        margin-right: 0;
 
         &.contact-detail {
           padding-bottom: 0.8rem;
@@ -259,7 +261,66 @@
 
           border-width: 2px;
           padding: 0.3rem 0.8rem;
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.17);
+          }
         }
+
+        hr {
+          margin-top: 1.7rem;
+          border-top: 4px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h4 {
+          margin: 1.5rem 0;
+          color: white;
+        }
+
+        .exchangers-list-banner, .exchangers-list-text {
+          .exchanger {
+            display: inline-block;
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+
+            .img-thumbnail {
+              padding: 0.35rem;
+            }
+          }
+
+          img {
+            height: 130px;
+            background-color: white;
+
+            @include media-breakpoint-down(sm) {
+              height: 100px;
+            }
+          }
+        }
+
+        .exchangers-list-banner {
+          .exchanger {
+            padding: 0.3rem;
+            background-color: #e4e4e4;
+          }
+        }
+
+        .exchangers-list-text {
+          .exchanger {
+            padding: 0.1rem 0.3rem;
+            background-color: white;
+            font-size: 1.1rem;
+          }
+
+          a {
+            color: black;
+
+            &:hover .exchanger {
+              background-color: rgb(210, 210, 210);
+            }
+          }
+        }
+
       }
     }
 

@@ -41,8 +41,6 @@ export class Navigation
     this.hamburger.click(this.toggleSidenav.bind(this));
   }
 
-  // FIXME let the css3 handle the navbar (show/hide - add/remove class)
-
   /**
    * Show navbar
    */
@@ -65,7 +63,7 @@ export class Navigation
 
         this.navbar.removeClass('disable-animate');
         if(!animate) this.navbar.addClass('disable-animate');
-        
+
         this.navbar.removeClass('show');
   }
 
@@ -146,8 +144,8 @@ export class Navigation
         this.navigation.sidenav["detail-block"].addClass("active");
         break;
       case 3:
-        this.navigation.navbar["sponsor-block"].addClass("active");
-        this.navigation.sidenav["sponsor-block"].addClass("active");
+        this.navigation.navbar["supporter-block"].addClass("active");
+        this.navigation.sidenav["supporter-block"].addClass("active");
         break;
       case 4:
         this.navigation.navbar["camp-block"].addClass("active");

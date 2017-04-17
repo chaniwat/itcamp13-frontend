@@ -32,7 +32,7 @@ export class MainApp {
     this.sections = [
       $(".home-block"),
       $(".detail-block"),
-      $(".sponsor-block"),
+      $(".supporter-block"),
       $(".camp-block"),
       $(".timeline-block"),
       $(".gallery-block"),
@@ -78,6 +78,20 @@ export class MainApp {
       // Call navigation resize
       this.navigation.registerResize(wWidth, wHeight);
 
+      // Inject height for each page that content
+      // height more than view size
+      $(".fullpage-wrapper .section").each((i, e) => {
+        e = $(e);
+        if(e.find('.content').outerHeight() > wHeight) {
+          e.addClass('inject-height');
+        } else {
+          e.removeClass('inject-height');
+        }
+      });
+
+      // Call camp resize
+      this.blocks.camp.registerResize();
+
       // ReBuild DOM when resize window
       // Because some of handler change the DOM structure
       // so its need to rebuild the fullpage
@@ -93,6 +107,7 @@ export class MainApp {
 
       // Call resize for once for trigger anything that need dimension recalculate
       resizeHandler();
+      this.blocks.camp.registerResize();
 
       // FadeOut the loading screen
       $("#loadingScreen").fadeOut(() => {
@@ -103,7 +118,8 @@ export class MainApp {
     let registerOnLeave = (index, nextIndex, direction) => {
       window.states.currentSection = nextIndex;
 
-      this.blocks.OnLeave(index, nextIndex, direction);
+      // Adjust iScroll should to scroll to top or bottom of section
+      // this.blocks.OnLeave(index, nextIndex, direction);
 
       this.navigation.registerOnLeave(index, nextIndex, direction);
       this.sideBar.registerOnLeave(index, nextIndex, direction);
@@ -120,16 +136,24 @@ export class MainApp {
 
         easingcss3: 'cubic-bezier(0.770, 0.000, 0.175, 1.000)',
         scrollingSpeed: window.default.scrollingSpeed,
-        // autoScrolling: false,
-        // fitToSection: false,
-        scrollOverflow: true,
-        scrollOverflowReset: false,
-        scrollOverflowOptions: {
-          //keyBindings: true; // Bug if used with fullpage.js
-          probeType: 3
-        },
+
+        // Disable auto scrolling
+        autoScrolling: false,
+        fitToSection: false,
+
+        // scrollOverflow: true,
+        // scrollOverflowReset: false,
+        // scrollOverflowOptions: {
+        //   //keyBindings: true; // Bug if used with fullpage.js
+        //   probeType: 3
+        // },
+
         afterLoad: registerAfterLoad,
         afterRender: registerAfterRender,
+        afterResize: () => {
+          // Call camp resize
+          this.blocks.camp.registerResize();
+        },
         onLeave: registerOnLeave,
         onSlideLeave: registerOnSlideLeave
       });
@@ -151,18 +175,6 @@ export class MainApp {
         window.open($(this).attr('href'), 'twitShareWindow', 'height=450, width=550, top=' + ($(window).height() / 2 - 275) + ', left=' + ($(window).width() / 2 - 225) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
         return false;
     });
-  }
-
-  setDebug(debugHelper) {
-    // Debugging
-    this.debugHelper = debugHelper;
-
-    // Navigation
-    this.debugHelper.registerDebug(this.navigation);
-    this.debugHelper.registerDebug(this.sideBar);
-
-    // Blocks
-    this.debugHelper.registerDebug(this.blocks.camp);
   }
 
 }

@@ -36,7 +36,7 @@
         <div class="nav-left">
           <div class="nav-linker active" data-target="home-block">เริ่มต้น</div>
           <div class="nav-linker" data-target="detail-block">รายละเอียด</div>
-          <div class="nav-linker" data-target="sponsor-block">ผู้สนับสนุน</div>
+          <div class="nav-linker" data-target="supporter-block">ผู้สนับสนุน</div>
           <div class="nav-linker" data-target="camp-block">ค่ายย่อย</div>
         </div>
         <div class="logo">
@@ -65,7 +65,7 @@
       <div class="navigation">
         <div class="nav-linker active" data-target="home-block">เริ่มต้น</div>
         <div class="nav-linker" data-target="detail-block">รายละเอียด</div>
-        <div class="nav-linker" data-target="sponsor-block">ผู้สนับสนุน</div>
+        <div class="nav-linker" data-target="supporter-block">ผู้สนับสนุน</div>
         <div class="nav-linker" data-target="camp-block">ค่ายย่อย</div>
         <div class="nav-linker" data-target="timeline-block">กำหนดการ</div>
         <div class="nav-linker" data-target="gallery-block">ภาพกิจกรรม</div>
@@ -138,12 +138,12 @@
               <h3>สถานที่</h3>
               <span class="sub font-weight-bold">IT<span class="text-orange">KMITL</span></span>
             </div>
-          </ul>
+          </div>
         </div>
       </section>
 
-      <!-- Sponsor block -->
-      <section class="section sponsor-block" data-anchor="sponsor-block">
+      <!-- supporter block -->
+      <section class="section supporter-block" data-anchor="supporter-block">
         <div class="waves">
           <div class="waves-bg"></div>
           <div class="waving-blue"></div>
@@ -152,16 +152,18 @@
         </div>
         <div class="content">
           <h1 class="block-title">ผู้สนับสนุน</h1>
-          <div class="row justify-content-center sponsors-list">
-            <div class="col">
-              <img class="img-thumbnail" src="/assets/frontend/images/kmitl.jpg" />
-            </div>
-            <div class="col">
-              <img class="img-thumbnail" src="/assets/frontend/images/itkmitl.jpg" />
-            </div>
+          <div class="justify-content-center supporters-list">
+            <div class="supporter-img"><img class="img-thumbnail" src="/assets/frontend/images/kmitl.jpg" /></div>
+            <div class="supporter-img"><img class="img-thumbnail" src="/assets/frontend/images/itkmitl.jpg" /></div>
+          </div>
+          <div class="justify-content-center supporters-list medium">
+            <div class="supporter-img"><img class="img-thumbnail" src="/assets/frontend/images/kmitl.jpg" /></div>
+          </div>
+          <div class="justify-content-center supporters-list small">
+            <div class="supporter-img"><img class="img-thumbnail" src="/assets/frontend/images/kmitl.jpg" /></div>
           </div>
         </div>
-        <div class="camp-connect" id="sponsor-camp-connect-el"></div>
+        <div class="camp-connect" id="supporter-camp-connect-el"></div>
       </section>
 
       <!-- Camp block -->
@@ -170,6 +172,7 @@
         <!-- Camp navigation -->
         <nav class="camp-nav hide">
           <ul>
+            <li class="slide-link home" data-target="home"></li>
             <li class="slide-link app" data-target="app"></li>
             <li class="slide-link game" data-target="game"></li>
             <li class="slide-link network" data-target="network"></li>
@@ -184,7 +187,7 @@
         </div>
 
         <!-- Main slide -->
-        <div class="slide">
+        <div class="slide home" data-anchor="home">
           <div class="content">
             <h1 class="block-title">ค่ายย่อย</h1>
             <div class="camp-characters">
@@ -212,7 +215,7 @@
               </div>
             </div>
             <div class="camp-helper">
-              (ลองกดที่ตัวไวรัสดูสิ~)
+              (กดที่ตัวไวรัสเพื่อดูรายละเอียดค่ายและสมัครเข้าค่าย~)
             </div>
           </div>
         </div>
@@ -289,7 +292,7 @@
               </div>
               <div class="camp-detail col-12 col-lg-7">
                 <div class="camp-detail-wrapper">
-                  <span class="badge badge-pill badge-default">ค่ายย่อย IoT (Internet Of Things)</span>
+                  <span class="badge badge-pill badge-default">ค่ายย่อย IoT (Internet of Things)</span>
                   <h2 class="camp-name">IoTSecure</h2>
                   <hr />
                   <p><span class="space-4"></span>ร่วมมือกันสร้างไอเดียชิ้นใหม่เพื่อต่อต้านไวรัสในโลกไซเบอร์ด้วยเทคโนโลยี Internet of Things มาสร้างสรรค์ไอเดียเจ๋ง ๆ กันได้ที่ค่าย IoTSecure ที่จะพาน้องๆ เรียนรู้ในสิ่งประดิษฐ์ที่ทันสมัยไม่ซ้ำใคร รวมถึงได้ทดลองใช้อุปกรณ์เสริมไม่ว่าจะเป็น Arduino Uno R3, ESP8266 และอื่น ๆ อีกมากมาย <br />
@@ -326,7 +329,7 @@
 
       <!-- Timeline block -->
       <section class="section timeline-block" data-anchor="timeline-block">
-        <div class="camp-connect-bg" id="timeline-camp-connect-bg-el"></div>
+        <!-- <div class="camp-connect-bg" id="timeline-camp-connect-bg-el"></div> -->
         <div class="camp-connect" id="timeline-camp-connect-el"></div>
         <div class="content">
           <h1 class="block-title">กำหนดการ</h1>
@@ -439,11 +442,11 @@
 
             <div class="recommend-group right">
               <p class="recommend-detail">
-                <b>ไอทีแคมป์</b>คือค่ายที่เป็นจุดเริ่มต้นของความผูกพันธ์ที่พี่มีต่อคณะไอทีแห่งนี้ ทั้งสาระความรู้ที่ทำให้พี่ได้ค้นพบเส้นทางของตัวเองทางด้านเทคโนโลยี ซึ่งสำหรับใครที่มีพื้นฐานหรือชอบในด้านนี้อยู่แล้วก็จะได้มาพบเจอกับเพื่อนใหม่ ๆ ที่สนใจในด้านเดียวกัน แต่สำหรับใครที่ยังหาตัวเองไม่เจอว่าชอบอะไรก็มาลองค้นหาตัวเองจากค่ายนี้ได้เช่นกัน นอกจากสาระความรู้แล้วก็ยังมีความสนุกสนานจากกิจกรรมต่าง ๆ รวมถึงการดูแลเอาใจใส่จากจากพี่ ๆ ภายในคณะที่จะทำให้น้องรู้สึกเหมือนเป็นส่วนหนึ่งของครอบครัวไอทีแห่งนี้เลย แล้วน้องจะรู้ว่า 5 วัน 4 คืนนี้มันคุ้มจริง ๆ จนไม่อยากกลับเลยล่ะและนี่ก็คือความทรงจำของพี่กับค่ายนี้ที่อยากให้น้อง ๆ ได้ลองมาสัมผัสกันดู <b>แล้วน้องจะไม่มีทางลืมมันได้เล๊ยยยย! #เสียงสู๊งง</b> <span class="br-0_5"></span>
+                <b>ไอทีแคมป์</b> คือค่ายที่เป็นจุดเริ่มต้นของความผูกพันธ์ที่พี่มีต่อคณะไอทีแห่งนี้ ทั้งสาระความรู้ ที่ทำให้พี่ได้ค้นพบเส้นทางของตัวเองทางด้านเทคโนโลยี ซึ่งสำหรับใครที่มีพื้นฐานหรือชอบในด้านนี้อยู่แล้ว ก็จะได้มาพบเจอกับเพื่อนใหม่ ๆ ที่สนใจในด้านเดียวกัน แต่สำหรับใครที่ยังหาตัวเองไม่เจอว่าชอบอะไร ก็มาลองค้นหาตัวเองจากค่ายนี้ได้เช่นกัน นอกจากสาระความรู้แล้ว ก็ยังมีความสนุกสนานจากกิจกรรมต่าง ๆ รวมถึงการดูแลเอาใจใส่จากจากพี่ ๆ ภายในคณะ ที่จะทำให้น้องรู้สึกเหมือนเป็นส่วนหนึ่งของครอบครัวไอทีแห่งนี้เลย แล้วน้องจะรู้ว่า 5 วัน 4 คืนนี้มันคุ้มจริง ๆ จนไม่อยากกลับเลยล่ะ <b>และนี่ก็คือความทรงจำของพี่กับค่ายนี้ที่อยากให้น้อง ๆ ได้ลองมาสัมผัสกันดู แล้วน้องจะไม่มีทางลืมมันได้เล๊ยยยย! #เสียงสู๊งง</b> <span class="br-0_5"></span>
                 <b class="d-name">นายธนวัฒน์ กุสูงเนิน (พี่อาร์มี่)</b> <br />
                 ITCAMP 12 - ประธานค่าย <br />
                 ITCAMP 11 - พี่ค่าย <br />
-                ITCAMP 10 - น้องค่าย <br />
+                ITCAMP 10 - น้องค่าย Charming Application <br />
                 <span class="recommend-triangle"></span>
               </p>
               <div class="recommend-picture">
@@ -458,10 +461,10 @@
                 <div class="recommend-picture-frame"></div>
               </div>
               <p class="recommend-detail">
-                ช่วงมัธยมปลายนั้นถือว่าเป็นช่วงหัวเลี้ยวหัวต่อของชีวิต สำหรับน้อง ๆ คนไหนที่ยังไม่รู้ว่าจะเรียนสายไหนหรือว่าอยากสัมผัสประสบการณ์จริงค่าย <b>ITCAMP</b> นี้สามารถตอบโจทย์น้องสายคอมพิวเตอร์ได้เป็นอย่างดี ค่ายนี้ได้ทั้งความสนุก ความรู้ ให้น้อง ๆ ได้ค้นหาตัวเองและสัมผัสบรรยากาศคณะไอทีของเราจริง ๆ ตัวพี่เองก็ได้เค้าค่ายในช่วงมัธยมปลายมาหลายค่ายและค่ายนี้เป็นหนึ่งในค่ายที่ประทับใจที่สุดที่เคยเข้ามาเลยทีเดียว <b>ใครเป็นสายคอมพิวเตอร์พลาดไม่ได้เลยครับผม</b> <span class="br-0_5"></span>
+                ช่วงมัธยมปลายนั้นถือว่าเป็นช่วงหัวเลี้ยวหัวต่อของชีวิต สำหรับน้อง ๆ คนไหนที่ยังไม่รู้ว่าจะเรียนสายไหนหรือว่าอยากสัมผัสประสบการณ์จริงค่าย <b>ITCAMP</b> นี้สามารถตอบโจทย์น้องสายคอมพิวเตอร์ได้เป็นอย่างดี ค่ายนี้ได้ทั้งความสนุก ความรู้ ให้น้อง ๆ ได้ค้นหาตัวเองและสัมผัสบรรยากาศคณะไอทีของเราจริง ๆ ตัวพี่เองก็ได้เข้าค่ายในช่วงมัธยมปลายมาหลายค่ายและค่ายนี้เป็นหนึ่งในค่ายที่ประทับใจที่สุดที่เคยเข้ามาเลยทีเดียว <b>ใครเป็นสายคอมพิวเตอร์พลาดไม่ได้เลยครับผม</b> <span class="br-0_5"></span>
                 <b class="d-name">นายพัชรพล จอกสมุทร (พี่ฟิล์ม)</b> <br />
                 ITCAMP 12 - พี่ค่าย <br />
-                ITCAMP 10 - น้องค่าย <br />
+                ITCAMP 10 - น้องค่าย Secret media <br />
                 <span class="recommend-triangle"></span>
               </p>
             </div>
@@ -618,7 +621,32 @@
             <div class="row sharing-link">
               <div class="col-12">
                 <h3 class="block-title">ร่วมประชาสัมพันธ์กับเรา</h3>
-                <a href="javscript:;" class="btn btn-sharing-link disabled">เร็วๆนี้</a>
+                <a href="javscript:;" class="btn btn-sharing-link">คลิก</a>
+
+                <hr />
+
+                <h4>เว็บไซต์ที่ร่วมประชาสัมพันธ์</h4>
+
+                <div class="justify-content-center exchangers-list-banner">
+                  <a href="javascript:;"><div class="exchanger"><img class="img-thumbnail" src="/assets/frontend/images/kmitl.jpg" /></div></a>
+                  <a href="javascript:;"><div class="exchanger"><img class="img-thumbnail" src="/assets/frontend/images/itkmitl.jpg" /></div></a>
+                  <a href="javascript:;"><div class="exchanger"><img class="img-thumbnail" src="/assets/frontend/images/kmitl.jpg" /></div></a>
+                  <a href="javascript:;"><div class="exchanger"><img class="img-thumbnail" src="/assets/frontend/images/itkmitl.jpg" /></div></a>
+                  <a href="javascript:;"><div class="exchanger"><img class="img-thumbnail" src="/assets/frontend/images/kmitl.jpg" /></div></a>
+                  <a href="javascript:;"><div class="exchanger"><img class="img-thumbnail" src="/assets/frontend/images/itkmitl.jpg" /></div></a>
+                  <a href="javascript:;"><div class="exchanger"><img class="img-thumbnail" src="/assets/frontend/images/kmitl.jpg" /></div></a>
+                  <a href="javascript:;"><div class="exchanger"><img class="img-thumbnail" src="/assets/frontend/images/itkmitl.jpg" /></div></a>
+                  <a href="javascript:;"><div class="exchanger"><img class="img-thumbnail" src="/assets/frontend/images/kmitl.jpg" /></div></a>
+                  <a href="javascript:;"><div class="exchanger"><img class="img-thumbnail" src="/assets/frontend/images/itkmitl.jpg" /></div></a>
+                </div>
+
+                <div class="justify-content-center exchangers-list-text">
+                  <a href="javascript:;"><div class="exchanger">Meranote</div></a>
+                  <a href="javascript:;"><div class="exchanger">Meranote</div></a>
+                  <a href="javascript:;"><div class="exchanger">Meranote</div></a>
+                  <a href="javascript:;"><div class="exchanger">Meranote</div></a>
+                </div>
+
               </div>
             </div>
           </div>

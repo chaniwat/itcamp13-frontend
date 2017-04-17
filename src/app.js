@@ -21,9 +21,6 @@ import 'fullpage.js';
 // Declare window default (GLOBAL)
 window.default = {};
 
-// Import Debugger
-// import { debugHelper } from './debug';
-
 // Import GlobalOption
 import { AppOptions } from './option'
 
@@ -60,7 +57,4 @@ $(document).ready(() => {
     let LandingApp = require('./landing').LandingApp;
     let landing = new LandingApp();
   }
-
-  // main.setDebug(debugHelper);
-  // debugHelper.hideDebug();
 });

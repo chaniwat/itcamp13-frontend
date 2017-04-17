@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 35);
+/******/ 	return __webpack_require__(__webpack_require__.s = 37);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10294,7 +10294,9 @@ return jQuery;
 
 
 /***/ }),
-/* 1 */
+/* 1 */,
+/* 2 */,
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10510,7 +10512,7 @@ return getSize;
 
 
 /***/ }),
-/* 2 */
+/* 4 */
 /***/ (function(module, exports) {
 
 var g;
@@ -10537,7 +10539,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -10656,7 +10658,7 @@ return EvEmitter;
 
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, exports) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
@@ -10665,7 +10667,7 @@ module.exports = __webpack_amd_options__;
 /* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10679,13 +10681,13 @@ class LandingApp {
 
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navigation__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__block__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navigation__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__block__ = __webpack_require__(23);
 
 
 // blocks
@@ -10717,7 +10719,7 @@ class MainApp {
   }
 
   initBlocks() {
-    this.sections = [$(".home-block"), $(".detail-block"), $(".sponsor-block"), $(".camp-block"), $(".timeline-block"), $(".gallery-block"), $(".recommend-block"), $(".faq-block")];
+    this.sections = [$(".home-block"), $(".detail-block"), $(".supporter-block"), $(".camp-block"), $(".timeline-block"), $(".gallery-block"), $(".recommend-block"), $(".faq-block")];
 
     this.blocks = {
       camp: new __WEBPACK_IMPORTED_MODULE_1__block__["a" /* CampBlock */]($(".camp-block")),
@@ -10757,6 +10759,20 @@ class MainApp {
       // Call navigation resize
       this.navigation.registerResize(wWidth, wHeight);
 
+      // Inject height for each page that content
+      // height more than view size
+      $(".fullpage-wrapper .section").each((i, e) => {
+        e = $(e);
+        if (e.find('.content').outerHeight() > wHeight) {
+          e.addClass('inject-height');
+        } else {
+          e.removeClass('inject-height');
+        }
+      });
+
+      // Call camp resize
+      // this.blocks.camp.registerResize();
+
       // ReBuild DOM when resize window
       // Because some of handler change the DOM structure
       // so its need to rebuild the fullpage
@@ -10770,6 +10786,7 @@ class MainApp {
 
       // Call resize for once for trigger anything that need dimension recalculate
       resizeHandler();
+      this.blocks.camp.registerResize();
 
       // FadeOut the loading screen
       $("#loadingScreen").fadeOut(() => {
@@ -10780,7 +10797,8 @@ class MainApp {
     let registerOnLeave = (index, nextIndex, direction) => {
       window.states.currentSection = nextIndex;
 
-      this.blocks.OnLeave(index, nextIndex, direction);
+      // Adjust iScroll should to scroll to top or bottom of section
+      // this.blocks.OnLeave(index, nextIndex, direction);
 
       this.navigation.registerOnLeave(index, nextIndex, direction);
       this.sideBar.registerOnLeave(index, nextIndex, direction);
@@ -10797,16 +10815,24 @@ class MainApp {
 
         easingcss3: 'cubic-bezier(0.770, 0.000, 0.175, 1.000)',
         scrollingSpeed: window.default.scrollingSpeed,
-        // autoScrolling: false,
-        // fitToSection: false,
-        scrollOverflow: true,
-        scrollOverflowReset: false,
-        scrollOverflowOptions: {
-          //keyBindings: true; // Bug if used with fullpage.js
-          probeType: 3
-        },
+
+        // Disable auto scrolling
+        autoScrolling: false,
+        fitToSection: false,
+
+        // scrollOverflow: true,
+        // scrollOverflowReset: false,
+        // scrollOverflowOptions: {
+        //   //keyBindings: true; // Bug if used with fullpage.js
+        //   probeType: 3
+        // },
+
         afterLoad: registerAfterLoad,
         afterRender: registerAfterRender,
+        afterResize: () => {
+          // Call camp resize
+          this.blocks.camp.registerResize();
+        },
         onLeave: registerOnLeave,
         onSlideLeave: registerOnSlideLeave
       });
@@ -10830,25 +10856,13 @@ class MainApp {
     });
   }
 
-  setDebug(debugHelper) {
-    // Debugging
-    this.debugHelper = debugHelper;
-
-    // Navigation
-    this.debugHelper.registerDebug(this.navigation);
-    this.debugHelper.registerDebug(this.sideBar);
-
-    // Blocks
-    this.debugHelper.registerDebug(this.blocks.camp);
-  }
-
 }
 /* harmony export (immutable) */ __webpack_exports__["MainApp"] = MainApp;
 
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10867,7 +10881,7 @@ class AppOptions {
 
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery, Tether) {/*!
@@ -14406,40 +14420,40 @@ var Popover = function ($) {
 
 }();
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(34)))
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports) {
-
-module.exports = "/assets/frontend/favicon/favicon-16x16.png";
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(36)))
 
 /***/ }),
 /* 11 */
 /***/ (function(module, exports) {
 
-module.exports = "/assets/frontend/favicon/favicon-32x32.png";
+// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 12 */
+/***/ (function(module, exports) {
+
+module.exports = "/assets/frontend/favicon/favicon-16x16.png";
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = "/assets/frontend/favicon/favicon-32x32.png";
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "index.html";
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "landing.html";
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(IScroll) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -17523,10 +17537,10 @@ module.exports = __webpack_require__.p + "landing.html";
     };
 });
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(30)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(32)))
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*! iScroll v5.2.0 ~ (c) 2008-2016 Matteo Spinelli ~ http://cubiq.org/license */
@@ -19651,7 +19665,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 })(window, document, Math);
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -19820,7 +19834,7 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 		return (_gsScope.GreenSockGlobals || _gsScope)[name];
 	};
 	if (true) { //AMD
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(29)], __WEBPACK_AMD_DEFINE_FACTORY__ = (getGlobal),
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(31)], __WEBPACK_AMD_DEFINE_FACTORY__ = (getGlobal),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
@@ -19829,10 +19843,10 @@ var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(globa
 		module.exports = getGlobal();
 	}
 }("ModifiersPlugin"));
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -25878,7 +25892,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 						if (global) {
 							_globals[n] = _exports[n] = cl; //provides a way to avoid global namespace pollution. By default, the main classes like TweenLite, Power1, Strong, etc. are added to window unless a GreenSockGlobals is defined. So if you want to have things added to a custom object instead, just do something like window.GreenSockGlobals = {} before loading any GreenSock files. You can even set up an alias like window.GreenSockGlobals = windows.gs = {} so that you can access everything like gs.TweenLite. Also remember that ALL classes are added to the window.com.greensock object (in their respective packages, like com.greensock.easing.Power1, com.greensock.TweenLite, etc.)
 							hasModule = (typeof(module) !== "undefined" && module.exports);
-							if (!hasModule && "function" === "function" && __webpack_require__(4)){ //AMD
+							if (!hasModule && "function" === "function" && __webpack_require__(6)){ //AMD
 								!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() { return cl; }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 							} else if (hasModule){ //node
@@ -27693,10 +27707,10 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 		_tickerActive = false; //ensures that the first official animation forces a ticker.tick() to update the time when it is instantiated
 
 })((typeof(module) !== "undefined" && module.exports && typeof(global) !== "undefined") ? global : this || window, "TweenMax");
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -27887,7 +27901,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27909,11 +27923,18 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
     this.navigation.iot = this.navigation.find('.iot');
     this.navigation.datasci = this.navigation.find('.datasci');
 
+    // Slide state
+    this.currentSlide = "home";
+
     // All .slide-linker => register inner-link
     this.linker = block.find('.slide-link');
     this.linker.each((i, e) => {
       $(e).click(this.navigateToSlide.bind(this, $(e).data('target')));
     });
+  }
+
+  registerResize() {
+    this.reCalcBlockHeight();
   }
 
   registerOnSlideLeave(anchorLink, index, slideIndex, direction, nextSlideIndex) {
@@ -27931,7 +27952,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
     this.navigation.all.removeClass('active');
 
     // Add active & current camp slide class to block and change, And change connected el class
-    let sponsorConnectEl = $("#sponsor-camp-connect-el");
+    let sponsorConnectEl = $("#supporter-camp-connect-el");
     sponsorConnectEl.removeClass((i, className) => {
       return (className.match(/camp-(app|game|network|iot|datasci)+/g) || []).join(' ');
     });
@@ -27939,46 +27960,73 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
     timelineConnectEl.removeClass((i, className) => {
       return (className.match(/camp-(app|game|network|iot|datasci)+/g) || []).join(' ');
     });
+    /*
     let timelineConnectBGEl = $("#timeline-camp-connect-bg-el");
     timelineConnectBGEl.removeClass((i, className) => {
       return (className.match(/camp-(app|game|network|iot|datasci)+/g) || []).join(' ');
     });
+    */
+
+    let targetSlide = '';
     switch (nextSlideIndex) {
+      case 0:
+        this.currentSlide = 'home';
+        targetSlide = 'home';
+        break;
       case 1:
         this.navigation.app.addClass('active');
-        this.block.addClass('camp-app');
-        sponsorConnectEl.addClass('camp-app');
-        timelineConnectEl.addClass('camp-app');
-        timelineConnectBGEl.addClass('camp-app');
+        this.currentSlide = 'app-camp';
+        targetSlide = 'camp-app';
+        // timelineConnectBGEl.addClass('camp-app');
         break;
       case 2:
         this.navigation.game.addClass('active');
-        this.block.addClass('camp-game');
-        sponsorConnectEl.addClass('camp-game');
-        timelineConnectEl.addClass('camp-game');
-        timelineConnectBGEl.addClass('camp-game');
+        this.currentSlide = 'game-camp';
+        targetSlide = 'camp-game';
+        // timelineConnectBGEl.addClass('camp-game');
         break;
       case 3:
         this.navigation.network.addClass('active');
-        this.block.addClass('camp-network');
-        sponsorConnectEl.addClass('camp-network');
-        timelineConnectEl.addClass('camp-network');
-        timelineConnectBGEl.addClass('camp-network');
+        this.currentSlide = 'network-camp';
+        targetSlide = 'camp-network';
+        // timelineConnectBGEl.addClass('camp-network');
         break;
       case 4:
         this.navigation.iot.addClass('active');
-        this.block.addClass('camp-iot');
-        sponsorConnectEl.addClass('camp-iot');
-        timelineConnectEl.addClass('camp-iot');
-        timelineConnectBGEl.addClass('camp-iot');
+        this.currentSlide = 'iot-camp';
+        targetSlide = 'camp-iot';
+        // timelineConnectBGEl.addClass('camp-iot');
         break;
       case 5:
         this.navigation.datasci.addClass('active');
-        this.block.addClass('camp-datasci');
-        sponsorConnectEl.addClass('camp-datasci');
-        timelineConnectEl.addClass('camp-datasci');
-        timelineConnectBGEl.addClass('camp-datasci');
+        this.currentSlide = 'datasci-camp';
+        targetSlide = 'camp-datasci';
+        // timelineConnectBGEl.addClass('camp-datasci');
         break;
+    }
+
+    this.block.addClass(targetSlide);
+    sponsorConnectEl.addClass(targetSlide);
+    timelineConnectEl.addClass(targetSlide);
+    this.reCalcBlockHeight();
+  }
+
+  reCalcBlockHeight() {
+    let wWidth = window.innerWidth;
+    let wHeight = window.innerHeight;
+
+    if (wWidth < 992) {
+      let eSlide = $("." + this.currentSlide);
+
+      if (this.currentSlide == 'home') {
+        if (eSlide.find(".content").outerHeight() > wHeight) {
+          this.block.css("height", eSlide.find(".content").outerHeight());
+        } else {
+          this.block.css("height", wHeight);
+        }
+      } else {
+        this.block.css("height", eSlide.find(".slide-content").outerHeight());
+      }
     }
   }
 
@@ -27992,7 +28040,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28022,34 +28070,34 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = GalleryBlock;
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(31)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(33)))
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__camp__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__camp__ = __webpack_require__(21);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__camp__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__gallery__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__gallery__ = __webpack_require__(22);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__gallery__["a"]; });
 
 
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navigation__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__navigation__ = __webpack_require__(25);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__navigation__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sidebar__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sidebar__ = __webpack_require__(26);
 /* harmony namespace reexport (by used) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__sidebar__["a"]; });
 
 
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28093,8 +28141,6 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
     // Register nav-hamburger (mobile - sidenav:off-canvas)
     this.hamburger.click(this.toggleSidenav.bind(this));
   }
-
-  // FIXME let the css3 handle the navbar (show/hide - add/remove class)
 
   /**
    * Show navbar
@@ -28190,8 +28236,8 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
         this.navigation.sidenav["detail-block"].addClass("active");
         break;
       case 3:
-        this.navigation.navbar["sponsor-block"].addClass("active");
-        this.navigation.sidenav["sponsor-block"].addClass("active");
+        this.navigation.navbar["supporter-block"].addClass("active");
+        this.navigation.sidenav["supporter-block"].addClass("active");
         break;
       case 4:
         this.navigation.navbar["camp-block"].addClass("active");
@@ -28263,7 +28309,7 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28314,7 +28360,7 @@ class SideBar {
 
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -28377,9 +28423,9 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 
 /***/ }),
-/* 26 */,
-/* 27 */,
-/* 28 */
+/* 28 */,
+/* 29 */,
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -28396,7 +28442,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
   if ( true ) {
     // AMD
     !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-      __webpack_require__(25)
+      __webpack_require__(27)
     ], __WEBPACK_AMD_DEFINE_RESULT__ = function( matchesSelector ) {
       return factory( window, matchesSelector );
     }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
@@ -28623,7 +28669,7 @@ return utils;
 
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -28734,7 +28780,7 @@ return utils;
 						if (global) {
 							_globals[n] = _exports[n] = cl; //provides a way to avoid global namespace pollution. By default, the main classes like TweenLite, Power1, Strong, etc. are added to window unless a GreenSockGlobals is defined. So if you want to have things added to a custom object instead, just do something like window.GreenSockGlobals = {} before loading any GreenSock files. You can even set up an alias like window.GreenSockGlobals = windows.gs = {} so that you can access everything like gs.TweenLite. Also remember that ALL classes are added to the window.com.greensock object (in their respective packages, like com.greensock.easing.Power1, com.greensock.TweenLite, etc.)
 							hasModule = (typeof(module) !== "undefined" && module.exports);
-							if (!hasModule && "function" === "function" && __webpack_require__(4)){ //AMD
+							if (!hasModule && "function" === "function" && __webpack_require__(6)){ //AMD
 								!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() { return cl; }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 							} else if (hasModule){ //node
@@ -30549,10 +30595,10 @@ return utils;
 		_tickerActive = false; //ensures that the first official animation forces a ticker.tick() to update the time when it is instantiated
 
 })((typeof(module) !== "undefined" && module.exports && typeof(global) !== "undefined") ? global : this || window, "TweenLite");
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*! iScroll v5.2.0 ~ (c) 2008-2016 Matteo Spinelli ~ http://cubiq.org/license */
@@ -32650,7 +32696,7 @@ if ( typeof module != 'undefined' && module.exports ) {
 
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -32667,8 +32713,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   if ( true ) {
     // AMD
     !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-        __webpack_require__(33),
-        __webpack_require__(1)
+        __webpack_require__(35),
+        __webpack_require__(3)
       ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
@@ -32863,7 +32909,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -32876,8 +32922,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   if ( true ) {
     // AMD - RequireJS
     !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-        __webpack_require__(3),
-        __webpack_require__(1)
+        __webpack_require__(5),
+        __webpack_require__(3)
       ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
@@ -33423,7 +33469,7 @@ return Item;
 
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -33439,10 +33485,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
   if ( true ) {
     // AMD - RequireJS
     !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
+        __webpack_require__(5),
         __webpack_require__(3),
-        __webpack_require__(1),
-        __webpack_require__(28),
-        __webpack_require__(32)
+        __webpack_require__(30),
+        __webpack_require__(34)
       ], __WEBPACK_AMD_DEFINE_RESULT__ = function( EvEmitter, getSize, utils, Item ) {
         return factory( window, EvEmitter, getSize, utils, Item);
       }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
@@ -34367,7 +34413,7 @@ return Outlayer;
 
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*! tether 1.4.0 */
@@ -36188,34 +36234,34 @@ return Tether;
 
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function($) {Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_favicon_favicon_16x16_png__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_favicon_favicon_16x16_png__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_favicon_favicon_16x16_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__assets_favicon_favicon_16x16_png__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__assets_favicon_favicon_32x32_png__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__assets_favicon_favicon_32x32_png__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__assets_favicon_favicon_32x32_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__assets_favicon_favicon_32x32_png__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assets_scss_app_scss__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assets_scss_app_scss__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assets_scss_app_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__assets_scss_app_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__index_html__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__index_html__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__index_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__index_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__landing_html__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__landing_html__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__landing_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__landing_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_bootstrap__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_bootstrap__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_bootstrap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_bootstrap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_gsap__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_gsap__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_gsap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_gsap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_gsap_jquery_gsap__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_gsap_jquery_gsap__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_gsap_jquery_gsap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_gsap_jquery_gsap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_gsap_ModifiersPlugin__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_gsap_ModifiersPlugin__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_gsap_ModifiersPlugin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_gsap_ModifiersPlugin__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_fullpage_js_vendors_scrolloverflow__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_fullpage_js_vendors_scrolloverflow__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_fullpage_js_vendors_scrolloverflow___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_fullpage_js_vendors_scrolloverflow__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_fullpage_js__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_fullpage_js__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_fullpage_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_fullpage_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__option__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__option__ = __webpack_require__(9);
 // Import favicon
 
 
@@ -36238,9 +36284,6 @@ return Tether;
 
 // Declare window default (GLOBAL)
 window.default = {};
-
-// Import Debugger
-// import { debugHelper } from './debug';
 
 // Import GlobalOption
 
@@ -36271,15 +36314,12 @@ $(document).ready(() => {
   }
 
   if (options.mode == 'MAIN_APP') {
-    let MainApp = __webpack_require__(6).MainApp;
+    let MainApp = __webpack_require__(8).MainApp;
     let main = new MainApp();
   } else if (options.mode == 'LANDING_PAGE') {
-    let LandingApp = __webpack_require__(5).LandingApp;
+    let LandingApp = __webpack_require__(7).LandingApp;
     let landing = new LandingApp();
   }
-
-  // main.setDebug(debugHelper);
-  // debugHelper.hideDebug();
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 

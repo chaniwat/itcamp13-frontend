@@ -5,6 +5,12 @@
   &.camp-#{$name} {
     background-color: $color;
 
+    @include media-breakpoint-down(md) {
+      .fp-tableCell {
+        height: auto !important;
+      }
+    }
+
     @content;
   }
 }
@@ -18,6 +24,7 @@
  * Specific variables
  */
 $camp-list: (
+  'home': #373737,
   'app': $app-camp-color,
   'game': $game-camp-color,
   'network': $network-camp-color,
@@ -65,11 +72,9 @@ $camp-list: (
   // Each slide content (slide != 0)
   @include generate-slide-content-block() {
     // Override for each slide
-    padding: 60px 0 2.8rem;
+    padding: calc(60px + 1rem) 0 3rem;
 
     @include media-breakpoint-down(lg) {
-      padding: calc(60px + 1.5rem) 0 3.6rem;
-
       .col-12 {
         margin-bottom: 1.5rem
       }
