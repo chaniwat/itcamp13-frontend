@@ -10759,20 +10759,6 @@ class MainApp {
       // Call navigation resize
       this.navigation.registerResize(wWidth, wHeight);
 
-      // Inject height for each page that content
-      // height more than view size
-      $(".fullpage-wrapper .section").each((i, e) => {
-        e = $(e);
-        if (e.find('.content').outerHeight() > wHeight) {
-          e.addClass('inject-height');
-        } else {
-          e.removeClass('inject-height');
-        }
-      });
-
-      // Call camp resize
-      // this.blocks.camp.registerResize();
-
       // ReBuild DOM when resize window
       // Because some of handler change the DOM structure
       // so its need to rebuild the fullpage
@@ -10786,7 +10772,6 @@ class MainApp {
 
       // Call resize for once for trigger anything that need dimension recalculate
       resizeHandler();
-      this.blocks.camp.registerResize();
 
       // FadeOut the loading screen
       $("#loadingScreen").fadeOut(() => {
@@ -10798,7 +10783,7 @@ class MainApp {
       window.states.currentSection = nextIndex;
 
       // Adjust iScroll should to scroll to top or bottom of section
-      // this.blocks.OnLeave(index, nextIndex, direction);
+      this.blocks.OnLeave(index, nextIndex, direction);
 
       this.navigation.registerOnLeave(index, nextIndex, direction);
       this.sideBar.registerOnLeave(index, nextIndex, direction);
@@ -10815,24 +10800,16 @@ class MainApp {
 
         easingcss3: 'cubic-bezier(0.770, 0.000, 0.175, 1.000)',
         scrollingSpeed: window.default.scrollingSpeed,
-
-        // Disable auto scrolling
-        autoScrolling: false,
-        fitToSection: false,
-
-        // scrollOverflow: true,
-        // scrollOverflowReset: false,
-        // scrollOverflowOptions: {
-        //   //keyBindings: true; // Bug if used with fullpage.js
-        //   probeType: 3
-        // },
-
+        // autoScrolling: false,
+        // fitToSection: false,
+        scrollOverflow: true,
+        scrollOverflowReset: false,
+        scrollOverflowOptions: {
+          //keyBindings: true; // Bug if used with fullpage.js
+          probeType: 3
+        },
         afterLoad: registerAfterLoad,
         afterRender: registerAfterRender,
-        afterResize: () => {
-          // Call camp resize
-          this.blocks.camp.registerResize();
-        },
         onLeave: registerOnLeave,
         onSlideLeave: registerOnSlideLeave
       });
@@ -27933,10 +27910,6 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
     });
   }
 
-  registerResize() {
-    this.reCalcBlockHeight();
-  }
-
   registerOnSlideLeave(anchorLink, index, slideIndex, direction, nextSlideIndex) {
     // Hide/Show the navigation
     if (nextSlideIndex == 0) {
@@ -27960,12 +27933,10 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
     timelineConnectEl.removeClass((i, className) => {
       return (className.match(/camp-(app|game|network|iot|datasci)+/g) || []).join(' ');
     });
-    /*
     let timelineConnectBGEl = $("#timeline-camp-connect-bg-el");
     timelineConnectBGEl.removeClass((i, className) => {
       return (className.match(/camp-(app|game|network|iot|datasci)+/g) || []).join(' ');
     });
-    */
 
     let targetSlide = '';
     switch (nextSlideIndex) {
@@ -27977,57 +27948,37 @@ if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); } //necessary in case Tween
         this.navigation.app.addClass('active');
         this.currentSlide = 'app-camp';
         targetSlide = 'camp-app';
-        // timelineConnectBGEl.addClass('camp-app');
+        timelineConnectBGEl.addClass('camp-app');
         break;
       case 2:
         this.navigation.game.addClass('active');
         this.currentSlide = 'game-camp';
         targetSlide = 'camp-game';
-        // timelineConnectBGEl.addClass('camp-game');
+        timelineConnectBGEl.addClass('camp-game');
         break;
       case 3:
         this.navigation.network.addClass('active');
         this.currentSlide = 'network-camp';
         targetSlide = 'camp-network';
-        // timelineConnectBGEl.addClass('camp-network');
+        timelineConnectBGEl.addClass('camp-network');
         break;
       case 4:
         this.navigation.iot.addClass('active');
         this.currentSlide = 'iot-camp';
         targetSlide = 'camp-iot';
-        // timelineConnectBGEl.addClass('camp-iot');
+        timelineConnectBGEl.addClass('camp-iot');
         break;
       case 5:
         this.navigation.datasci.addClass('active');
         this.currentSlide = 'datasci-camp';
         targetSlide = 'camp-datasci';
-        // timelineConnectBGEl.addClass('camp-datasci');
+        timelineConnectBGEl.addClass('camp-datasci');
         break;
     }
 
     this.block.addClass(targetSlide);
     sponsorConnectEl.addClass(targetSlide);
     timelineConnectEl.addClass(targetSlide);
-    this.reCalcBlockHeight();
-  }
-
-  reCalcBlockHeight() {
-    let wWidth = window.innerWidth;
-    let wHeight = window.innerHeight;
-
-    if (wWidth < 992) {
-      let eSlide = $("." + this.currentSlide);
-
-      if (this.currentSlide == 'home') {
-        if (eSlide.find(".content").outerHeight() > wHeight) {
-          this.block.css("height", eSlide.find(".content").outerHeight());
-        } else {
-          this.block.css("height", wHeight);
-        }
-      } else {
-        this.block.css("height", eSlide.find(".slide-content").outerHeight());
-      }
-    }
   }
 
   navigateToSlide(target) {
