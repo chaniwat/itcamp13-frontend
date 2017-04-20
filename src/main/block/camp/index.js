@@ -24,10 +24,6 @@ export class CampBlock {
     this.linker.each((i, e) => { $(e).click(this.navigateToSlide.bind(this, $(e).data('target'))); });
   }
 
-  registerResize() {
-    this.reCalcBlockHeight();
-  }
-
   registerOnSlideLeave(anchorLink, index, slideIndex, direction, nextSlideIndex) {
     // Hide/Show the navigation
     if(nextSlideIndex == 0) {
@@ -51,12 +47,10 @@ export class CampBlock {
     timelineConnectEl.removeClass((i, className) => {
       return (className.match(/camp-(app|game|network|iot|datasci)+/g) || []).join(' ');
     });
-    /*
     let timelineConnectBGEl = $("#timeline-camp-connect-bg-el");
     timelineConnectBGEl.removeClass((i, className) => {
       return (className.match(/camp-(app|game|network|iot|datasci)+/g) || []).join(' ');
     });
-    */
 
    let targetSlide = '';
     switch (nextSlideIndex) {
@@ -68,57 +62,37 @@ export class CampBlock {
         this.navigation.app.addClass('active');
         this.currentSlide = 'app-camp';
         targetSlide = 'camp-app';
-        // timelineConnectBGEl.addClass('camp-app');
+        timelineConnectBGEl.addClass('camp-app');
         break;
       case 2:
         this.navigation.game.addClass('active');
         this.currentSlide = 'game-camp';
         targetSlide = 'camp-game';
-        // timelineConnectBGEl.addClass('camp-game');
+        timelineConnectBGEl.addClass('camp-game');
         break;
       case 3:
         this.navigation.network.addClass('active');
         this.currentSlide = 'network-camp';
         targetSlide = 'camp-network';
-        // timelineConnectBGEl.addClass('camp-network');
+        timelineConnectBGEl.addClass('camp-network');
         break;
       case 4:
         this.navigation.iot.addClass('active');
         this.currentSlide = 'iot-camp';
         targetSlide = 'camp-iot';
-        // timelineConnectBGEl.addClass('camp-iot');
+        timelineConnectBGEl.addClass('camp-iot');
         break;
       case 5:
         this.navigation.datasci.addClass('active');
         this.currentSlide = 'datasci-camp';
         targetSlide = 'camp-datasci';
-        // timelineConnectBGEl.addClass('camp-datasci');
+        timelineConnectBGEl.addClass('camp-datasci');
         break;
     }
 
     this.block.addClass(targetSlide);
     sponsorConnectEl.addClass(targetSlide);
     timelineConnectEl.addClass(targetSlide);
-    this.reCalcBlockHeight();
-  }
-
-  reCalcBlockHeight() {
-    let wWidth = window.innerWidth;
-    let wHeight = window.innerHeight;
-
-    if(wWidth < 992) {
-      let eSlide = $("." + this.currentSlide);
-
-      if(this.currentSlide == 'home') {
-        if(eSlide.find(".content").outerHeight() > wHeight) {
-          this.block.css("height", eSlide.find(".content").outerHeight());
-        } else {
-          this.block.css("height", wHeight);
-        }
-      } else {
-        this.block.css("height", eSlide.find(".slide-content").outerHeight());
-      }
-    }
   }
 
   navigateToSlide(target) {

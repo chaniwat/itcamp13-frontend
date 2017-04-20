@@ -1,4 +1,4 @@
-@include generate-block('supporter') {
+@include generate-block('sponsor') {
   background: url('../images/bg-uni-block.png') center repeat;
 
   @include generate-content-block() {
@@ -6,64 +6,17 @@
     padding: 10rem 0 7rem;
 
     @include media-breakpoint-down(md) {
-      padding: 7rem 0 3rem;
-    }
-
-    @include media-breakpoint-down(xs) {
-      padding: 7rem 0 3rem;
+      padding: 10rem 0 3rem;
     }
 
     div[class^="col-"] {
       margin-bottom: 0.8rem;
     }
 
-    .supporters-list {
-      .supporter-img {
-        display: inline-block;
-        padding: 0.3rem;
-        background-color: #e4e4e4;
-        border-radius: 0.25rem;
-
-        @include media-breakpoint-down(sm) {
-          margin-bottom: 1rem;
-        }
-
-        .img-thumbnail {
-          padding: 0.35rem;
-        }
-      }
-
+    .sponsors-list {
       img {
         height: 180px;
-        background-color: white;
-
-        @include media-breakpoint-down(sm) {
-          height: 160px;
-        }
-      }
-
-      @include media-breakpoint-up(md) {
-        margin-bottom: 1rem;
-      }
-
-      &.medium {
-        img {
-          height: 150px;
-
-          @include media-breakpoint-down(sm) {
-            height: 125px;
-          }
-        }
-      }
-
-      &.small {
-        img {
-          height: 120px;
-
-          @include media-breakpoint-down(sm) {
-            height: 100px;
-          }
-        }
+        background-color: #e4e4e4;
       }
     }
   };
@@ -74,7 +27,7 @@
       width: 100%;
       height: 177px;
       top: $navbar-height;
-      background: url('../images/supporter-wave-#{$color}.png') center top repeat-x;
+      background: url('../images/sponsor-wave-#{$color}.png') center top repeat-x;
       background-size: contain;
 
       @include media-breakpoint-down(md) {
@@ -101,7 +54,7 @@
     width: 100%;
     height: $navbar-height;
 
-    background: url('../images/bg-detail-block.png') center top repeat;
+    background: url('../images/bg-detail-block.png') center top repeat-x;
     background-size: contain;
   }
 
@@ -112,7 +65,7 @@
     width: 100%;
     height: 197px;
 
-    background: url('../images/supporter-camp-connect.png') center bottom repeat-x;
+    background: url('../images/sponsor-camp-connect.png') center bottom repeat-x;
     background-size: contain;
 
     &.camp-app {

@@ -3,12 +3,12 @@
     width: 100%;
 
     // Wrapper inside section (Wrap div.content) | FullPage.js
-    .fp-tableCell {
+    .fp-tableCell, .fp-scroller {
       display: flex;
       justify-content: center;
     }
 
-    .fp-scrollable {
+    .fp-scrollable, .fp-scroller {
       width: 100%;
     }
 

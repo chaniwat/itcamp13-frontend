@@ -78,20 +78,6 @@ export class MainApp {
       // Call navigation resize
       this.navigation.registerResize(wWidth, wHeight);
 
-      // Inject height for each page that content
-      // height more than view size
-      $(".fullpage-wrapper .section").each((i, e) => {
-        e = $(e);
-        if(e.find('.content').outerHeight() > wHeight) {
-          e.addClass('inject-height');
-        } else {
-          e.removeClass('inject-height');
-        }
-      });
-
-      // Call camp resize
-      this.blocks.camp.registerResize();
-
       // ReBuild DOM when resize window
       // Because some of handler change the DOM structure
       // so its need to rebuild the fullpage
@@ -107,7 +93,6 @@ export class MainApp {
 
       // Call resize for once for trigger anything that need dimension recalculate
       resizeHandler();
-      this.blocks.camp.registerResize();
 
       // FadeOut the loading screen
       $("#loadingScreen").fadeOut(() => {
@@ -119,7 +104,7 @@ export class MainApp {
       window.states.currentSection = nextIndex;
 
       // Adjust iScroll should to scroll to top or bottom of section
-      // this.blocks.OnLeave(index, nextIndex, direction);
+      this.blocks.OnLeave(index, nextIndex, direction);
 
       this.navigation.registerOnLeave(index, nextIndex, direction);
       this.sideBar.registerOnLeave(index, nextIndex, direction);
@@ -136,24 +121,16 @@ export class MainApp {
 
         easingcss3: 'cubic-bezier(0.770, 0.000, 0.175, 1.000)',
         scrollingSpeed: window.default.scrollingSpeed,
-
-        // Disable auto scrolling
-        autoScrolling: false,
-        fitToSection: false,
-
-        // scrollOverflow: true,
-        // scrollOverflowReset: false,
-        // scrollOverflowOptions: {
-        //   //keyBindings: true; // Bug if used with fullpage.js
-        //   probeType: 3
-        // },
-
+        // autoScrolling: false,
+        // fitToSection: false,
+        scrollOverflow: true,
+        scrollOverflowReset: false,
+        scrollOverflowOptions: {
+          //keyBindings: true; // Bug if used with fullpage.js
+          probeType: 3
+        },
         afterLoad: registerAfterLoad,
         afterRender: registerAfterRender,
-        afterResize: () => {
-          // Call camp resize
-          this.blocks.camp.registerResize();
-        },
         onLeave: registerOnLeave,
         onSlideLeave: registerOnSlideLeave
       });

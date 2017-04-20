@@ -42,17 +42,8 @@ html, body {
   font-family: 'Cloud' !important;
 }
 
-.fullpage-wrapper {
-  overflow-x: hidden;
-}
-
+// Toggle for sidenav
 .fullpage-wrapper .section {
-  // Inject auto height for overflow content
-  &.inject-height .fp-tableCell {
-    height: auto !important;
-  }
-
-  // Toggle for sidenav
   transition: transform 0.7s;
   transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000);
 

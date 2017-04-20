@@ -5,12 +5,6 @@
   &.camp-#{$name} {
     background-color: $color;
 
-    @include media-breakpoint-down(md) {
-      .fp-tableCell {
-        height: auto !important;
-      }
-    }
-
     @content;
   }
 }
