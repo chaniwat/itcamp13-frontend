@@ -1,0 +1,44 @@
+{
+  "name": "itcamp-fe",
+  "version": "1.0.0",
+  "description": "itcamp-fe",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "build-prod": "webpack --config=webpack.production.config",
+    "build-devbackend": "webpack --config=webpack.devbackend.config",
+    "watch": "webpack --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaniwat/itcamp13-frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chaniwat/itcamp13-frontend/issues"
+  },
+  "homepage": "https://github.com/chaniwat/itcamp13-frontend#readme",
+  "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
+    "fullpage.js": "^2.9.2",
+    "gsap": "^1.19.1",
+    "iscroll": "^5.2.0",
+    "masonry-layout": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.0",
+    "css-loader": "^0.26.1",
+    "extract-loader": "^0.1.0",
+    "extract-text-webpack-plugin": "^2.0.0-rc.3",
+    "file-loader": "^0.10.0",
+    "html-loader": "^0.4.4",
+    "node-sass": "^4.5.0",
+    "resolve-url-loader": "^1.6.1",
+    "sass-loader": "^6.0.0",
+    "style-loader": "^0.13.1",
+    "webpack": "^2.2.1"
+  }
+}

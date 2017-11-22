@@ -1,0 +1,67 @@
+// TODO fix responsive gallery that (col > 1x1) to col1x1
+
+@include generate-block('gallery') {
+  background-color: #220f32;
+  color: white;
+
+  @include generate-content-block() {
+    padding: calc(#{$navbar-height} + 2.6rem) 0 8.5rem; // Override for gallery
+
+    // Override for masonry-layout
+    width: 100% !important;
+
+    @include media-breakpoint-up(xs) {
+      flex-basis: auto !important;
+    }
+
+    @include media-breakpoint-up(lg) {
+      flex-basis: 1200px !important;
+    }
+
+    .wrapper {
+      position: relative;
+      width: 100%;
+      margin-top: 1.5rem;
+    }
+    // End Override
+
+    h1 {
+      margin-bottom: 1rem;
+    }
+
+    .grid {
+      /* center */
+      margin: 0 auto;
+
+      $item-size: 240px;
+      $gutter-size: 10px;
+
+      .grid-item {
+        width: $item-size;
+        height: $item-size;
+        margin-bottom: $gutter-size;
+
+        img {
+          width: 100%;
+          height: 100%;
+          background-color: #ffffff;
+        }
+      }
+
+      .col1x1 {
+        width: $item-size;
+        height: $item-size;
+      }
+
+      .col2x1 {
+        width: ($item-size * 2) + $gutter-size;
+        height: $item-size;
+      }
+
+      .col2x2 {
+        width: ($item-size * 2) + $gutter-size;
+        height: ($item-size * 2) + $gutter-size;
+      }
+    }
+  };
+};

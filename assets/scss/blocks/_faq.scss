@@ -1,0 +1,329 @@
+@include generate-block('faq') {
+  background: url('../images/bg-uni-block.png') center repeat;
+
+  .line-dot {
+    position: absolute;
+    width: 100%;
+    height: 7px;
+    top: 0;
+    background: url('../images/faq-line-dot.png') center center repeat-x;
+  }
+
+  .fp-scrollable, .fp-scroller {
+    flex-direction: column;
+  }
+
+  @include generate-content-block() {
+    padding-bottom: 3rem;
+
+    @include media-breakpoint-up(lg) {
+      flex-basis: initial !important;
+      width: 1000px !important;
+    }
+
+    @include media-breakpoint-up(xs) {
+      flex-basis: initial !important;
+      width: 80% !important;
+    }
+
+    .faq-group {
+      margin-bottom: 1.5rem;
+      border-bottom: 5px solid #e1e1e1;
+
+      &:last-child {
+        border-bottom: 0 solid #e1e1e1;
+      }
+
+      .faq-question, .faq-answer {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        margin-bottom: 1.2rem;
+
+        p {
+          width: 100%;
+          padding: 15px;
+          margin-bottom: 0;
+          border-radius: 30px;
+          color: white;
+          text-align: left;
+        }
+
+        a {
+          font-weight: bold;
+          color: white;
+          text-decoration: underline;
+        }
+
+        .avatar {
+          $size: 90px;
+          flex: 0 0 $size;
+          width: $size;
+          height: $size;
+          border-radius: $size;
+
+          @include media-breakpoint-down(sm) {
+            $size: 80px;
+            flex: 0 0 $size;
+            width: $size;
+            height: $size;
+            border-radius: $size;
+          }
+        }
+      }
+
+      .faq-question {
+        p {
+          font-weight: bold;
+          margin-left: 1rem;
+          background-color: #a186be;
+          border-top-left-radius: 0;
+
+          @include media-breakpoint-down(sm) {
+            margin-left: 0.5rem;
+          }
+        }
+
+        .avatar {
+          background: url('../images/q1-rs.png') center center no-repeat;
+          background-size: cover;
+        }
+      }
+
+      .faq-answer {
+        p {
+          margin-right: 1rem;
+          background-color: #662d91;
+          border-top-right-radius: 0;
+
+          @include media-breakpoint-down(sm) {
+            margin-right: 0.5rem;
+          }
+        }
+
+        .avatar {
+          background: url('../images/q2-rs.png') center center no-repeat;
+          background-size: cover;
+        }
+      }
+    }
+  };
+
+  .content-contact {
+    flex: 0 0 100%;
+    padding: 1.5rem 0;
+    background-color: #662d91;
+    text-align: center;
+
+    h1 {
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    $breakpoints: (
+      xs: 80%,
+      lg: 1000px
+    );
+    .wrapper {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      margin: auto;
+
+      @each $breakpoint, $value in $breakpoints {
+        @include media-breakpoint-up($breakpoint) {
+          width: $value;
+        }
+      }
+
+      .row {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+
+        &.contact-detail {
+          padding-bottom: 0.8rem;
+          margin-bottom: 1.8rem;
+          border-bottom: 3px dashed white;
+        }
+      }
+
+      .contact-detail {
+        .contact-left {
+          ul {
+            margin: 0;
+            padding: 0;
+            text-align: left;
+            color: white;
+
+            a {
+              color: white;
+
+              &:hover {
+                text-decoration: none;
+
+                .facebook.box {
+                  background-color: #1b285f;
+                }
+                .twitter.box {
+                  background-color: #2780e5;
+                }
+                .email.box {
+                  background-color: #c30012;
+                }
+              }
+            }
+
+            li {
+              list-style: none;
+              margin-bottom: 1rem;
+            }
+
+            .box {
+              background-color: #5c2a82;
+              padding: 15px 20px 12px 10px;
+              border-radius: 25px;
+
+              transition: background-color 0.2s;
+
+              i {
+                &.fa-facebook {
+                  background-color: #1b285f;
+                  padding: 7px 12px;
+                  border-radius: 25px;
+                  font-size: 1.2rem;
+                  margin-right: 4px;
+                }
+                &.fa-twitter {
+                  background-color: #2780e5;
+                  padding: 7px 5px 5px 7px;
+                  border-radius: 25px;
+                  font-size: 1.3rem;
+                  margin-right: 4px;
+                }
+                &.fa-envelope {
+                  background-color: #c30012;
+                  padding: 5px 7.5px 9px 7px;
+                  border-radius: 25px;
+                  font-size: 1.2rem;
+                  margin-right: 4px;
+                }
+              }
+            }
+          }
+        }
+
+        .contact-right {
+          display: flex;
+          align-items: center;
+
+          ul {
+            margin: 0;
+            padding: 0;
+
+            @include media-breakpoint-down(lg) {
+              padding-left: 0.2rem;
+            }
+
+            li {
+              list-style: none;
+              color: white;
+              text-align: left;
+
+              .contact-name {
+                display: block;
+                font-weight: bold;
+                font-size: 1.2rem;
+              }
+
+              .contact-tel {
+                display: block;
+              }
+            }
+          }
+
+          @include media-breakpoint-up(lg) {
+            justify-content: center;
+          }
+        }
+      }
+
+      .sharing-link {
+        margin-bottom: 1.5rem;
+
+        h3 {
+          color: white;
+          margin-bottom: 1.5rem;
+        }
+
+        .btn-sharing-link {
+          @include button-outline-variant(white);
+
+          border-width: 2px;
+          padding: 0.3rem 0.8rem;
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.17);
+          }
+        }
+
+        hr {
+          margin-top: 1.7rem;
+          border-top: 4px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h4 {
+          margin: 1.5rem 0;
+          color: white;
+        }
+
+        .exchangers-list-banner, .exchangers-list-text {
+          .exchanger {
+            display: inline-block;
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+
+            .img-thumbnail {
+              padding: 0.35rem;
+            }
+          }
+
+          img {
+            height: 130px;
+            background-color: white;
+
+            @include media-breakpoint-down(sm) {
+              height: 100px;
+            }
+          }
+        }
+
+        .exchangers-list-banner {
+          .exchanger {
+            padding: 0.3rem;
+            background-color: #e4e4e4;
+          }
+        }
+
+        .exchangers-list-text {
+          .exchanger {
+            padding: 0.1rem 0.3rem;
+            background-color: white;
+            font-size: 1.1rem;
+          }
+
+          a {
+            color: black;
+
+            &:hover .exchanger {
+              background-color: rgb(210, 210, 210);
+            }
+          }
+        }
+
+      }
+    }
+
+
+  }
+};

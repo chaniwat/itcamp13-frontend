@@ -1,0 +1,36 @@
+.force-cloud {
+  font-family: "Cloud" !important;
+}
+
+.force-mitr {
+  font-family: "Mitr" !important;
+}
+
+.force-fredoka {
+  font-family: "Fredoka" !important;
+}
+
+.block-title {
+  @extend .force-mitr;
+  text-shadow: 4px 4px rgba(0, 0, 0, 0.25);
+  font-weight: normal;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+}
+
+p {
+  font-size: 18px;
+}
+
+.text-orange {
+  color: #ff8800;
+}
+
+.space-4 {
+  padding-left: 2em;
+}
+
+span.br-0_5 {
+  display: block;
+  margin-bottom: 0.5rem;
+}

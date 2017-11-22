@@ -1,0 +1,45 @@
+.sidebar {
+  position: fixed;
+  right: -50px; // Default hide sidebar
+  top: calc(#{$navbar-height} + 25%);
+  transform: translateY(-50%);
+  z-index: 950;
+
+  .sidebar-item {
+    width: 45px;
+    height: 45px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: white;
+
+    transition: background-color 0.35s;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    // span.count {
+    //   display: block;
+    //   font-size: .8rem;
+    //   background-color: rgba(255, 255, 255, 0.35);
+    // }
+  }
+}
+
+// Shares
+.share-facebook {
+  background-color: #3B5998;
+
+  &:hover {
+    background-color: darken(#3B5998, 10%);
+  }
+}
+
+.share-twitter {
+  background-color: #32CDFD;
+
+  &:hover {
+    background-color: darken(#32CDFD, 20%);
+  }
+}

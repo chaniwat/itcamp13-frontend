@@ -1,0 +1,130 @@
+@include generate-block('timeline') {
+  background: url('../images/bg-uni-block.png') center repeat;
+
+  $breakpoints: (
+    xs: 95%,
+    lg: 1000px
+  );
+  @include generate-content-block($breakpoints) {
+    padding-top: calc(60px + 4.5rem);
+
+    @include media-breakpoint-up(md) {
+      padding-top: calc(60px + 3.5rem);
+      padding-bottom: 0;
+    }
+
+    .timeline-wrapper {
+      .col {
+        text-align: center;
+        margin-bottom: 1.3rem;
+
+        img {
+          height: 200px;
+          margin-bottom: 1rem;
+        }
+
+        .timeline-date {
+          display: block;
+          font-weight: bold;
+        }
+
+        .timeline-sub {
+          display: block;
+        }
+
+        @include media-breakpoint-down(md) {
+          padding: 0;
+
+          img {
+            height: 150px;
+          }
+
+          .timeline-date {
+            font-size: 0.95rem;
+          }
+
+          .timeline-sub {
+            font-size: 0.85rem;
+          }
+        }
+
+        @include media-breakpoint-down(sm) {
+          margin-bottom: 1.5rem;
+
+          img {
+            height: 180px;
+          }
+
+          .timeline-date {
+            font-size: 1rem;
+          }
+
+          .timeline-sub {
+            font-size: 0.95rem;
+          }
+        }
+      }
+
+      @include media-breakpoint-down(xs) {
+        flex-direction: column;
+
+        .col {
+          flex-basis: initial;
+        }
+      }
+    }
+  };
+
+  $camp-list: (
+    'app': $app-camp-color,
+    'game': $game-camp-color,
+    'network': $network-camp-color,
+    'iot': $iot-camp-color,
+    'datasci': $datasci-camp-color);
+
+  .camp-connect-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $navbar-height;
+    background-color: #5005a4;
+
+    @each $name, $color in $camp-list {
+      &.camp-#{$name} {
+        background-color: $color;
+      }
+    }
+  }
+
+  .camp-connect {
+    position: absolute;
+    top: $navbar-height;
+    left: 0;
+    width: 100%;
+    height: 200px;
+
+    background: url('../images/timeline-camp-connect.png') center top repeat-x;
+    background-size: contain;
+
+    &.camp-app {
+      filter: hue-rotate(-57deg) saturate(159%) brightness(240%);
+    }
+
+    &.camp-game {
+      filter: hue-rotate(152deg) saturate(195%) brightness(452%);
+    }
+
+    &.camp-network {
+      filter: hue-rotate(87deg) saturate(37%) brightness(217%);
+    }
+
+    &.camp-iot {
+      filter: hue-rotate(-192deg) saturate(54%) brightness(389%);
+    }
+
+    &.camp-datasci {
+      filter: hue-rotate(-1deg) saturate(101%) brightness(67.5%) contrast(69%);
+    }
+  }
+};

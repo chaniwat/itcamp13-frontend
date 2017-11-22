@@ -1,0 +1,504 @@
+/**
+ * Specific mixins
+ */
+@mixin generate-camp-slide($name, $color) {
+  &.camp-#{$name} {
+    background-color: $color;
+
+    @content;
+  }
+}
+@mixin generate-camp-nav($name, $color) {
+  li.slide-link.#{$name} {
+    background-color: $color;
+  }
+}
+
+/**
+ * Specific variables
+ */
+$camp-list: (
+  'home': #373737,
+  'app': $app-camp-color,
+  'game': $game-camp-color,
+  'network': $network-camp-color,
+  'iot': $iot-camp-color,
+  'datasci': $datasci-camp-color);
+
+@include generate-block('camp') {
+  background: url('../images/bg-o-camp-block.png') center repeat;
+  background-color: #5005a4;
+  background-size: contain;
+  color: white;
+
+  // Override for color fading
+  transition: transform 0.7s cubic-bezier(0.645, 0.045, 0.355, 1.000), background-color $transition-time cubic-bezier(0.770, 0.000, 0.175, 1.000) !important;
+
+  @each $name, $color in $camp-list {
+    @include generate-camp-slide($name, $color);
+
+    .#{$name}-camp {
+      .camp-detail .camp-detail-wrapper {
+        .badge-pill {
+          background-color: white;
+          color: $color;
+          font-size: 0.9rem;
+          margin-bottom: 0.4rem;
+        }
+
+        .camp-name {
+          color: $color;
+        }
+
+        hr {
+          border-color: $color !important;
+        }
+      }
+    }
+
+    .camp-detail .camp-detail-wrapper {
+      .btn-regis-#{$name} {
+        @include button-outline-variant($color);
+      }
+    }
+  }
+
+  // Each slide content (slide != 0)
+  @include generate-slide-content-block() {
+    // Override for each slide
+    padding: calc(60px + 1rem) 0 3rem;
+
+    @include media-breakpoint-down(lg) {
+      .col-12 {
+        margin-bottom: 1.5rem
+      }
+    }
+
+    .camp-image {
+      img {
+        width: 100%;
+      }
+    }
+
+    .camp-detail .camp-detail-wrapper {
+      padding: 18px;
+      margin-bottom: 1rem;
+      border-radius: 14px;
+      background-color: rgba(0,0,0,.75);
+      text-align: left;
+
+      .camp-name {
+        @extend .force-fredoka;
+        text-transform: uppercase;
+      }
+
+      hr {
+        margin-top: 0;
+        border-top: 3px solid white;
+      }
+
+      p {
+        text-align: left;
+        margin-bottom: 0.8rem;
+      }
+
+      .btn {
+        border-width: 2px;
+        border-radius: 25px;
+
+        &, &:link {
+          color: white !important;
+        }
+      }
+    }
+  };
+
+  // Main slide content (slide == 0)
+  @include generate-content-block() {
+    // Override padding
+    padding-top: calc(60px);
+    padding-bottom: 0;
+
+    // Override default bot-margin
+    h1 {
+      margin-bottom: 0;
+      @include media-breakpoint-down(sm) {
+        margin-bottom: 2.5rem;
+      }
+    }
+
+    .camp-characters {
+      position: relative;
+
+      .camp-comp {
+        position: absolute;
+        left: 50%;
+      }
+
+      $camp-bgs: (
+        xl: (
+          bgheight: 450px,
+          compheight: 300px,
+          compbottom: 61px,
+          compx: -35px
+        ),
+        sm: (
+          bgheight: 300px,
+          compheight: 160px,
+          compbottom: 48px,
+          compx: -24px
+        ),
+      );
+      @each $key, $value in $camp-bgs {
+        @include media-breakpoint-down($key) {
+          .camp-bg {
+            height: map-get($value, bgheight);
+          }
+
+          .camp-comp {
+            bottom: map-get($value, compbottom);
+            height: map-get($value, compheight);
+            transform: translateX(#{calc(-50% + #{map-get($value, compx)})});
+          }
+        }
+      }
+
+      .camp-character {
+        position: absolute;
+        left: 50%;
+
+        img {
+          transition: transform 0.7s;
+        }
+
+        &:hover {
+          cursor: pointer;
+
+          .camp-cloud {
+            text-decoration: underline;
+          }
+
+          img {
+            transform: scale(1.25);
+
+            @include media-breakpoint-down(sm) {
+              transform: scale(1.15);
+            };
+          }
+        }
+      }
+
+      @mixin generate-character-camp($name, $map, $origin) {
+        @each $key, $value in $map {
+          @include media-breakpoint-down($key) {
+            .camp-character-#{$name} {
+              @if(map-get($value, isTop)) {
+                top: map-get($value, pos);
+              } @else {
+                bottom: map-get($value, pos);
+              }
+              transform: translateX(#{calc(-50% + #{map-get($value, x)})});
+              transform-origin: $origin;
+
+              img {
+                height: map-get($value, height);
+              }
+            }
+          }
+        }
+      }
+
+      $character-app: (
+        xl: (
+          isTop: false,
+          pos: 122px,
+          height: 130px,
+          x: 70px
+        ),
+        sm: (
+          isTop: false,
+          pos: 72px,
+          height: 103px,
+          x: 69px
+        )
+      );
+      @include generate-character-camp('app', $character-app, 30% 50%);
+      $character-game: (
+        xl: (
+          isTop: false,
+          pos: 40px,
+          height: 125px,
+          x: -110px
+        ),
+        sm: (
+          isTop: false,
+          pos: 5px,
+          height: 105px,
+          x: -68px
+        )
+      );
+      @include generate-character-camp('game', $character-game, 530% 50%);
+      $character-network: (
+        xl: (
+          isTop: true,
+          pos: 22px,
+          height: 166px,
+          x: 20px
+        ),
+        sm: (
+          isTop: true,
+          pos: -17px,
+          height: 137px,
+          x: 45px
+        )
+      );
+      @include generate-character-camp('network', $character-network, 170% 50%);
+      $character-iot: (
+        xl: (
+          isTop: false,
+          pos: 92px,
+          height: 158px,
+          x: 235px
+        ),
+        sm: (
+          isTop: false,
+          pos: 56px,
+          height: 121px,
+          x: 187px
+        )
+      );
+      @include generate-character-camp('iot', $character-iot, -535% 50%);
+      $character-datasci: (
+        xl: (
+          isTop: false,
+          pos: 103px,
+          height: 118px,
+          x: -260px
+        ),
+        sm: (
+          isTop: false,
+          pos: 63px,
+          height: 98px,
+          x: -185px
+        )
+      );
+      @include generate-character-camp('datasci', $character-datasci, 1150% 50%);
+
+      .camp-cloud {
+        position: absolute;
+        padding: 0.25rem 0.55rem;
+        border-radius: 10px;
+        box-shadow: -4px 4px rgba(0, 0, 0, 0.45);
+
+        @include media-breakpoint-down(sm) {
+          font-size: 0.8rem;
+        }
+
+        &:after {
+          position: absolute;
+          width: 0;
+          height: 0;
+          content: ' ';
+        }
+
+        &.app {
+          $color: #57A5FF;
+
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: $color;
+
+          &:after {
+            position: absolute;
+            left: 50%;
+            top: -12px;
+            transform: translateX(-50%);
+            border-left: 8px solid transparent;
+            border-bottom: 12px solid $color;
+            border-right: 8px solid transparent;
+          }
+
+          @include media-breakpoint-down(xl) {
+            bottom: -60px;
+          }
+
+          @include media-breakpoint-down(sm) {
+            bottom: -50px;
+          }
+        }
+
+        &.game {
+          $color: #FFA80F;
+
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: $color;
+
+          &:after {
+            left: 50%;
+            bottom: -12px;
+            transform: translateX(-50%);
+            border-left: 8px solid transparent;
+            border-top: 12px solid $color;
+            border-right: 8px solid transparent;
+          }
+
+          @include media-breakpoint-down(xl) {
+            top: -61px;
+          }
+
+          @include media-breakpoint-down(sm) {
+            top: -49px;
+          }
+        }
+
+        &.network {
+          top: 50%;
+          background-color: #CF0600;
+
+          &:after {
+            right: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-top: 8px solid transparent;
+            border-left: 12px solid #CF0600;
+            border-bottom: 8px solid transparent;
+          }
+
+          @include media-breakpoint-down(xl) {
+            left: -156px;
+            transform: translateY(calc(-50% + 36px));
+          }
+
+          @include media-breakpoint-down(sm) {
+            left: -127px;
+            transform: translateY(calc(-50% + 25px));
+          }
+        }
+
+        &.iot {
+          $color: #66bf15;
+
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: $color;
+
+          &:after {
+            left: 50%;
+            top: -12px;
+            transform: translateX(-50%);
+            border-left: 8px solid transparent;
+            border-bottom: 12px solid $color;
+            border-right: 8px solid transparent;
+          }
+
+          @include media-breakpoint-down(xl) {
+            bottom: -63px;
+          }
+
+          @include media-breakpoint-down(sm) {
+            bottom: -51px;
+          }
+        }
+
+        &.datasci {
+          $color: #9000EC;
+
+          left: 50%;
+          transform: translateX(-50%);
+          background-color: $color;
+
+          &:after {
+            left: 50%;
+            top: -12px;
+            transform: translateX(-50%);
+            border-left: 8px solid transparent;
+            border-bottom: 12px solid $color;
+            border-right: 8px solid transparent;
+          }
+
+          @include media-breakpoint-down(xl) {
+            bottom: -60px;
+          }
+
+          @include media-breakpoint-down(sm) {
+            bottom: -49px;
+          }
+        }
+      }
+    }
+
+    .camp-helper {
+      margin-top: 0.35rem;
+      @include media-breakpoint-down(sm) {
+        margin-top: 2.5rem;
+      }
+    }
+  }
+
+  nav.camp-nav {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    z-index: 10; // Override the overlay of fullpage.js
+
+    @each $name, $color in $camp-list {
+      @include generate-camp-nav($name, $color);
+    }
+
+    ul {
+      display: flex;
+      height: 86px;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+
+      li.slide-link {
+        display: block;
+        width: 64px;
+        height: 64px;
+        align-self: center;
+        padding: 0;
+        margin: 0 1rem 0 0;
+        border-radius: 100px;
+
+        // Default border for transition's animate
+        border: 0 solid white;
+        border-radius: 100px;
+
+        transition: transform $transition-time, border $transition-time;
+
+        &:last-child {
+          margin: 0;
+        }
+
+        &.active {
+          border: 6px solid white;
+          transition: transform $transition-time, border $transition-time;
+
+          &:hover {
+            transition: transform $transition-time, border $transition-time;
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.2, 1.2);
+          transition: transform $transition-time, border $transition-time;
+        }
+      }
+    }
+
+    &.hide {
+      ul li.slide-link {
+        transform: scale(0, 0);
+        transition: transform $transition-time, border $transition-time;
+
+        &:hover {
+          transform: scale(0, 0);
+        }
+      }
+    }
+  }
+};

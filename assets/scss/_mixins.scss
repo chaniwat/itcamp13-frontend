@@ -1,0 +1,54 @@
+@mixin generate-block($name) {
+  section.#{$name}-block {
+    width: 100%;
+
+    // Wrapper inside section (Wrap div.content) | FullPage.js
+    .fp-tableCell, .fp-scroller {
+      display: flex;
+      justify-content: center;
+    }
+
+    .fp-scrollable, .fp-scroller {
+      width: 100%;
+    }
+
+    @content
+  }
+}
+
+$default-content-breakpoint: (
+  xs: 80%,
+  lg: 1000px
+);
+
+@mixin generate-content-block($breakpoints: $default-content-breakpoint) {
+  .content {
+    align-self: center;
+    padding: calc(#{$navbar-height} + 3rem) 0 6rem;
+    text-align: center;
+
+    @each $breakpoint, $value in $breakpoints {
+      @include media-breakpoint-up($breakpoint) {
+        flex-basis: $value;
+      }
+    }
+
+    @content
+  }
+}
+
+@mixin generate-slide-content-block($breakpoints: $default-content-breakpoint) {
+  .slide-content {
+    align-self: center;
+    padding: calc(#{$navbar-height} + 1.5rem) 0 1.5rem;
+    text-align: center;
+
+    @each $breakpoint, $value in $breakpoints {
+      @include media-breakpoint-up($breakpoint) {
+        flex-basis: $value;
+      }
+    }
+
+    @content
+  }
+}

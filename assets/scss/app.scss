@@ -1,0 +1,53 @@
+// Import bootstrap
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// Variables
+@import "./variables";
+
+// Mixins
+@import "./mixins";
+
+// Deps
+@import "./color";
+@import "./font";
+@import "./typo";
+@import "./navbar";
+@import "./sidenav";
+@import "./sidebar";
+
+// Debug
+@import "./debug";
+
+// Loading
+@import "./loading";
+
+// Blocks
+@import "./blocks/landing";
+@import "./blocks/home";
+@import "./blocks/detail";
+@import "./blocks/supporter";
+@import "./blocks/camp";
+@import "./blocks/timeline";
+@import "./blocks/gallery";
+@import "./blocks/recommend";
+@import "./blocks/faq";
+
+html {
+  min-width: 500px;
+  font-size: 20px; // Change overall font size
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Cloud' !important;
+}
+
+// Toggle for sidenav
+.fullpage-wrapper .section {
+  transition: transform 0.7s;
+  transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000);
+
+  &.open-sidenav {
+    transform: translate3d(280px, 0, 0);
+  }
+}

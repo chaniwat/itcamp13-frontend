@@ -1,0 +1,138 @@
+@include generate-block('supporter') {
+  background: url('../images/bg-uni-block.png') center repeat;
+
+  @include generate-content-block() {
+    z-index: 10;
+    padding: 10rem 0 7rem;
+
+    @include media-breakpoint-down(md) {
+      padding: 7rem 0 3rem;
+    }
+
+    @include media-breakpoint-down(xs) {
+      padding: 7rem 0 3rem;
+    }
+
+    div[class^="col-"] {
+      margin-bottom: 0.8rem;
+    }
+
+    .supporters-list {
+      .supporter-img {
+        display: inline-block;
+        padding: 0.3rem;
+        background-color: #e4e4e4;
+        border-radius: 0.25rem;
+
+        @include media-breakpoint-down(sm) {
+          margin-bottom: 1rem;
+        }
+
+        .img-thumbnail {
+          padding: 0.35rem;
+        }
+      }
+
+      img {
+        height: 180px;
+        background-color: white;
+
+        @include media-breakpoint-down(sm) {
+          height: 160px;
+        }
+      }
+
+      @include media-breakpoint-up(md) {
+        margin-bottom: 1rem;
+      }
+
+      &.medium {
+        img {
+          height: 150px;
+
+          @include media-breakpoint-down(sm) {
+            height: 125px;
+          }
+        }
+      }
+
+      &.small {
+        img {
+          height: 120px;
+
+          @include media-breakpoint-down(sm) {
+            height: 100px;
+          }
+        }
+      }
+    }
+  };
+
+  @mixin generate-wave($color, $min-height-bg) {
+    .waving-#{$color} {
+      position: absolute;
+      width: 100%;
+      height: 177px;
+      top: $navbar-height;
+      background: url('../images/supporter-wave-#{$color}.png') center top repeat-x;
+      background-size: contain;
+
+      @include media-breakpoint-down(md) {
+          background-size: auto $min-height-bg;
+      }
+    }
+  }
+
+  .waves {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    @include generate-wave('purple', 86.3px);
+    @include generate-wave('green', 91.5px);
+    @include generate-wave('blue', 73.3px);
+  }
+
+  .waves-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $navbar-height;
+
+    background: url('../images/bg-detail-block.png') center top repeat;
+    background-size: contain;
+  }
+
+  .camp-connect {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 197px;
+
+    background: url('../images/supporter-camp-connect.png') center bottom repeat-x;
+    background-size: contain;
+
+    &.camp-app {
+      filter: hue-rotate(-57deg) saturate(159%) brightness(240%);
+    }
+
+    &.camp-game {
+      filter: hue-rotate(152deg) saturate(195%) brightness(452%);
+    }
+
+    &.camp-network {
+      filter: hue-rotate(87deg) saturate(37%) brightness(217%);
+    }
+
+    &.camp-iot {
+      filter: hue-rotate(-192deg) saturate(54%) brightness(389%);
+    }
+
+    &.camp-datasci {
+      filter: hue-rotate(-1deg) saturate(101%) brightness(67.5%) contrast(69%);
+    }
+  }
+};
